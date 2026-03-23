@@ -1,6 +1,6 @@
-# Case Studies for [MetaboCensoR](https://github.com/plyush1993/MetaboCensoR)
+# Case Studies for `MetaboCensoR`
 ### Description :bookmark_tabs:
-This repository provides use cases and example workflows for [MetaboCensoR](https://github.com/plyush1993/MetaboCensoR), including all associated data files and code to reproduce computations & figures from the original [article](https://DOI).  
+This repository provides use cases and example workflows for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR), including all associated data files and code to reproduce computations & figures from the original [article](https://DOI).  
 
 Three different datasets are provided:
 - [**`orbi`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/orbi) - <ins>Case Study 1:</ins> Enhancing molecular networking in a plant LC-MS profiling dataset.
