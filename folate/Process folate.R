@@ -11,7 +11,7 @@ library(data.table)
 library(ggsci)
 library(cowplot)
 
-setwd("C:/Users/plyush/OneDrive - University of Haifa/Desktop/Data/Technion Data Cell Lines/App/")
+setwd("C:/.../")
 
 #................................................................
 #### Annotation App ----
