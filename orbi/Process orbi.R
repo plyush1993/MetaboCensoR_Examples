@@ -11,7 +11,7 @@ library(ggsci)
 library(RCy3)
 library(cowplot)
 
-setwd("C:/Users/plyush/OneDrive - University of Haifa/Desktop/Data/Metabolomics Evaluation/Orbi_POS_DDA_MZML/mzMine_sirius/App/")
+setwd("C:/.../")
 
 #................................................................
 #### Compare Annotations Total----
