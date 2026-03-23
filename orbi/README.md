@@ -1,6 +1,6 @@
 # `orbi` dataset
 The LC-MS plant profiling dataset, which is described in [[1]](https://pubs.acs.org/doi/10.1021/acs.analchem.4c05577). <br/>
-Methanol extracts from the plant ashwagandha [*Withania somnifera (L.) Dunal*] together with blanks were analyzed on Thermo Q-Exactive Plus Orbitrap in DDA positive mode. Raw mzML files were then processed in mzMine in default pre-settings for UPLC-DDA. <br/>
+Methanol extracts from the plant ashwagandha [*Withania somnifera (L.) Dunal*] together with blanks were analyzed on RP column in DDA positive mode on Thermo Q-Exactive Plus Orbitrap. Raw mzML files were then processed in mzMine in default pre-settings for UPLC-DDA. <br/>
 Raw mzML files were processed in mzMine in default pre-settings for UPLC-DDA. Obtained spectral data were subjected to feature-based molecular networking using the online workflow at GNPS 2 platform.
 
 Dataset was used to estimate the applicability of the MetaboCensoR App on Molecular Networking.<br/>
