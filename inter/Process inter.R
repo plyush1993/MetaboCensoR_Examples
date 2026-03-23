@@ -11,7 +11,7 @@ library(ggsci)
 library(batchCorr)
 library(cowplot)
 
-setwd("C:/Users/plyush/OneDrive - University of Haifa/Desktop/Data/Ivan 1st long experiment/msdial inter/blank removal all add/App/")
+setwd("C:/.../")
 
 # raw data
 data <- read.csv("Area_5_2026_03_10_18_08_43.csv") %>% 
