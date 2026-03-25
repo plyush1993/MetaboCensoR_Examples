@@ -517,4 +517,44 @@ md <- md[,c(3:4,10, 14)]
 sirius_ma <- left_join(sirius, md, by = c("mappingFeatureId" = "map_id"))
 write_csv(sirius_ma, "canopus_formula_summary + MetaboAnnotation RT.csv")
 
+#................................................................
+#### Filter SIRIUS Output by probability ----
+#................................................................
+
+sirius <- read_csv("canopus_formula_summary.csv")
+colnames(sirius)
+
+sirius$`NPC#pathway` <- ifelse(sirius$`NPC#pathway Probability` > 0.9, sirius$`NPC#pathway`, "")
+sirius$`NPC#superclass` <- ifelse(sirius$`NPC#superclass Probability` > 0.9, sirius$`NPC#superclass`, "")
+sirius$`NPC#class` <- ifelse(sirius$`NPC#class Probability` > 0.9, sirius$`NPC#class`, "")
+
+sirius$`ClassyFire#superclass` <- ifelse(sirius$`ClassyFire#superclass probability` > 0.9, sirius$`ClassyFire#superclass`, "")
+sirius$`ClassyFire#class` <- ifelse(sirius$`ClassyFire#class Probability` > 0.9, sirius$`ClassyFire#class`, "")
+sirius$`ClassyFire#subclass` <- ifelse(sirius$`ClassyFire#subclass Probability` > 0.9, sirius$`ClassyFire#subclass`, "")
+sirius$`ClassyFire#level 5` <- ifelse(sirius$`ClassyFire#level 5 Probability` > 0.9, sirius$`ClassyFire#level 5`, "")
+sirius$`ClassyFire#most specific class` <- ifelse(sirius$`ClassyFire#most specific class Probability` > 0.9, sirius$`ClassyFire#most specific class`, "")
+
+sirius <- sirius %>% mutate(across(everything(), ~ tidyr::replace_na(as.character(.x), "")))
+write_csv(sirius, "canopus_formula_summary FILT.csv")
+
+#................................................................
+#### Percentage of Predicted classes ----
+#................................................................
+
+# raw
+df <- read_csv("orbi_iimn_gnps_quant.csv")
+sirius <- read_csv("canopus_formula_summary FILT.csv") 
+na_count_per_row <- rowSums(is.na(sirius))
+to_del <- which(na_count_per_row >= 10)
+tot_an <- intersect(sirius$mappingFeatureId[-to_del], df$`row ID`) %>% length()
+round(tot_an/nrow(df)*100, 1)
+
+# app
+df <- read_csv("orbi_iimn_gnps_quant_filtered.csv")
+sirius <- read_csv("canopus_formula_summary FILT.csv") 
+na_count_per_row <- rowSums(is.na(sirius))
+to_del <- which(na_count_per_row >= 10)
+tot_an <- intersect(sirius$mappingFeatureId[-to_del], df$`row ID`) %>% length()
+round(tot_an/nrow(df)*100, 1)
+
 ###################################1
