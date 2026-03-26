@@ -391,18 +391,15 @@ plot_data <- subset(data_stat_lpp, data_stat_lpp$Name != "No")
 plot_data$Groups %>% unique()
 plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+Pd / Pd+001srf", "Pd+Pd / Pd+Bs", "Pd+Pd / Pd+dPPS"))
 
-# Replace 'my_data' with the actual name of your dataframe
 plot_data <- plot_data %>%
-  # 1. Create a unique Y-axis label. 
-  # Including 'Compound' (m/z@rt) is crucial because your screenshot shows 
-  # isomers like "Lipopetidic C15" appearing multiple times.
   mutate(Y_Label = paste0(Name, " ", Adduct, "")) %>%
   
-  # 2. Ensure 'Raw' plots first and 'App' plots second
-  mutate(Label = factor(Label, levels = c("Raw", "App")))
+  mutate(Label = factor(Label, levels = c("App", "Raw")))
 
-# 3. Generate the plot using your exact column names
 ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
+  
+  # Add a vertical threshold line (FDR = 0.05 is ~ 1.3 on a log scale)
+  geom_vline(xintercept = 1.301, linetype = "dashed", color = "gray50", size = 1) +
   
   # Draw the sticks, dodged side-by-side
   geom_linerange(aes(xmin = 0, xmax = `Adj.p-value.log`), 
@@ -414,15 +411,14 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
              position = position_dodge(width = 0.6), 
              size = 3) +
   
-  # Add a vertical threshold line (FDR = 0.05 is ~ 1.3 on a log scale)
-  geom_vline(xintercept = 1.301, linetype = "dashed", color = "gray50") +
-  
   # Separate the plot by your 'Groups' column
   # scales = "free_y" ensures each facet only shows compounds present in that specific comparison
   facet_wrap(~ Groups, scales = "free_y", ncol = 1) +
   
   # Set specific colors for Raw and App
-  scale_color_manual(values = c("Raw" = "#95a5a6", "App" = "#2980b9")) +
+  scale_color_npg() +
+  
+  scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
   
   labs(
     title = "",
@@ -431,10 +427,12 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
     color = "Processing Status"
   ) +
   theme_minimal() +
-  theme(
+  theme(axis.text.x = element_text(margin = margin(t = 0)),
+        axis.text.y = element_text(margin = margin(r = 0)),
+        #axis.ticks.y = element_line(color = "gray50", linewidth = 0.5),
     panel.grid.major.y = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.position = "none",
+    legend.position = "bottom",
     strip.background = element_rect(fill = "gray90", color = NA),
     strip.text = element_text(face = "bold", size = 11)
   )
