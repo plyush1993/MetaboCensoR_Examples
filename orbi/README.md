@@ -5,8 +5,8 @@ Obtained spectral data were subjected to feature-based molecular networking usin
 
 Dataset was used to estimate the applicability of the MetaboCensoR App on Molecular Networking.<br/>
 Code script and all relevant data is available in the folder. 
-- Raw Data: [GNPS Project](https://gnps2.org/status?task=1e2c8674f1f2402ab99e4675865c95db)
-- After App: [GNPS Project](https://gnps2.org/status?task=e58ad7770d1a45e8a33dc4bcf8337d06)
+- Raw Data: [`GNPS Project`](https://gnps2.org/status?task=1e2c8674f1f2402ab99e4675865c95db)
+- After App: [`GNPS Project`](https://gnps2.org/status?task=e58ad7770d1a45e8a33dc4bcf8337d06)
 </a>
 <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/mn.png" align="center" width="700" height="500">
 </a>
