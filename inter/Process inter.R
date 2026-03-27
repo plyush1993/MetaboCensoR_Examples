@@ -396,6 +396,7 @@ plot_data <- plot_data %>%
   
   mutate(Label = factor(Label, levels = c("App", "Raw")))
 
+# 3. Generate the plot using your exact column names
 ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
   
   # Add a vertical threshold line (FDR = 0.05 is ~ 1.3 on a log scale)
@@ -418,11 +419,16 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
   # Set specific colors for Raw and App
   scale_color_npg() +
   
-  scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
+  #scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
+  scale_x_continuous(
+    expand = expansion(mult = c(0, 0.05)),
+    breaks = c(0, 1.301, 2, 3, 4, 5), 
+    labels = c("1.0", "0.05", "0.01", "0.001", "0.0001", "0.00001")
+  )+
   
   labs(
     title = "",
-    x = "-log10(FDR)",
+    x = "FDR",
     y = "",
     color = "Processing Status"
   ) +
