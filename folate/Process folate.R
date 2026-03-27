@@ -3,8 +3,10 @@
 #................................................................
 
 library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(MetaboAnnotation)
-library(ggsci)
+library(forcats)
 library(MetaboCoreUtils)
 library(ggplot2)
 library(data.table)
@@ -569,6 +571,85 @@ for (g in groups) {
 
 message("Saved files to: ", normalizePath(out_dir))
 
+#................................................................
+#### Functional Analysis Output from MetaboAnalyst----
+#................................................................
+
+raw <- read_csv("mummichog_pathway_raw.csv")
+colnames(raw)[1] <- "Pathway"
+app <- read_csv("mummichog_pathway_filt.csv")
+colnames(app)[1] <- "Pathway"
+app$`P(Fisher)`
+
+for_plot <- rbind(cbind(app, Label = "App"), cbind(raw, Label = "Raw")) %>% as.data.frame()
+for_plot <- for_plot %>%
+  group_by(Pathway) %>%
+  # Keep the pathway ONLY if App < 0.1 AND Raw < 0.1
+  filter(
+    any(Label == "App" & `P(Fisher)` < 0.5) & 
+    any(Label == "Raw" & `P(Fisher)` < 0.5)
+  ) %>%
+  ungroup()
+
+# 1. Prepare the Data for Mirroring
+plot_data_mirror <- for_plot %>%
+  # Calculate standard log transformation
+  mutate(neg_log_p = -log10(`P(Fisher)`)) %>%
+  
+  # THE MIRROR TRICK: Make 'App' values negative so they draw to the left
+  mutate(plot_val = ifelse(Label == "App", -neg_log_p, neg_log_p)) %>%
+  
+  # Sort pathways purely by how well the App did, so the App's best is at the top
+  group_by(Pathway) %>%
+  mutate(App_Score = max(ifelse(Label == "App", neg_log_p, -999), na.rm = TRUE)) %>%
+  ungroup() %>%
+  
+  # Filter to keep it clean (optional: only keep if at least one side is significant)
+  filter(any(neg_log_p > -log10(0.05))) %>%
+  
+  # Reorder the factor based on the App's score
+  mutate(Pathway = fct_reorder(Pathway, App_Score))
+
+# 2. Generate the Mirror Plot
+ggplot(plot_data_mirror, aes(x = plot_val, y = Pathway, fill = Label)) +
+  
+  # Add the significance threshold lines for BOTH sides (0.05 is ~1.301 on log scale)
+  geom_vline(xintercept = -(-log10(0.05)), linetype = "dashed", color = "gray50", linewidth = 1) + # App threshold (Left)
+  geom_vline(xintercept = -log10(0.05), linetype = "dashed", color = "gray50", linewidth = 1) +  # Raw threshold (Right)
+  
+  # Draw the mirrored bars
+  geom_col(width = 0.7, alpha = 1, color = "black") +
+
+  # Center line separating the two sides
+  geom_vline(xintercept = 0, color = "black", linewidth = 0.8) +
+  
+  scale_fill_npg() +
+  
+  # THE SYMMETRIC ABSOLUTE SCALE
+  scale_x_continuous(
+    expand = expansion(mult = c(0.05, 0.05)),
+    # We place breaks symmetrically around 0
+    breaks = c(-3, -2, -1.301, 0, 1.301, 2, 3),
+    # The labels are perfectly mirrored absolute p-values!
+    labels = c("0.001", "0.01", "0.05", "1.0", "0.05", "0.01", "0.001")
+  ) +
+  
+  labs(
+    title = "",
+    x = "← App Better (Absolute P-Value) Raw Better →",
+    y = "",
+    fill = ""
+  ) +
+  
+  theme_minimal(base_size = 16) +
+  theme(
+    axis.text.x = element_text(margin = margin(t = 0), face = "bold"),
+    axis.text.y = element_text(face = "bold", size = 11, color = "black"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    legend.position = "bottom"
+  )                    
+                    
 #................................................................
 #### Compare Total Annotations ----
 #................................................................
