@@ -13,7 +13,7 @@ library(tidyr)
 
 setwd("C:/..")
 
-df <- as.data.frame(fread("Results POS-NEG all replicates.csv"))
+df <- as.data.frame(fread("Results NEG all replicates.csv"))
 rownames(df) <- df[,1]
 df <- df[,-1]
 df$Label <- factor(df$Label, levels=c("KO-6", "KO-22", "PM-31", "PM-37", "WT"))
@@ -177,7 +177,7 @@ data_stat$`Adj.p-value2` <- as.numeric(round(data_stat$`Adj.p-value`, 3))
 #...........................................................
 # heatmap ----
 #...........................................................
-ids <- read.csv("../All_IDs_for_Affected_NEG_POS_csv.csv")
+ids <- read.csv("../All_IDs_for_Affected_NEG_csv.csv")
 ids <- ids[c(1, 5,8, 6)]
 colnames(ids)[1] <- "Compound"
 
