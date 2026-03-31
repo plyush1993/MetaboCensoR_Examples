@@ -430,7 +430,7 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
     title = "",
     x = "FDR",
     y = "",
-    color = "Processing Status"
+    color = ""
   ) +
   theme_minimal() +
   theme(axis.text.x = element_text(margin = margin(t = 0)),
