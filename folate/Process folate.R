@@ -649,6 +649,55 @@ ggplot(plot_data_mirror, aes(x = plot_val, y = Pathway, fill = Label)) +
     panel.grid.minor.x = element_blank(),
     legend.position = "bottom"
   )                    
+
+# 1. Prepare the Data for the Bubble Plot
+plot_data_bubble <- for_plot %>%
+  # Calculate standard log transformation 
+  mutate(neg_log_p = -log10(`P(Fisher)`)) %>%
+  
+  # Ensure Label is ordered so App is consistently drawn/colored
+  mutate(Label = factor(Label, levels = c("App", "Raw"))) %>%
+  
+  # Sort pathways purely by how well the App did
+  group_by(Pathway) %>%
+  mutate(App_Score = max(ifelse(Label == "App", neg_log_p, -999), na.rm = TRUE)) %>%
+  ungroup() %>%
+  
+  # Reorder the factor based on the App's score so the most significant are at the top
+  mutate(Pathway = fct_reorder(Pathway, App_Score))
+
+# 2. Generate the Bubble Plot
+ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
+  geom_vline(xintercept = -log10(0.05), linetype = "dashed", color = "red", alpha = 0.5, linewidth = 1) +
+  geom_line(aes(group = Pathway), color = "gray80", linewidth = 1) +
+  geom_point(aes(fill = Label, size = Hits.sig), alpha = 0.85, shape =21, stroke = 1.2) +
+  
+  scale_fill_npg() +
+  scale_size_continuous(range = c(3, 9)) +
+  
+  guides(fill = guide_legend(override.aes = list(size = 10))) +
+  
+  labs(
+    x = "Fisher's Exact P-Value",
+    y = "",
+    fill = "",
+    size = "Significant\nHits"
+  ) +
+  
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.text.x = element_text(margin = margin(t = 0), face = "bold"),
+    axis.text.y = element_text(face = "bold", size = 11, color = "black"),
+    panel.grid.major.y = element_line(color = "gray90", linetype = "dashed"),
+    panel.grid.minor.x = element_blank(),
+    
+    legend.position = "right",
+    legend.box = "vertical",
+    
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12),
+    legend.key.size = unit(0.8, "cm")
+  )
                     
 #................................................................
 #### Compare Total Annotations ----
