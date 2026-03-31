@@ -18,9 +18,12 @@ setwd("C:/.../")
 #................................................................
 
 target_df <- read.csv("annotation.csv")
+target_df <- target_df[,c(1,2,4)]
+
 mass <- calculateMass(target_df$Formula)
 target_df$exactmass <- mass
-target_df <- target_df[,c(1,2,3,4,6)]
+target_df <- target_df %>%
+  distinct()
 
 df <- read_csv("orbi_iimn_gnps_quant.csv") %>% as.data.frame()
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
@@ -35,7 +38,7 @@ peakIn$rt <- as.numeric(peakIn$rt)
 
 parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
 
 matched_features <- matchValues(peakIn, target_df, parm)
 md <- matchedData(matched_features)
@@ -59,7 +62,7 @@ peakIn$rt <- as.numeric(peakIn$rt)
 
 #parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
 
 matched_features <- matchValues(peakIn, target_df, parm)
 md2 <- matchedData(matched_features)
@@ -85,14 +88,16 @@ peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
 
 target_df <- read.csv("annotation.csv")
+target_df <- target_df[,c(1,2,4)]
 
 mass <- calculateMass(target_df$Formula)
 target_df$exactmass <- mass
-target_df <- target_df[,c(1,2,3,4,6)]
+target_df <- target_df %>%
+  distinct()
 
 # set polarity, adduct, accuracy
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
 #MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
 #MetaboCoreUtils::adducts(polarity = c("negative")) 
 
@@ -202,14 +207,16 @@ peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
 
 target_df <- read.csv("annotation.csv")
+target_df <- target_df[,c(1,2,4)]
 
 mass <- calculateMass(target_df$Formula)
 target_df$exactmass <- mass
-target_df <- target_df[,c(1,2,3,4,6)]
+target_df <- target_df %>%
+  distinct()
 
 # set polarity, adduct, accuracy
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
 #MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
 #MetaboCoreUtils::adducts(polarity = c("negative")) 
 
@@ -392,8 +399,12 @@ plot_grid(
 #................................................................
 # Final detected annotated compounds ----
 #................................................................
-# 92 unique + (82 by 1 isomer, 9 - 2, 1-3)
+# 92 unique + (81 by 1 isomer, 9-2, 1-3, 1-4)
 cmp <- subset(plot_df2_cp, plot_df2_cp$metric == "Isomers")
+subset(cmp, cmp$detect_f == 1) %>% nrow()*0.5
+subset(cmp, cmp$detect_f == 2) %>% nrow()*0.5
+subset(cmp, cmp$detect_f == 3) %>% nrow()*0.5
+subset(cmp, cmp$detect_f == 4) %>% nrow()*0.5
 total_features_by_label <- cmp %>%
   group_by(Label) %>%
   summarise(total_features = sum(detect, na.rm = TRUE))
