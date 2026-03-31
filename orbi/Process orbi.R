@@ -35,7 +35,7 @@ peakIn$rt <- as.numeric(peakIn$rt)
 
 parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.1)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
 
 matched_features <- matchValues(peakIn, target_df, parm)
 md <- matchedData(matched_features)
@@ -59,7 +59,7 @@ peakIn$rt <- as.numeric(peakIn$rt)
 
 #parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.1)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
 
 matched_features <- matchValues(peakIn, target_df, parm)
 md2 <- matchedData(matched_features)
@@ -92,7 +92,7 @@ target_df <- target_df[,c(1,2,3,4,6)]
 
 # set polarity, adduct, accuracy
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.1)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
 #MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
 #MetaboCoreUtils::adducts(polarity = c("negative")) 
 
@@ -107,7 +107,7 @@ md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q2
 unique(md$target_Compound) %>% length()
 
 # Plot2
-assign_isomer_id <- function(rt, tol = 0.1) ({
+assign_isomer_id <- function(rt, tol = 0.05) ({
   if (length(rt) == 0 || all(is.na(rt))) return(rep(NA_integer_, length(rt)))
   
   # Sort RTs to find the gaps, but keep track of original row order
@@ -121,7 +121,7 @@ assign_isomer_id <- function(rt, tol = 0.1) ({
   return(cluster[order(o)])
 })
 
-rt_tol <- 0.1
+rt_tol <- 0.05
 
 # 2. Add the isomer_id to the main dataframe
 md2 <- md %>%
@@ -209,7 +209,7 @@ target_df <- target_df[,c(1,2,3,4,6)]
 
 # set polarity, adduct, accuracy
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.1)
+                       tolerance = 0, ppm = 5, toleranceRt = 0.05)
 #MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
 #MetaboCoreUtils::adducts(polarity = c("negative")) 
 
@@ -224,7 +224,7 @@ md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q2
 unique(md$target_Compound) %>% length()
 
 # Plot2
-assign_isomer_id <- function(rt, tol = 0.1) ({
+assign_isomer_id <- function(rt, tol = 0.05) ({
   if (length(rt) == 0 || all(is.na(rt))) return(rep(NA_integer_, length(rt)))
   
   # Sort RTs to find the gaps, but keep track of original row order
@@ -238,7 +238,7 @@ assign_isomer_id <- function(rt, tol = 0.1) ({
   return(cluster[order(o)])
 })
 
-rt_tol <- 0.1
+rt_tol <- 0.05
 
 # 2. Add the isomer_id to the main dataframe
 md2 <- md %>%
