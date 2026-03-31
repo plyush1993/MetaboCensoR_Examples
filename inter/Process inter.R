@@ -425,7 +425,9 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
     breaks = c(0, 1.301, 2, 3, 4, 5), 
     labels = c("1.0", "0.05", "0.01", "0.001", "0.0001", "0.00001")
   )+
-  
+
+ guides(color = guide_legend(override.aes = list(size = 6))) +
+                            
   labs(
     title = "",
     x = "FDR",
@@ -440,7 +442,10 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
     panel.grid.minor.x = element_blank(),
     legend.position = "bottom",
     strip.background = element_rect(fill = "gray90", color = NA),
-    strip.text = element_text(face = "bold", size = 11)
+    strip.text = element_text(face = "bold", size = 11)+
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12),
+    legend.key.size = unit(0.8, "cm")
   )
 
 #................................................................
