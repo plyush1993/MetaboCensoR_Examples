@@ -24,6 +24,12 @@ mass <- calculateMass(target_df$Formula)
 target_df$exactmass <- mass
 target_df <- target_df %>%
   distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
 
 df <- read_csv("orbi_iimn_gnps_quant.csv") %>% as.data.frame()
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
@@ -36,9 +42,8 @@ peakIn$rt <- as.numeric(peakIn$rt)
 #target_df <- target_df[,c(1,2,3,4)]
 
 
-parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
-parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
 
 matched_features <- matchValues(peakIn, target_df, parm)
 md <- matchedData(matched_features)
@@ -50,7 +55,7 @@ md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q2
 cat("Wulignan A1 & p-coumaraldehyde (Q27103652)|Phenylacrylic acid are detected in blank")
 unique(md$target_Compound) %>% length()
 
-df <- read_csv("orbi_iimn_gnps_quant_filtered.csv") %>% as.data.frame()
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts).csv") %>% as.data.frame()
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
@@ -61,8 +66,8 @@ peakIn$rt <- as.numeric(peakIn$rt)
 #target_df <- target_df[,c(1,2,3,4)]
 
 #parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
-parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
 
 matched_features <- matchValues(peakIn, target_df, parm)
 md2 <- matchedData(matched_features)
@@ -82,7 +87,7 @@ setdiff(md$target_Compound, md2$target_Compound)
 #### Annotation App ----
 #................................................................
 
-df <- read_csv("orbi_iimn_gnps_quant_filtered.csv") %>% as.data.frame()
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts).csv") %>% as.data.frame()
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
@@ -94,10 +99,16 @@ mass <- calculateMass(target_df$Formula)
 target_df$exactmass <- mass
 target_df <- target_df %>%
   distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
 
 # set polarity, adduct, accuracy
-parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
 #MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
 #MetaboCoreUtils::adducts(polarity = c("negative")) 
 
@@ -111,91 +122,59 @@ unique(md$target_Compound) %>% length()
 md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
 unique(md$target_Compound) %>% length()
 
-# Plot2
-assign_isomer_id <- function(rt, tol = 0.05) ({
-  if (length(rt) == 0 || all(is.na(rt))) return(rep(NA_integer_, length(rt)))
-  
-  # Sort RTs to find the gaps, but keep track of original row order
-  o <- order(rt)
-  rt_sorted <- rt[o]
-  
-  # Create cluster IDs based on gaps larger than the tolerance
-  cluster <- cumsum(c(1, diff(rt_sorted) > tol))
-  
-  # Return the cluster IDs mapped back to their original row order
-  return(cluster[order(o)])
-})
+# Plot
+library(ggsci)
 
-rt_tol <- 0.05
-
-# 2. Add the isomer_id to the main dataframe
-md2 <- md %>%
-  mutate(rt = as.numeric(rt)) %>%
-  filter(!is.na(target_Compound), !is.na(rt)) %>%
-  group_by(target_Compound) %>%
-  mutate(isomer_id = assign_isomer_id(rt, tol = rt_tol)) %>%
-  ungroup()
-
-# 3. Calculate Isomers: Grouped ONLY by Compound
-# (Counts how many unique isomers exist per compound formula)
-sum_rt <- md2 %>%
-  group_by(target_Compound) %>%
-  summarise(detect = n_distinct(isomer_id), .groups = "drop") %>%
-  mutate(metric = "Isomers")
-
-# 4. Calculate Adducts: Grouped by Compound AND Isomer
-# (Counts distinct adducts for EACH specific isomer separately)
-sum_adduct <- md2 %>%
-  filter(!is.na(adduct)) %>%
-  group_by(target_Compound, isomer_id) %>%
-  summarise(detect = n_distinct(adduct), .groups = "drop") %>%
-  # Drop the isomer_id column now so it binds cleanly with sum_rt later
-  select(-isomer_id) %>% 
-  mutate(metric = "Adducts")
-
-sum_adduct_tot_app <- tibble(adduct = md2$adduct) %>%
+adduct_summary <- tibble(adduct = md$adduct) %>%
   dplyr::count(adduct, name = "n") %>%
   mutate(percent = 100 * n / sum(n)) %>%
   arrange(desc(n))
 
-# Combine for plotting exactly like you had it
-plot_df <- bind_rows(sum_adduct, sum_rt) %>%
-  mutate(one = 1)
+total_n <- sum(adduct_summary$n)
 
-det_levels <- sort(unique(plot_df$detect))
-det_levels <- det_levels[is.finite(det_levels)]
-det_levels_chr <- as.character(det_levels)
+compound_summary <- tibble(target_Compound = md$target_Compound) %>%
+  dplyr::count(target_Compound, name = "n") %>%
+  mutate(percent = 100 * n / sum(n)) %>%
+  arrange(desc(n))
 
-#pal_det <- setNames(ggsci::pal_npg()(length(det_levels_chr)), det_levels_chr)
-pal_det <- setNames(viridisLite::viridis(length(det_levels_chr)), det_levels_chr)
+ggplot(adduct_summary, aes(x = reorder(adduct, n), y = n)) +
+  geom_col(color = "black", aes(fill = adduct), size = 1, width = 0.5) +
+  #coord_flip() +
+  geom_text(aes(label = sprintf("%d (%.1f%%)", n, percent)), hjust = 0.5, vjust = -0.5, size = 5.5) +
+  labs(x = NULL, y = "Count")+
+  #labs(x = NULL, y = "Count", title = paste("Adduct counts (Total =", total_n, ")")) +
+  expand_limits(y = max(adduct_summary$n) * 1.15) + theme_classic(base_size = 16) + theme(legend.position = "none")+
+  scale_fill_npg() 
 
-plot_df <- plot_df %>%
-  mutate(detect_f = factor(as.character(detect), levels = det_levels_chr))
+adduct_summary_app <- adduct_summary
 
-plot_df2 <- plot_df %>%
-  mutate(detect_num = as.numeric(as.character(detect_f))) %>%
-  arrange(metric, detect_num, target_Compound, ) %>%   # sort within each metric
-  select(-detect_num)
+# plot occurance
+occ_tbl <- md %>%
+  mutate(target_compound = trimws(as.character(target_Compound))) %>%
+  filter(!is.na(target_Compound), target_Compound != "") %>%
+  dplyr::count(target_Compound, name = "occurrence") %>%
+  arrange(desc(occurrence), target_Compound)
 
-max_y <- plot_df2 %>%
-  count(metric, name = "n_compounds") %>%
-  pull(n_compounds) %>%
-  max()
-step <- max(1, ceiling(max_y / 6))
+occ_dist <- occ_tbl %>%
+  dplyr::count(occurrence, name = "n_compounds") %>%
+  arrange(occurrence) %>%
+  mutate(
+    occurrence_f = factor(occurrence, levels = occurrence),
+    percent = 100 * n_compounds / sum(n_compounds),
+    lab = sprintf("%d (%.1f%%)", n_compounds, percent)
+  )
 
-plot_df2_app <- plot_df2
-
-ggplot(plot_df2, aes(x = metric, y = 1, fill = detect_f)) +
-  geom_col(color = "black", width = 0.65, position = position_stack(reverse = TRUE)) +
-  scale_fill_manual(values = pal_det, drop = FALSE, name = "Occurrence: ") +
-  labs(x = NULL, y = "Compounds") +
-  scale_y_continuous(
-    limits = c(0, max_y),
-    breaks = seq(0, max_y, by = step),
-    expand = expansion(mult = c(0, 0.02))
+ggplot(occ_dist, aes(x = occurrence_f, y = n_compounds)) +
+  geom_col(color = "black", aes(fill = occurrence_f), size = 1, width = 0.7) +
+  geom_text(aes(label = lab), vjust = -0.3, size = 5) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.12))) +
+  labs(
+    x = "Adducts per compound",
+    y = "Number of compounds"
   ) +
-  theme_classic(base_size = 16) +
-  theme(legend.position = "bottom") + labs(caption = paste0("Total number of detected compounds including possible isomers: ", nrow(distinct(md[,c(2,4)]))))
+  theme_classic(base_size = 20) + theme(legend.position = "none") + scale_fill_aaas()
+
+occ_dist_app <- occ_dist
 
 #................................................................
 #### Annotation Raw ----
@@ -213,10 +192,16 @@ mass <- calculateMass(target_df$Formula)
 target_df$exactmass <- mass
 target_df <- target_df %>%
   distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
 
 # set polarity, adduct, accuracy
-parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.03)
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
 #MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
 #MetaboCoreUtils::adducts(polarity = c("negative")) 
 
@@ -230,116 +215,95 @@ unique(md$target_Compound) %>% length()
 md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
 unique(md$target_Compound) %>% length()
 
-# Plot2
-assign_isomer_id <- function(rt, tol = 0.05) ({
-  if (length(rt) == 0 || all(is.na(rt))) return(rep(NA_integer_, length(rt)))
-  
-  # Sort RTs to find the gaps, but keep track of original row order
-  o <- order(rt)
-  rt_sorted <- rt[o]
-  
-  # Create cluster IDs based on gaps larger than the tolerance
-  cluster <- cumsum(c(1, diff(rt_sorted) > tol))
-  
-  # Return the cluster IDs mapped back to their original row order
-  return(cluster[order(o)])
-})
+# Plot
+library(ggsci)
 
-rt_tol <- 0.05
-
-# 2. Add the isomer_id to the main dataframe
-md2 <- md %>%
-  mutate(rt = as.numeric(rt)) %>%
-  filter(!is.na(target_Compound), !is.na(rt)) %>%
-  group_by(target_Compound) %>%
-  mutate(isomer_id = assign_isomer_id(rt, tol = rt_tol)) %>%
-  ungroup()
-
-# 3. Calculate Isomers: Grouped ONLY by Compound
-# (Counts how many unique isomers exist per compound formula)
-sum_rt <- md2 %>%
-  group_by(target_Compound) %>%
-  summarise(detect = n_distinct(isomer_id), .groups = "drop") %>%
-  mutate(metric = "Isomers")
-
-# 4. Calculate Adducts: Grouped by Compound AND Isomer
-# (Counts distinct adducts for EACH specific isomer separately)
-sum_adduct <- md2 %>%
-  filter(!is.na(adduct)) %>%
-  group_by(target_Compound, isomer_id) %>%
-  summarise(detect = n_distinct(adduct), .groups = "drop") %>%
-  # Drop the isomer_id column now so it binds cleanly with sum_rt later
-  select(-isomer_id) %>% 
-  mutate(metric = "Adducts")
-
-sum_adduct_tot_raw <- tibble(adduct = md2$adduct) %>%
+adduct_summary <- tibble(adduct = md$adduct) %>%
   dplyr::count(adduct, name = "n") %>%
   mutate(percent = 100 * n / sum(n)) %>%
   arrange(desc(n))
 
-# Combine for plotting exactly like you had it
-plot_df <- bind_rows(sum_adduct, sum_rt) %>%
-  mutate(one = 1)
+total_n <- sum(adduct_summary$n)
 
-det_levels <- sort(unique(plot_df$detect))
-det_levels <- det_levels[is.finite(det_levels)]
-det_levels_chr <- as.character(det_levels)
+compound_summary <- tibble(target_Compound = md$target_Compound) %>%
+  dplyr::count(target_Compound, name = "n") %>%
+  mutate(percent = 100 * n / sum(n)) %>%
+  arrange(desc(n))
 
-#pal_det <- setNames(ggsci::pal_npg()(length(det_levels_chr)), det_levels_chr)
-pal_det <- setNames(viridisLite::viridis(length(det_levels_chr)), det_levels_chr)
+ggplot(adduct_summary, aes(x = reorder(adduct, n), y = n)) +
+  geom_col(color = "black", aes(fill = adduct), size = 1, width = 0.5) +
+  #coord_flip() +
+  geom_text(aes(label = sprintf("%d (%.1f%%)", n, percent)), hjust = 0.5, vjust = -0.5, size = 5.5) +
+  labs(x = NULL, y = "Count")+
+  #labs(x = NULL, y = "Count", title = paste("Adduct counts (Total =", total_n, ")")) +
+  expand_limits(y = max(adduct_summary$n) * 1.15) + theme_classic(base_size = 16) + theme(legend.position = "none")+
+  scale_fill_npg() 
 
-plot_df <- plot_df %>%
-  mutate(detect_f = factor(as.character(detect), levels = det_levels_chr))
+adduct_summary_raw <- adduct_summary
 
-plot_df2 <- plot_df %>%
-  mutate(detect_num = as.numeric(as.character(detect_f))) %>%
-  arrange(metric, detect_num, target_Compound, ) %>%   # sort within each metric
-  select(-detect_num)
+# plot occurance
+occ_tbl <- md %>%
+  mutate(target_compound = trimws(as.character(target_Compound))) %>%
+  filter(!is.na(target_Compound), target_Compound != "") %>%
+  dplyr::count(target_Compound, name = "occurrence") %>%
+  arrange(desc(occurrence), target_Compound)
 
-max_y <- plot_df2 %>%
-  count(metric, name = "n_compounds") %>%
-  pull(n_compounds) %>%
-  max()
-step <- max(1, ceiling(max_y / 6))
+occ_dist <- occ_tbl %>%
+  dplyr::count(occurrence, name = "n_compounds") %>%
+  arrange(occurrence) %>%
+  mutate(
+    occurrence_f = factor(occurrence, levels = occurrence),
+    percent = 100 * n_compounds / sum(n_compounds),
+    lab = sprintf("%d (%.1f%%)", n_compounds, percent)
+  )
 
-plot_df2_raw <- plot_df2
-
-ggplot(plot_df2, aes(x = metric, y = 1, fill = detect_f)) +
-  geom_col(color = "black", width = 0.65, position = position_stack(reverse = TRUE)) +
-  scale_fill_manual(values = pal_det, drop = FALSE, name = "Occurrence: ") +
-  labs(x = NULL, y = "Compounds") +
-  scale_y_continuous(
-    limits = c(0, max_y),
-    breaks = seq(0, max_y, by = step),
-    expand = expansion(mult = c(0, 0.02))
+ggplot(occ_dist, aes(x = occurrence_f, y = n_compounds)) +
+  geom_col(color = "black", aes(fill = occurrence_f), size = 1, width = 0.7) +
+  geom_text(aes(label = lab), vjust = -0.3, size = 5) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.12))) +
+  labs(
+    x = "Adducts per compound",
+    y = "Number of compounds"
   ) +
-  theme_classic(base_size = 16) +
-  theme(legend.position = "bottom") + labs(caption = paste0("Total number of detected compounds including possible isomers: ", nrow(distinct(md[,c(2,4)]))))
+  theme_classic(base_size = 20) + theme(legend.position = "none") + scale_fill_aaas()
 
+occ_dist_raw <- occ_dist
 #................................................................
 # Combine App & Raw ----
 #................................................................
-
-add_tot <- rbind(cbind(sum_adduct_tot_app, Label = "App"), cbind(sum_adduct_tot_raw, Label = "Raw")) %>% as.data.frame()
-
 library(cowplot)
-plot_df2_cp <- rbind(cbind(plot_df2_raw, Label = "Raw"), cbind(plot_df2_app, Label = "App"))
+occ_dist <- rbind(cbind(occ_dist_raw, Label = "Raw"), cbind(occ_dist_app, Label = "App"))
 
-p2<- ggplot(subset(plot_df2_cp, plot_df2_cp$metric == "Isomers"), aes(x = detect_f, fill = Label)) +
-  geom_bar(color = "black", size = 1, width = 0.8, position = position_dodge(width = 1, preserve = "single"), stat="count") +
-  scale_fill_npg() +
-  scale_y_continuous(expand = expansion(mult = c(0, 0)), n.breaks = 5) +
-  labs(x = "Isomers per compound", y = "Count") +
-  theme_classic(base_size = 16) +
-  theme(legend.position = "bottom")  
+p2 <- ggplot(occ_dist, aes(x = occurrence_f, y = n_compounds, fill = Label)) +
+      geom_col(color = "black", position = position_dodge(width = 0.8, preserve = "single"), size = 1, width = 0.7) +
+      #geom_text(aes(label = paste0(round(percent,1), " %")), position = position_dodge(width = 0.8), vjust = -0.3, size = 5) +
+      #geom_text(aes(label = n_compounds), position = position_dodge(width = 0.8), vjust = -0.3, size = 5) + 
+      scale_y_continuous(expand = expansion(mult = c(0, 0.1)), n.breaks = 7) +
+      labs(
+        x = "Adducts per Compound",
+        y = "Count"
+      ) +
+      #+ coord_flip()
+      theme_classic(base_size = 16) + scale_fill_npg() +
+      theme(legend.position = c(0.85, 0.85), #legend.justification = c(1, 1), 
+           # legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5),
+           legend.text = element_text(size = 15),         # Makes the group names larger
+        legend.key.size = unit(1.0, "cm"),
+            legend.title = element_blank()) 
+  
+adduct_summary <- rbind(cbind(adduct_summary_raw, Label = "Raw"), cbind(adduct_summary_app, Label = "App"))
 
-p1 <- ggplot(subset(plot_df2_cp, plot_df2_cp$metric == "Adducts"), aes(x = detect_f, fill = Label)) +
-  geom_bar(color = "black", size = 1, width = 0.8, position = position_dodge(width = 1, preserve = "single"), stat="count") +
-  scale_fill_npg() +
-  scale_y_continuous(expand = expansion(mult = c(0, 0)), n.breaks = 7) +
-  labs(x = "Adducts per compound", y = "Count") +
-  theme_classic(base_size = 16) +
-  theme(legend.position = "bottom") +theme(legend.position = c(0.85, 0.85), #legend.justification = c(1, 1), 
+p1 <- ggplot(adduct_summary, aes(x = reorder(adduct, -n), y = n, fill = Label)) +
+      geom_col(color = "black",size = 1, width = 0.5, position = position_dodge(width = 0.8, preserve = "single"),) +
+      #coord_flip() +
+      #geom_text(aes(label = paste0(round(percent,1), " %")), hjust = 0.5, vjust = -0.5, size = 5.5, position = position_dodge(width = 0.8)) +
+      #geom_text(aes(label = n), hjust = 0.5, vjust = -0.5, size = 5.5, position = position_dodge(width = 0.8)) +
+      scale_y_continuous(expand = expansion(mult = c(0, 0)), n.breaks = 7) +
+      #labs(x = "Adduct Type", y = "Count")+
+      labs(x = NULL, y = "Count")+    
+      #labs(x = NULL, y = "Count", title = paste("Adduct counts (Total =", total_n, ")")) +
+      expand_limits(y = max(adduct_summary$n) * 1.15) + theme_classic(base_size = 16) + theme(legend.position = "none")+
+      scale_fill_npg() +theme(legend.position = c(0.85, 0.85), #legend.justification = c(1, 1), 
            # legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5),
            legend.text = element_text(size = 18),         # Makes the group names larger
         legend.key.size = unit(1.0, "cm"), #axis.text.x = element_text(angle = 45, hjust = 1),
@@ -349,41 +313,12 @@ shared_legend <- get_legend(
   p1 + theme(legend.box.margin = margin(0, 0, 0, -150)) # Adds a little breathing room
 )
 
-p3 <- ggplot(add_tot, aes(x = reorder(adduct, -n), y = n, fill = Label)) +
-  geom_col(color = "black", position = position_dodge(width = 1), width = 0.8, linewidth = 0.8, size = 1) +
-  labs(x = "", y = "Count", fill = "Data Source") +
-  expand_limits(y = max(add_tot$n) * 1.05) + 
-  theme_classic(base_size = 16) + 
-  scale_y_continuous(expand = expansion(mult = c(0, 0)), n.breaks = 7) +
-  theme(
-    legend.position = "bottom") +
-  scale_fill_npg()
-
 p1 <- p1 + theme(legend.position = "none")+ coord_flip()
 p2 <- p2 + theme(legend.position = "none")+ coord_flip()
-p3 <- p3 + theme(legend.position = "none")+ coord_flip()
 
 plot_row <- plot_grid(
+  p2, 
   p1, 
-  p3, 
-  p2,
-  rel_widths = c(2.5, 2.5, 1.5), 
-  labels = c('A', 'B', 'C'), 
-  label_size = 25, 
-  nrow = 1
-)
-
-plot_grid(
-  plot_row, 
-  shared_legend, 
-  rel_widths = c(4, .01), 
-  nrow = 1
-)
-
-plot_row <- plot_grid(
-  p1, 
-  p3, 
-  rel_widths = c(1,1), 
   labels = c('A', 'B'), 
   label_size = 25, 
   nrow = 1
@@ -392,24 +327,9 @@ plot_row <- plot_grid(
 plot_grid(
   plot_row, 
   shared_legend, 
-  rel_widths = c(4, .01), 
+  rel_widths = c(3, .01), 
   nrow = 1
 )
-
-#................................................................
-# Final detected annotated compounds ----
-#................................................................
-# 92 unique + (81 by 1 isomer, 9-2, 1-3, 1-4)
-cmp <- subset(plot_df2_cp, plot_df2_cp$metric == "Isomers")
-subset(cmp, cmp$detect_f == 1) %>% nrow()*0.5
-subset(cmp, cmp$detect_f == 2) %>% nrow()*0.5
-subset(cmp, cmp$detect_f == 3) %>% nrow()*0.5
-subset(cmp, cmp$detect_f == 4) %>% nrow()*0.5
-total_features_by_label <- cmp %>%
-  group_by(Label) %>%
-  summarise(total_features = sum(detect, na.rm = TRUE))
-
-print(total_features_by_label)
 
 #................................................................
 #### Cytoscape ----
@@ -420,7 +340,7 @@ cytoscapePing()
 cytoscapeVersionInfo()
 
 # Steroids
-openSession("app single.cys")
+openSession("app 2x H2O adds single.cys")
 openSession("raw single.cys")
 
 #openSession("raw.cys")
@@ -462,7 +382,7 @@ setNodeBorderColorMapping(
 
 ###########################################31
 # Flavonoids
-openSession("app single.cys")
+openSession("app 2x H2O adds single.cys")
 openSession("raw single.cys")
 
 #openSession("raw.cys")
@@ -561,7 +481,7 @@ tot_an <- intersect(sirius$mappingFeatureId[-to_del], df$`row ID`) %>% length()
 round(tot_an/nrow(df)*100, 1)
 
 # app
-df <- read_csv("orbi_iimn_gnps_quant_filtered.csv")
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts).csv")
 sirius <- read_csv("canopus_formula_summary FILT.csv") 
 na_count_per_row <- rowSums(is.na(sirius))
 to_del <- which(na_count_per_row >= 10)
