@@ -8,7 +8,7 @@ Three different datasets are provided:
 - [**`inter`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/inter) - <ins>Case Study 3:</ins> Enhancing statistical analysis in a bacterial interaction LC-MS profiling dataset.
 
 > [!IMPORTANT]
->The Scipts were compiled using [R version 4.1.2](https://cran.r-project.org/bin/windows/base/old/4.1.2/)<br/>
+>The Scripts were compiled using [R version 4.1.2](https://cran.r-project.org/bin/windows/base/old/4.1.2/)<br/>
 > [`Full Session Info`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/session_info.txt)
 <br>
 
