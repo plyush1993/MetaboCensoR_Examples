@@ -683,7 +683,13 @@ ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
     fill = "",
     size = "Significant\nHits"
   ) +
-  
+
+    scale_x_continuous(
+    expand = expansion(mult = c(0.05, 0.1)),
+    breaks = -log10(c(1.0, 0.1, 0.05, 0.01, 0.001, 0.0001)),
+    labels = c("1.0", "0.1", "0.05", "0.01", "0.001", "1e-4")
+  ) +
+                    
   theme_minimal(base_size = 14) +
   theme(
     axis.text.x = element_text(margin = margin(t = 0), face = "bold"),
