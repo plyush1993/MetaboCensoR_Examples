@@ -7,6 +7,14 @@ Dataset was used to estimate the applicability of the MetaboCensoR App on Molecu
 Code script and all relevant data is available in the folder. 
 - Raw Data: [`GNPS Project`](https://gnps2.org/status?task=1e2c8674f1f2402ab99e4675865c95db)
 - After App: [`GNPS Project`](https://gnps2.org/status?task=c81efd1b896e4fcd82fdb5e574c0a85e)
-</a>
-<img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/mn.png" align="center" width="700" height="500">
-</a>
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/mn.png" height="600">
+    </td>
+    <td>
+      <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/mn2.png" height="600">
+    </td>
+  </tr>
+</table>
+
