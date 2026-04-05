@@ -699,11 +699,11 @@ ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
     
     legend.position = "right",
     legend.box = "vertical",
-    
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     legend.title = element_text(size = 14, face = "bold"),
     legend.text = element_text(size = 12),
     legend.key.size = unit(0.8, "cm")
-  )
+  ) + ggtitle("Functional Analysis for KO-6 / WT")
                     
 #................................................................
 #### Compare Total Annotations ----
