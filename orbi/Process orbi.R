@@ -434,9 +434,8 @@ target_df$exactmass <- mass
 peakIn <- cbind(mz = as.numeric(sirius$ionMass), rt = as.numeric(sirius$retentionTimeInMinutes), map_id = sirius$mappingFeatureId) %>% as.data.frame()
 
 # set polarity, adduct, accuracy
-parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
-parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), 
-                       tolerance = 0, ppm = 5, toleranceRt = 0.1)
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
 #MetaboCoreUtils::adducts() 
 
 matched_features <- matchValues(peakIn, target_df, parm)
