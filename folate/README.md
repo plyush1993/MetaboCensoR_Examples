@@ -6,7 +6,13 @@ One specific group comparison (KO-6/WT) was subjected to functional analysis usi
 Dataset was used to estimate the applicability of the MetaboCensoR App on Functional Analysis.<br/>
 Code script and all relevant data is available in the folder. 
 - Raw Data: [`MSV000100951`](...)
-</a>
-<img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/heatmap.png" align="center" width="700" height="500">
-<img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/fa.png" align="center" width="700" height="500">
-</a>
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/heatmap.png" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/fa.png" height="400">
+    </td>
+  </tr>
+</table>
