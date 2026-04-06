@@ -271,9 +271,51 @@ df_all_media_sub2$Significance <- ifelse(df_all_media_sub2$`Signigicant FC` != 0
 
 # Horizont
 df_all_media_sub3 <- subset(df_all_media_sub2, df_all_media_sub2$Groups %in% c("KO-6 / WT", "KO-22 / WT", "PM-31 / WT", "PM-37 / WT"))
-df_all_media_sub3$Media <- ifelse(df_all_media_sub3$Media == "Regular", "High Folate", "Low Folate")
-df_all_media_sub3 <- subset(df_all_media_sub2, df_all_media_sub2$Media %in% c("Low Folate"))
-df_all_media_sub3$Media <- factor(df_all_media_sub3$Media, levels=c("Low Folate", "High Folate"))
+
+p<- ggplot(df_all_media_sub3, aes(x=tidytext::reorder_within(Compound_short, Compound, Pathway_all), group = Groups, y=Media, fill=FC)) + 
+  geom_tile(color="black", linewidth=0.1, height = 1, width = 1) +
+  geom_text(aes(label = Significance), color = "black", size = 4)+
+  #scale_alpha_discrete(range = c(1, 0.3))+
+  xlab("")+
+  ylab("")+
+  tidytext::scale_x_reordered()+
+  ggh4x::facet_grid2(cols = vars(Pathway_all), rows = vars(Groups), scales = "free", space = "free")+
+  theme_bw(base_size = 12)+ theme(text = element_text(family = "Verdana"),legend.position = 'bottom', axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  #facet_wrap(vars(index, Analyte), scales = "free")+
+  #geom_text(aes(label = as.factor(Method)), position=position_dodge(width=0.9), angle = 90, hjust = 'left', alpha = 1, color = "red")+
+  #ggh4x::facet_grid2(cols = vars(degree), rows = vars(index), scales = "free_y", independent = "y")+
+  #scale_fill_brewer("Paired")+
+  scale_fill_gradient2(midpoint=0, low="#1874CD", mid="white", high="#CD2626")+
+  theme(plot.margin = margin(3,.8,2,.8, "cm"),
+    axis.text.x=element_text(size=12),
+    axis.text.y=element_text(size=12),
+    #axis.ticks.x=element_blank(),
+    legend.title = element_text(size = 15),
+    plot.title = element_text(hjust=0.5, size=15, face = "bold"), strip.text = element_text(size = 10),
+    legend.text=element_text(size=12), axis.title=element_text(size=15)) + scale_y_discrete(labels = NULL, breaks = NULL)
+
+p+  labs(fill = "FC:", alpha = "") + theme(panel.spacing=unit(1,"lines"))
+
+p+  labs(fill = "FC:", alpha = "") +  theme(panel.spacing=unit(1,"lines"))+
+  geom_rect(data = subset(df_all_media_sub3, Compound_short %in% c("IMP")), 
+                                               fill = NA, colour = "black", size = 1.5, xmin = 13.5, xmax = 13.5, 
+                                               ymin = -Inf,ymax = Inf, inherit.aes = F) +
+  geom_rect(data = subset(df_all_media_sub3, Compound_short %in% c("FGAR")), 
+            fill = NA, colour = "black", size = 1.5, xmin = 6.5, xmax = 6.5, 
+            ymin = -Inf,ymax = Inf, inherit.aes = F)  + 
+  geom_rect(data = subset(df_all_media_sub3, Compound_short %in% c("dTMP")), 
+            fill = NA, colour = "black", size = 1.5, xmin = 11.5, xmax = 11.5, 
+            ymin = -Inf,ymax = Inf, inherit.aes = F) +
+  geom_rect(data = subset(df_all_media_sub3, Compound_short %in% c("Methionine")), 
+            fill = NA, colour = "black", size = 1.5, xmin = 4.5, xmax = 4.5, 
+            ymin = -Inf,ymax = Inf, inherit.aes = F) +
+  geom_rect(data = subset(df_all_media_sub3, Compound_short == "Glycine" & Pathway_all == "Ser-Gly"), 
+            fill = NA, colour = "black", size = 1.5, xmin = 4.5, xmax = 4.5, 
+            ymin = -Inf,ymax = Inf, inherit.aes = F) 
+
+# Horizont subset folate dependent
+df_all_media_sub3 <- subset(df_all_media_sub2, df_all_media_sub2$Groups %in% c("KO-6 / WT", "KO-22 / WT", "PM-31 / WT", "PM-37 / WT"))
+df_all_media_sub3 <- subset(df_all_media_sub2, df_all_media_sub2$Pathway_all %in% c("Purine", "Pyrimidine", "SAM", "Ser-Gly"))
 
 p<- ggplot(df_all_media_sub3, aes(x=tidytext::reorder_within(Compound_short, Compound, Pathway_all), group = Groups, y=Media, fill=FC)) + 
   geom_tile(color="black", linewidth=0.1, height = 1, width = 1) +
