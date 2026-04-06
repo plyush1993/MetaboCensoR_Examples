@@ -428,8 +428,17 @@ setNodeBorderColorMapping(
 sirius <- read_csv("canopus_formula_summary.csv")
 
 target_df <- read.csv("annotation.csv")
+
 mass <- calculateMass(target_df$Formula)
 target_df$exactmass <- mass
+target_df <- target_df %>%
+  distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
 
 peakIn <- cbind(mz = as.numeric(sirius$ionMass), rt = as.numeric(sirius$retentionTimeInMinutes), map_id = sirius$mappingFeatureId) %>% as.data.frame()
 
