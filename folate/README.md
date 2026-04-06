@@ -4,7 +4,7 @@ The Reh (CRL-8286, ATCC, USA) human cell line that was isolated from tissue from
 One specific group comparison (KO-6/WT) was subjected to functional analysis using the [`MetaboAnalyst`](https://www.metaboanalyst.ca/). 
 
 Dataset was used to estimate the applicability of the MetaboCensoR App on Functional Analysis.<br/>
-Code script and all relevant data is available in the folder. 
+Code script and all relevant data are available in the folder. 
 - Raw Data: [`MSV000100951`](...)
 <table>
   <tr>
