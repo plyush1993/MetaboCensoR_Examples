@@ -1,4 +1,4 @@
-# Case Studies for `MetaboCensoR`
+# Case Studies for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR)
 ### Description :bookmark_tabs:
 This repository provides use cases and example workflows for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR), including all associated data files and code to reproduce computations & figures from the original [article](https://DOI).  
 
