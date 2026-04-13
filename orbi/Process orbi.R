@@ -272,7 +272,7 @@ occ_dist_raw <- occ_dist
 # Combine App & Raw ----
 #................................................................
 library(cowplot)
-occ_dist <- rbind(cbind(occ_dist_raw, Label = "Raw"), cbind(occ_dist_app, Label = "App"))
+occ_dist <- rbind(cbind(occ_dist_raw, Label = "Raw Data"), cbind(occ_dist_app, Label = "MetaboCensoR"))
 
 p2 <- ggplot(occ_dist, aes(x = occurrence_f, y = n_compounds, fill = Label)) +
       geom_col(color = "black", position = position_dodge(width = 0.8, preserve = "single"), size = 1, width = 0.7) +
@@ -291,7 +291,7 @@ p2 <- ggplot(occ_dist, aes(x = occurrence_f, y = n_compounds, fill = Label)) +
         legend.key.size = unit(1.0, "cm"),
             legend.title = element_blank()) 
   
-adduct_summary <- rbind(cbind(adduct_summary_raw, Label = "Raw"), cbind(adduct_summary_app, Label = "App"))
+adduct_summary <- rbind(cbind(adduct_summary_raw, Label = "Raw Data"), cbind(adduct_summary_app, Label = "MetaboCensoR"))
 
 p1 <- ggplot(adduct_summary, aes(x = reorder(adduct, -n), y = n, fill = Label)) +
       geom_col(color = "black",size = 1, width = 0.5, position = position_dodge(width = 0.8, preserve = "single"),) +
@@ -310,7 +310,7 @@ p1 <- ggplot(adduct_summary, aes(x = reorder(adduct, -n), y = n, fill = Label)) 
             legend.title = element_blank()) 
 
 shared_legend <- get_legend(
-  p1 + theme(legend.box.margin = margin(0, 0, 0, -150)) # Adds a little breathing room
+  p1 + theme(legend.box.margin = margin(0, 50, 0, -150)) # Adds a little breathing room
 )
 
 p1 <- p1 + theme(legend.position = "none")+ coord_flip()
@@ -496,4 +496,4 @@ to_del <- which(na_count_per_row >= 10)
 tot_an <- intersect(sirius$mappingFeatureId[-to_del], df$`row ID`) %>% length()
 round(tot_an/nrow(df)*100, 1)
 
-###################################1
+###################################.
