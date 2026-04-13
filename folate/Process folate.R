@@ -183,7 +183,7 @@ occ_dist_raw <- occ_dist
 
 # Combine App & Raw ----
 library(cowplot)
-occ_dist <- rbind(cbind(occ_dist_raw, Label = "Raw"), cbind(occ_dist_app, Label = "App"))
+occ_dist <- rbind(cbind(occ_dist_raw, Label = "Raw Data"), cbind(occ_dist_app, Label = "MetaboCensoR"))
 
 p2 <- ggplot(occ_dist, aes(x = occurrence_f, y = n_compounds, fill = Label)) +
       geom_col(color = "black", position = position_dodge(width = 0.8, preserve = "single"), size = 1, width = 0.7) +
@@ -202,7 +202,7 @@ p2 <- ggplot(occ_dist, aes(x = occurrence_f, y = n_compounds, fill = Label)) +
         legend.key.size = unit(1.0, "cm"),
             legend.title = element_blank()) 
   
-adduct_summary <- rbind(cbind(adduct_summary_raw, Label = "Raw"), cbind(adduct_summary_app, Label = "App"))
+adduct_summary <- rbind(cbind(adduct_summary_raw, Label = "Raw Data"), cbind(adduct_summary_app, Label = "MetaboCensoR"))
 
 p1 <- ggplot(adduct_summary, aes(x = reorder(adduct, -n), y = n, fill = Label)) +
       geom_col(color = "black",size = 1, width = 0.5, position = position_dodge(width = 0.8, preserve = "single"),) +
@@ -221,7 +221,7 @@ p1 <- ggplot(adduct_summary, aes(x = reorder(adduct, -n), y = n, fill = Label)) 
             legend.title = element_blank()) 
 
 shared_legend <- get_legend(
-  p1 + theme(legend.box.margin = margin(0, 0, 0, -150)) # Adds a little breathing room
+  p1 + theme(legend.box.margin = margin(0, 50, 0, -150)) # Adds a little breathing room
 )
 
 p1 <- p1 + theme(legend.position = "none")+ coord_flip()
@@ -581,13 +581,13 @@ app <- read_csv("mummichog_pathway_filt.csv")
 colnames(app)[1] <- "Pathway"
 app$`P(Fisher)`
 
-for_plot <- rbind(cbind(app, Label = "App"), cbind(raw, Label = "Raw")) %>% as.data.frame()
+for_plot <- rbind(cbind(app, Label = "MetaboCensoR"), cbind(raw, Label = "Raw Data")) %>% as.data.frame()
 for_plot <- for_plot %>%
   group_by(Pathway) %>%
   # Keep the pathway ONLY if App < 0.1 AND Raw < 0.1
   filter(
-    any(Label == "App" & `P(Fisher)` < 0.5) & 
-    any(Label == "Raw" & `P(Fisher)` < 0.5)
+    any(Label == "MetaboCensoR" & `P(Fisher)` < 0.5) & 
+    any(Label == "Raw Data" & `P(Fisher)` < 0.5)
   ) %>%
   ungroup()
 
@@ -597,11 +597,11 @@ plot_data_mirror <- for_plot %>%
   mutate(neg_log_p = -log10(`P(Fisher)`)) %>%
   
   # THE MIRROR TRICK: Make 'App' values negative so they draw to the left
-  mutate(plot_val = ifelse(Label == "App", -neg_log_p, neg_log_p)) %>%
+  mutate(plot_val = ifelse(Label == "MetaboCensoR", -neg_log_p, neg_log_p)) %>%
   
   # Sort pathways purely by how well the App did, so the App's best is at the top
   group_by(Pathway) %>%
-  mutate(App_Score = max(ifelse(Label == "App", neg_log_p, -999), na.rm = TRUE)) %>%
+  mutate(App_Score = max(ifelse(Label == "MetaboCensoR", neg_log_p, -999), na.rm = TRUE)) %>%
   ungroup() %>%
   
   # Filter to keep it clean (optional: only keep if at least one side is significant)
@@ -648,7 +648,7 @@ ggplot(plot_data_mirror, aes(x = plot_val, y = Pathway, fill = Label)) +
     panel.grid.major.y = element_blank(),
     panel.grid.minor.x = element_blank(),
     legend.position = "bottom"
-  )                    
+  )
 
 # 1. Prepare the Data for the Bubble Plot
 plot_data_bubble <- for_plot %>%
@@ -656,11 +656,11 @@ plot_data_bubble <- for_plot %>%
   mutate(neg_log_p = -log10(`P(Fisher)`)) %>%
   
   # Ensure Label is ordered so App is consistently drawn/colored
-  mutate(Label = factor(Label, levels = c("App", "Raw"))) %>%
+  mutate(Label = factor(Label, levels = c("MetaboCensoR", "Raw Data"))) %>%
   
   # Sort pathways purely by how well the App did
   group_by(Pathway) %>%
-  mutate(App_Score = max(ifelse(Label == "App", neg_log_p, -999), na.rm = TRUE)) %>%
+  mutate(App_Score = max(ifelse(Label == "MetaboCensoR", neg_log_p, -999), na.rm = TRUE)) %>%
   ungroup() %>%
   
   # Reorder the factor based on the App's score so the most significant are at the top
@@ -683,13 +683,13 @@ ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
     fill = "",
     size = "Significant\nHits"
   ) +
-
-    scale_x_continuous(
+  
+  scale_x_continuous(
     expand = expansion(mult = c(0.05, 0.1)),
     breaks = -log10(c(1.0, 0.1, 0.05, 0.01, 0.001, 0.0001)),
     labels = c("1.0", "0.1", "0.05", "0.01", "0.001", "1e-4")
   ) +
-                    
+  
   theme_minimal(base_size = 14) +
   theme(
     axis.text.x = element_text(margin = margin(t = 0), face = "bold"),
@@ -704,7 +704,7 @@ ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
     legend.text = element_text(size = 12),
     legend.key.size = unit(0.8, "cm")
   ) + ggtitle("Functional Analysis for KO-6 / WT")
-                    
+
 #................................................................
 #### Compare Total Annotations ----
 #................................................................
@@ -757,5 +757,6 @@ unique(md2$target_compound) %>% length()
 #unique(md2$target_compound) %>% as.data.frame() %>% View()
 intersect(md$target_compound, md2$target_compound)
 setdiff(md2$target_compound, md$target_compound)
+setdiff(md$target_compound, md$target_compound)
 
 setdiff(target_df$compound, md$target_compound)
