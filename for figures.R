@@ -567,8 +567,8 @@ gg
 
 # 1. read data
 df <- data.frame(
-  Software = c("nontarget", "nontarget", "mzMine", "mzMine", "MS1FA", "MS1FA", "CAMERA", "CAMERA", "CAMERA", "CAMERA"),
-  Tool = c("nontarget", "MetaboCensoR", "mzMine", "MetaboCensoR", "MS1FA", "MetaboCensoR", "CAMERA", "MetaboCensoR", "CAMERA", "MetaboCensoR"),
+  Software = c("nontarget", "nontarget", "MZmine", "MZmine", "MS1FA", "MS1FA", "CAMERA", "CAMERA", "CAMERA", "CAMERA"),
+  Tool = c("nontarget", "MetaboCensoR", "MZmine", "MetaboCensoR", "MS1FA", "MetaboCensoR", "CAMERA", "MetaboCensoR", "CAMERA", "MetaboCensoR"),
   Label = c("Tool", "App", "Tool", "App", "Tool", "App", "Tool", "App", "Tool", "App"),
   Type = c("Adducts", "Adducts", "Adducts", "Adducts", "NL", "NL", "Adducts", "Adducts", "Isotopes", "Isotopes"),
   Dataset = c("inter", "inter", "orbi", "orbi", "orbi", "orbi", "folate", "folate", "folate", "folate"),
