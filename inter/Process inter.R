@@ -390,7 +390,7 @@ plot_grid(p_raw, p_app, labels = c('A', 'B'), label_size = 25, nrow = 2)
 # lollipop plot ----
 #................................................................
 
-data_stat_lpp <- rbind(cbind(data_stat_app, Label = "App"), cbind(data_stat_raw, Label = "Raw")) %>% as.data.frame()
+data_stat_lpp <- rbind(cbind(data_stat_app, Label = "MetaboCensoR"), cbind(data_stat_raw, Label = "Raw Data")) %>% as.data.frame()
 plot_data <- subset(data_stat_lpp, data_stat_lpp$Name != "No")
 plot_data$Groups %>% unique()
 plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+Pd / Pd+001srf", "Pd+Pd / Pd+Bs", "Pd+Pd / Pd+dpps"))
@@ -398,7 +398,7 @@ plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+Pd / Pd+001srf", "Pd+
 plot_data <- plot_data %>%
   mutate(Y_Label = paste0(Name, " ", Adduct, "")) %>%
   
-  mutate(Label = factor(Label, levels = c("App", "Raw")))
+  mutate(Label = factor(Label, levels = c("MetaboCensoR", "Raw Data")))
 
 # 3. Generate the plot using your exact column names
 ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
