@@ -27,6 +27,8 @@ metadata$Label <- paste0(metadata[,1], "+", metadata[,2])
 metadata$Label <- str_replace(metadata$Label, "Bacto\\+Peptone", "Media")
 ds <- cbind(Label=metadata$Label, df) %>% as.data.frame()
 ds[,-1] <- sapply(ds[,-1], as.numeric)
+ds$Label <- str_replace_all(ds$Label, "PPS", "pps")
+ds$Label <- str_replace_all(ds$Label, "SRF", "srf")
 raw <- ds
 
 # processed via App
@@ -43,6 +45,8 @@ metadata$Label <- paste0(metadata[,1], "+", metadata[,2])
 metadata$Label <- str_replace(metadata$Label, "Bacto\\+Peptone", "Media")
 ds <- cbind(Label=metadata$Label, df) %>% as.data.frame()
 ds[,-1] <- sapply(ds[,-1], as.numeric)
+ds$Label <- str_replace_all(ds$Label, "PPS", "pps")
+ds$Label <- str_replace_all(ds$Label, "SRF", "srf")
 app <- ds
 
 #................................................................
@@ -389,7 +393,7 @@ plot_grid(p_raw, p_app, labels = c('A', 'B'), label_size = 25, nrow = 2)
 data_stat_lpp <- rbind(cbind(data_stat_app, Label = "App"), cbind(data_stat_raw, Label = "Raw")) %>% as.data.frame()
 plot_data <- subset(data_stat_lpp, data_stat_lpp$Name != "No")
 plot_data$Groups %>% unique()
-plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+Pd / Pd+001srf", "Pd+Pd / Pd+Bs", "Pd+Pd / Pd+dPPS"))
+plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+Pd / Pd+001srf", "Pd+Pd / Pd+Bs", "Pd+Pd / Pd+dpps"))
 
 plot_data <- plot_data %>%
   mutate(Y_Label = paste0(Name, " ", Adduct, "")) %>%
@@ -425,9 +429,9 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
     breaks = c(0, 1.301, 2, 3, 4, 5), 
     labels = c("1.0", "0.05", "0.01", "0.001", "0.0001", "0.00001")
   )+
-
- guides(color = guide_legend(override.aes = list(size = 6))) +
-                            
+  
+  guides(color = guide_legend(override.aes = list(size = 6))) +
+  
   labs(
     title = "",
     x = "FDR",
@@ -442,7 +446,7 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
     panel.grid.minor.x = element_blank(),
     legend.position = "bottom",
     strip.background = element_rect(fill = "gray90", color = NA),
-    strip.text = element_text(face = "bold", size = 11)+
+    strip.text = element_text(face = "bold", size = 11),
     legend.title = element_text(size = 14, face = "bold"),
     legend.text = element_text(size = 12),
     legend.key.size = unit(0.8, "cm")
@@ -539,5 +543,4 @@ unique(md2$target_Compound)
 #unique(md2$target_compound) %>% as.data.frame() %>% View()
 intersect(md$target_Compound, md2$target_Compound)
 setdiff(md2$target_Compound, md$target_Compound)
-
-setdiff(target_df$Compound, md$target_Compound)
+setdiff(md$target_Compound, md2$target_Compound)
