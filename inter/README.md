@@ -3,7 +3,7 @@ This is a bacterial interaction dataset. Study involved *Paenibacillus dendritif
 
 Dataset was used to estimate the applicability of the MetaboCensoR App on Statistical Hypothesis Testing.<br/>
 Code script and all relevant data are available in the folder. 
-- Main script for analyzing data: [`Process inter`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/Process%20inter.R)
+- Main script for analyzing data: [`Process inter.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/Process%20inter.R)
 - List of known target compounds: [`annot table.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/annot%20table.csv)
 - Raw Data: [`MSV000100949`](...)
 <table>
