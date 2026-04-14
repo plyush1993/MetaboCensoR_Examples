@@ -5,6 +5,8 @@ One specific group comparison (KO-6/WT) was subjected to functional analysis usi
 
 Dataset was used to estimate the applicability of the MetaboCensoR App on Functional Analysis.<br/>
 Code script and all relevant data are available in the folder. 
+- Main script for analyzing data: [`Process folate.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/Process%20folate.R)
+- List of known target compounds: [`All_affected_cycles_NEG upd.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/All_affected_cycles_NEG%20upd.csv)
 - Raw Data: [`MSV000100951`](...)
 <table>
   <tr>
