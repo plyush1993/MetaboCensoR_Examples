@@ -7,7 +7,7 @@ Dataset was used to estimate the applicability of the MetaboCensoR App on Functi
 Code script and all relevant data are available in the folder. 
 - Main script for analyzing data: [`Process folate.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/Process%20folate.R)
 - List of known target compounds: [`All_affected_cycles_NEG upd.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/folate/All_affected_cycles_NEG%20upd.csv)
-- Raw Data: [`MSV000100951`](...)
+- Raw Data: [`MSV000100951`](https://doi.org/doi:10.25345/C51J97N5K)
 <table>
   <tr>
     <td>
