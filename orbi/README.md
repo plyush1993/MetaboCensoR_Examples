@@ -7,8 +7,10 @@ Dataset was used to estimate the applicability of the MetaboCensoR App on Molecu
 Code scripts and all relevant data are available in the folder. 
 - Main script for analyzing data: [`Process orbi.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/Process%20orbi.R)
 - List of known target compounds: [`annotation.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/annotation.csv)
-- Molecular Networking on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=1e2c8674f1f2402ab99e4675865c95db)
-- Molecular Networking on Data After MetaboCensoR: [`GNPS Project`](https://gnps2.org/status?task=c81efd1b896e4fcd82fdb5e574c0a85e)
+- FBMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=ab8bb889760f458683629173f5b386c7)
+- FBMN on Data After MetaboCensoR: [`GNPS Project`](https://gnps2.org/status?task=a4bbdae47caf4949b20194e73e7c9b50)
+- IIMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=33a3f215d27a43fe95a261e7bf1a8238)
+- IIMN on Data After MetaboCensoR: [`GNPS Project`](https://gnps2.org/status?task=f6e60ded749a488db0a9390ea5e2707a)
 <table>
   <tr>
     <td>
