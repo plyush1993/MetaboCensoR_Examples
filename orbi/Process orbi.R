@@ -340,8 +340,8 @@ cytoscapePing()
 cytoscapeVersionInfo()
 
 # Steroids
-openSession("app 2x H2O adds single.cys")
-openSession("raw single.cys")
+openSession("APP IIMN.cys")
+openSession("RAW IIMN.cys")
 
 #openSession("raw.cys")
 #openSession("App Output (1).cys")
@@ -377,13 +377,13 @@ setNodeBorderColorMapping(
   table.column.values = c(TRUE, FALSE), 
   colors = c('#0000FF', '#000000'), 
   mapping.type = 'd',
-  style.name = "ClassDefault_0"
+  style.name = "ClassDefault_1"
 )
 
-###########################################31
+###########################################
 # Flavonoids
-openSession("app 2x H2O adds single.cys")
-openSession("raw single.cys")
+openSession("APP IIMN.cys")
+openSession("RAW IIMN.cys")
 
 #openSession("raw.cys")
 #openSession("App Output (1).cys")
@@ -419,7 +419,7 @@ setNodeBorderColorMapping(
   table.column.values = c(TRUE, FALSE), 
   colors = c('#0000FF', '#000000'), 
   mapping.type = 'd',
-  style.name = "ClassDefault_0"
+  style.name = "ClassDefault_1"
 )
 
 #................................................................
