@@ -1,6 +1,6 @@
 # Case Studies for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR)
 ### Description :bookmark_tabs:
-This repository provides use cases and example workflows for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR), including all associated data files and code to reproduce computations & figures from the original [article](https://DOI).  
+This repository provides use cases and example workflows for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR), including all associated data files and code to reproduce computations & figures from the original [article](https://doi.org/10.64898/2026.07.02.735197).  
 
 
 
@@ -21,7 +21,7 @@ R script and data to reproduce annotation comparison table: [`table_annotation`]
 ### Citation :link:
 If you use **`MetaboCensoR`** in your study, please cite this paper:
 
-> [To be updated](https://doi.org/)
+> [Plyushchenko I.V. & Luzzatto-Knaan T. "*MetaboCensoR*: A Shiny Application for Data Filtering in Untargeted LC-MS Metabolomics to Enhance Interpretability" *bioRxiv* 2026.07.02.735197](https://doi.org/10.64898/2026.07.02.735197)
 <br/>
 
 ### Contact :mailbox_with_mail:
