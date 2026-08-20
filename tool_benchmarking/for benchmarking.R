@@ -275,7 +275,7 @@ target_df <- target_df %>%
     Compound
   ))
 
-df <- read_csv("orbi_iimn_gnps_quant.csv") %>% as.data.frame()
+df <- read_csv("orbi_iimn_gnps_quant_FILT_BLANK.csv") %>% as.data.frame()
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
