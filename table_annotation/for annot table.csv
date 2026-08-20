@@ -1,0 +1,11 @@
+Software,Tool,Label,Type,Dataset,total ,relative
+nontarget,nontarget,Tool,Adducts,inter,523,1
+nontarget,MetaboCensoR,App,Adducts,inter,450,0.86
+mzMine,mzMine,Tool,Adducts,orbi,2420,0.98
+mzMine,MetaboCensoR,App,Adducts,orbi,2479,1
+MS1FA,MS1FA,Tool,NL,orbi,33,1
+MS1FA,MetaboCensoR,App,NL,orbi,33,1
+CAMERA,CAMERA,Tool,Adducts,folate,957,0.86
+CAMERA,MetaboCensoR,App,Adducts,folate,1119,1
+CAMERA,CAMERA,Tool,Isotopes,folate,796,0.86
+CAMERA,MetaboCensoR,App,Isotopes,folate,924,1
