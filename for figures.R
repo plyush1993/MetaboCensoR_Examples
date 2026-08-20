@@ -574,7 +574,7 @@ df <- data.frame(
   Dataset = c("inter", "inter", "orbi", "orbi", "orbi", "orbi", "folate", "folate", "folate", "folate"),
   total = c(523, 450, 2420, 2479, 33, 33, 957, 1119, 796, 924),
   relative = c(1.00, 0.86, 0.98, 1.00, 1.00, 1.00, 0.86, 1.00, 0.86, 1.00)
-)
+) # also available as "for annot table.csv"
 
 # Load required libraries
 library(ggplot2)
