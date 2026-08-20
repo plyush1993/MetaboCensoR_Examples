@@ -280,12 +280,6 @@ peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, i
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
 
-#target_df <- read.csv("annot table - rt.csv")
-#mass <- calculateMass(target_df$Formula)
-#target_df$exactmass <- mass
-#target_df <- target_df[,c(1,2,3,4)]
-
-
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
                        tolerance = 0, ppm = 5, toleranceRt = 0.01)
 
@@ -303,11 +297,6 @@ df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts).csv") %>% as.data
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
-
-#target_df <- read.csv("annot table - rt.csv")
-#mass <- calculateMass(target_df$Formula)
-#target_df$exactmass <- mass
-#target_df <- target_df[,c(1,2,3,4)]
 
 #parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
