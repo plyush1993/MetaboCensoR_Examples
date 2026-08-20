@@ -26,3 +26,12 @@ MS-CleanR,MetaboCensoR,App,Precision,orbi,MS-Dial,163,0.834355828
 MS-CleanR,Raw,Raw,Reduction,orbi,MS-Dial,2205,0.140589569
 MS-CleanR,MS-CleanR,Tool,Reduction,orbi,MS-Dial,531,0.583804143
 MS-CleanR,MetaboCensoR,App,Reduction,orbi,MS-Dial,310,1
+Binner,Raw,Raw,Accuracy,orbi,mzMine,115,1
+Binner,Binner,Tool,Accuracy,orbi,mzMine,15,0.130434783
+Binner,MetaboCensoR,App,Accuracy,orbi,mzMine,115,1
+Binner,Raw,Raw,Precision,orbi,mzMine,315,0.365079365
+Binner,Binner,Tool,Precision,orbi,mzMine,15,1
+Binner,MetaboCensoR,App,Precision,orbi,mzMine,148,0.777027027
+Binner,Raw,Raw,Reduction,orbi,mzMine,2597,0.10935695
+Binner,Binner,Tool,Reduction,orbi,mzMine,284,1
+Binner,MetaboCensoR,App,Reduction,orbi,mzMine,1267,0.224151539
