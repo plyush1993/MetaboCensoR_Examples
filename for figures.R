@@ -584,7 +584,7 @@ library(ggsci)
 # 2. Ensure factors are ordered nicely for the plot
 df$Label <- factor(df$Label, levels = c("Tool", "App"))
 df$Dataset <- factor(df$Dataset, levels = c("orbi", "folate", "inter"))
-df$Tool <- factor(df$Tool, levels = c("MS1FA", "mzMine", "CAMERA", "nontarget", "MetaboCensoR"))
+df$Tool <- factor(df$Tool, levels = c("MS1FA", "MZmine", "CAMERA", "nontarget", "MetaboCensoR"))
 
 # The '\n' adds a line break so the header labels look clean
 df$Type <- paste0("(", df$Type, ")")
@@ -623,4 +623,76 @@ ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
     
     panel.spacing.x = unit(0.2, "lines") 
   )
+
+####################################################################1
+# Plot Benchmarking Results ----
+####################################################################1
+
+# 1. read data
+df <- read.csv("for benchmarking.csv")
+
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(ggsci)
+library(ggh4x)
+
+# data
+df <- df %>%
+  mutate(Label = factor(Label, levels = c("Raw", "Tool", "App")),
+    Type = factor(Type, levels = c("Accuracy", "Precision", "Reduction")),
+    Software = factor(Software, levels = c( "khipu", "mpactR", "MS-CleanR")),
+    Integration = factor(Integration, levels = c("mzMine", "MS-Dial")),
+    Tool = factor(Tool, levels = c("Raw", "khipu", "mpactR", "MS-CleanR", "MetaboCensoR")))
+
+colors <- rev(ggsci::pal_npg()(3))
+colors[1] <- "grey90"
+
+# plot
+ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
+  
+  geom_col(position = position_dodge(width = 0.9), width = 0.75, linewidth = 1, color = "black") +
+
+  geom_text(aes(label = total), position = position_dodge(width = 0.9), vjust = -0.5, size = 5, show.legend = FALSE) +
+
+  ggh4x::facet_nested( ~ Software + Type,
+    scales = "free_x",
+    space = "free_x",
+    nest_line = element_line(linewidth = 1.2,colour = "black")) +
+
+  scale_fill_manual(values = colors) +
+
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+
+  theme_classic(base_size = 16) +
+
+  labs(x = "",
+    y = "Relative Scope",
+    fill = "Feature Type"
+  ) +
+
+  theme(
+    legend.position = "none",
+
+    strip.background = element_rect(
+      fill = "grey90",
+      color = "black",
+      linewidth = 0.8
+    ),
+
+    strip.text = element_text(
+      face = "bold",
+      size = 12
+    ),
+
+    panel.grid.major.x = element_blank(),
+
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1
+    ),
+
+    panel.spacing.x = unit(0.35, "lines")
+  )
+
 #...................................................
