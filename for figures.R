@@ -641,9 +641,9 @@ library(ggh4x)
 df <- df %>%
   mutate(Label = factor(Label, levels = c("Raw", "Tool", "App")),
     Type = factor(Type, levels = c("Accuracy", "Precision", "Reduction")),
-    Software = factor(Software, levels = c( "khipu", "mpactR", "MS-CleanR")),
+    Software = factor(Software, levels = c( "khipu", "mpactR", "MS-CleanR", "Binner")),
     Integration = factor(Integration, levels = c("mzMine", "MS-Dial")),
-    Tool = factor(Tool, levels = c("Raw", "khipu", "mpactR", "MS-CleanR", "MetaboCensoR")))
+    Tool = factor(Tool, levels = c("Raw", "khipu", "mpactR", "MS-CleanR", "Binner", "MetaboCensoR")))
 
 colors <- rev(ggsci::pal_npg()(3))
 colors[1] <- "grey90"
@@ -653,7 +653,7 @@ ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
   
   geom_col(position = position_dodge(width = 0.9), width = 0.75, linewidth = 1, color = "black") +
 
-  geom_text(aes(label = total), position = position_dodge(width = 0.9), vjust = -0.5, size = 5, show.legend = FALSE) +
+  geom_text(aes(label = total), position = position_dodge(width = 0.9), vjust = -0.5, size = 4, show.legend = FALSE) +
 
   ggh4x::facet_nested( ~ Software + Type,
     scales = "free_x",
