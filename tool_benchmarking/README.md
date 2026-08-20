@@ -1,5 +1,5 @@
 # Tool Benchmarking Table
-The benchmarking results for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR) vs [`khipu`](https://metabolomics.cloud/khipu/process), [`mpactR`](https://github.com/mums2/mpactr), and [`MS-CleanR`](https://github.com/eMetaboHUB/MS-CleanR) based on: 
+The benchmarking results for [`MetaboCensoR`](https://github.com/plyush1993/MetaboCensoR) vs [`khipu`](https://metabolomics.cloud/khipu/process), [`mpactR`](https://github.com/mums2/mpactr), [`MS-CleanR`](https://github.com/eMetaboHUB/MS-CleanR), and [`Binner`](https://binner.med.umich.edu/) based on: 
 - Accuracy — correct preservation of target compounds
 - Precision — reduction of adduct overrepresentation
 - Reduction — decrease in the total number of features
