@@ -12,6 +12,7 @@ Three different datasets are provided:
 
 R script and data to reproduce additional figures: [`for figures.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/for%20figures.R). <br>
 R script and data to reproduce annotation comparison table: [`table_annotation`](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/table_annotation).
+R script and data to reproduce benchmarking table: [`tool_benchmarking`](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/tool_benchmarking).
 
 > [!IMPORTANT]
 > Scripts were compiled using [R version 4.1.2](https://cran.r-project.org/bin/windows/base/old/4.1.2/)<br/>
