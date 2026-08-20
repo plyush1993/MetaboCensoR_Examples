@@ -346,4 +346,102 @@ intersect(md2$target_Compound, md3$target_Compound)
 cat("Differences between raw and app:")
 setdiff(md3$target_Compound, md2$target_Compound)
 setdiff(md2$target_Compound, md3$target_Compound)
+
+#................................................................
+#### MetaboCensoR vs Binner (orbi dataset) ----
+#................................................................
+
+setwd("C:/")
+
+# convert
+df <- read.csv("orbi_iimn_gnps_quant_FILT_BLANK_standard_peak_table.csv")
+write.table(df, "orbi_iimn_gnps_quant_FILT_BLANK_standard_peak_table.txt", sep = "\t", row.names = FALSE)
+
+# annotate of Binner ----
+target_df <- read.csv("annotation.csv")
+target_df <- target_df[,c(1,2,4)]
+
+mass <- calculateMass(target_df$Formula)
+target_df$exactmass <- mass
+target_df <- target_df %>%
+  distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
+
+df <- read_csv("orbi_iimn_gnps_quant_FILT_BLANK.csv") %>% as.data.frame()
+peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
+
+matched_features <- matchValues(peakIn, target_df, parm)
+md <- matchedData(matched_features)
+md <- as.data.frame(md)
+md <- na.omit(md)
+unique(md$target_Compound)
+unique(md$target_Compound) %>% length()
+md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
+cat("Wulignan A1 & p-coumaraldehyde (Q27103652)|Phenylacrylic acid are detected in blank")
+unique(md$target_Compound) %>% length()
+
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts).csv") %>% as.data.frame()
+peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+
+#parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+"), tolerance = 0, ppm = 5) 
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
+
+matched_features <- matchValues(peakIn, target_df, parm)
+md2 <- matchedData(matched_features)
+md2 <- as.data.frame(md2)
+md2 <- na.omit(md2)
+unique(md2$target_Compound)
+unique(md2$target_Compound) %>% length()
+
+# Compare
+#unique(md2$target_compound) %>% as.data.frame() %>% View()
+intersect(md$target_Compound, md2$target_Compound)
+cat("Differences between raw and app:")
+setdiff(md2$target_Compound, md$target_Compound)
+setdiff(md$target_Compound, md2$target_Compound)
+
+# binner
+binner <- read_csv("Principal Ions + Unannotated.csv") 
+peakIn <- as.data.frame(cbind(mz = binner$`m/z`, rt = binner$RT, id = binner$Feature)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
+
+matched_features <- matchValues(peakIn, target_df, parm)
+md3 <- matchedData(matched_features)
+md3 <- as.data.frame(md3)
+md3 <- na.omit(md3)
+md3 <- subset(md3, !md3$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
+unique(md3$target_Compound)
+unique(md3$target_Compound) %>% length()
+
+# Compare
+#unique(md2$target_compound) %>% as.data.frame() %>% View()
+intersect(md$target_Compound, md3$target_Compound)
+cat("Differences between raw and app:")
+setdiff(md3$target_Compound, md$target_Compound)
+setdiff(md$target_Compound, md3$target_Compound)
+
+# Compare2
+#unique(md2$target_compound) %>% as.data.frame() %>% View()
+intersect(md2$target_Compound, md3$target_Compound)
+cat("Differences between raw and app:")
+setdiff(md3$target_Compound, md2$target_Compound)
+setdiff(md2$target_Compound, md3$target_Compound)
+
 #............................................................................................................
