@@ -1,0 +1,43 @@
+Annotation	Mass	Mode	Charge	Tier
+H	1.007276	Positive	1	1
+2H	2.014552	Positive	2	1
+3H	3.021828	Positive	3	1
+NH4+	18.033823	Positive	1	2
+Na	22.989218	Positive	1	1
+H+Na	23.996494	Positive	2	1
+2H+Na	25.003770	Positive	3	1
+K	38.963158	Positive	1	2
+H+K	39.970434	Positive	2	2
+2H+K	40.977710	Positive	3	2
+2Na	45.978436	Positive	2	1
+H+2Na	46.985712	Positive	3	1
+Na+K	61.952376	Positive	2	2
+H+Na+K	62.959652	Positive	3	2
+3Na	68.967654	Positive	3	1
+2K	77.926316	Positive	2	2
+H+2K	78.933592	Positive	3	2
+2Na+K	84.941594	Positive	3	2
+Na+2K	100.915534	Positive	3	2
+3K	116.889474	Positive	3	2
+H	-1.007276	Negative	-1	1
+Cl-	34.969402	Negative	-1	1
+COOH-	44.998201	Negative	-1	1
+H2O+CO	-46.005479	Both	0	1
+NH3+H2O	-35.037114	Both	0	1
+H2O	-18.010565	Both	0	1
+NH3	-17.026549	Both	0	1
+Na-H	21.981945	Both	0	1
+MeOH	32.026215	Both	0	1
+K-H	37.955882	Both	0	1
+Acetonitrile	41.026549	Both	0	1
+2Na-2H	43.963890	Both	0	1
+HCOOH	46.005479	Both	0	1
+NaCl	57.958622	Both	0	1
+3Na-3H	65.945835	Both	0	1
+NaCOOH	67.987424	Both	0	1
+KCOOH	83.961361	Both	0	1
+NaCOOH +Na-H	89.969369	Both	0	1
+HCOOH + NaCOOH	113.992903	Both	0	1
+2X NaCl	115.917245	Both	0	1
+NaCl + NaCOOH	125.946046	Both	0	1
+2X NaCOOH	135.974848	Both	0	1
