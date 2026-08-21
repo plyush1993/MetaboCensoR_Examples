@@ -8,11 +8,11 @@ Three different datasets are provided:
 <img src="Case_Studies_GA.png" align="center" height="200">
 - [**`orbi`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/orbi) - <ins>Case Study 1:</ins> Enhancing molecular networking in a plant LC-MS profiling dataset.
 - [**`folate`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/folate) - <ins>Case Study 2:</ins> Enhancing functional analysis in a human cell lines LC-MS profiling dataset.
-- [**`inter`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/inter) - <ins>Case Study 3:</ins> Enhancing statistical analysis in a bacterial interaction LC-MS profiling dataset.
+- [**`inter`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/inter) - <ins>Case Study 3:</ins> Enhancing statistical analysis in a bacterial interaction LC-MS profiling dataset. <br><br>
 
-R script and data to reproduce additional figures: [`for figures.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/for%20figures.R). <br>
-R script and data to reproduce annotation comparison table: [`table_annotation`](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/table_annotation). <br>
-R script and data to reproduce benchmarking table: [`tool_benchmarking`](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/tool_benchmarking).
+- [**`for figures.R`**](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/for%20figures.R) - R script and data to reproduce additional figures. <br>
+- [**`table_annotation`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/table_annotation) - R script and data to reproduce annotation rate results. <br>
+- [**`tool_benchmarking`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/tool_benchmarking) - R script and data to reproduce benchmarking results. <br><br>
 
 > [!IMPORTANT]
 > Scripts were compiled using [R version 4.1.2](https://cran.r-project.org/bin/windows/base/old/4.1.2/)<br/>
