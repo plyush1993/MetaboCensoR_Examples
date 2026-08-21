@@ -61,7 +61,7 @@ data_ms2_only <- read.csv("data metabocensor area_filtered (iso add +2H2O nl rsd
   slice(-c(1:4))
 colnames(data_ms2_only) <- make.unique(as.character(data_ms2_only[1,])) 
 data_ms2_only <- data_ms2_only %>% slice(-1)
-data_ms2_only <- subset(data_ms2_only, data_ms2_only$`MS/MS assigned` == "True")
+data_ms2_only <- subset(data_ms2_only, data_ms2_only$`MS/MS assigned` == "True") # keep only ms2
 
 data <- read.csv("data metabocensor area_filtered (iso add +2H2O nl rsd rmd)_standard_peak_tab (1).csv")
 data <- subset(data, data$Feature %in% data_ms2_only$`Alignment ID`)
@@ -414,7 +414,7 @@ setdiff(md2$target_Compound, md$target_Compound)
 setdiff(md$target_Compound, md2$target_Compound)
 
 # binner
-binner <- read_csv("Principal Ions + Unannotated.csv") 
+binner <- read_csv("Principal Ions + Unannotated.csv") # deiso mz 0.005 rt 0.01 grouping 0.005 annotation mz 0.005 rt 0.005
 peakIn <- as.data.frame(cbind(mz = binner$`m/z`, rt = binner$RT, id = binner$Feature)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
