@@ -1,6 +1,7 @@
 # Scalability Testing Notes
 
-For scalability testing [`mzrtsim`](https://github.com/yufree/mzrtsim/tree/master) R package was used to generate simulated datasets. 
+For scalability testing [`mzrtsim`](https://github.com/yufree/mzrtsim/tree/master) R package was used to generate simulated datasets. <br>
+Testing was performed in [`R 4.5.0`](https://cran.r-project.org/bin/windows/base/old/4.5.0/); [session info](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/scalability%20testing/session%20info%20for%20scalability.txt). 
 
 ### Laptop Testing
 Code for generating simulated dataset:
