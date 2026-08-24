@@ -1,7 +1,11 @@
 # Scalability Testing Notes
 
 For scalability testing [`mzrtsim`](https://github.com/yufree/mzrtsim/tree/master) R package was used to generate simulated datasets. <br>
-Testing was performed in [`R 4.5.0`](https://cran.r-project.org/bin/windows/base/old/4.5.0/); [session info](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/scalability%20testing/session%20info%20for%20scalability.txt). 
+Testing was performed in [`R 4.5.0`](https://cran.r-project.org/bin/windows/base/old/4.5.0/); the corresponding [session info](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/scalability%20testing/session%20info%20for%20scalability.txt) is provided. <br>
+*MetaboCensoR* was run using the default settings. For large local analyses, the maximum allowed data size can be increased from the default 5 GB, for example:
+```r
+MetaboCensoR::run_metabocensor(max_size_gb = 20)
+```
 
 ### Laptop Testing
 Code for generating simulated dataset:
