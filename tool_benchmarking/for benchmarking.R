@@ -357,7 +357,7 @@ setwd("C:/")
 df <- read.csv("orbi_iimn_gnps_quant_FILT_BLANK_standard_peak_table.csv")
 write.table(df, "orbi_iimn_gnps_quant_FILT_BLANK_standard_peak_table.txt", sep = "\t", row.names = FALSE)
 
-# annotate of Binner ----
+# annotate of Binner
 target_df <- read.csv("annotation.csv")
 target_df <- target_df[,c(1,2,4)]
 
