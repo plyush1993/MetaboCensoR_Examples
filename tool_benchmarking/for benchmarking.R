@@ -317,7 +317,7 @@ setdiff(md2$target_Compound, md$target_Compound)
 setdiff(md$target_Compound, md2$target_Compound)
 
 # khipu
-khipu <- read_tsv("annotated_khipu_jIZhbjFfGAxa8XJjDufhScq1TsnlQNb9RVo_LwcPh_0.tsv") # 10 ppm 0.3 s raw 
+khipu <- read_tsv("annotated_khipu_jIZhbjFfGAxa8XJjDufhScq1TsnlQNb9RVo_LwcPh_0.tsv") # 10 ppm 0.3 s 
 peakIn <- as.data.frame(cbind(mz = khipu$mz, rt = khipu$rtime, id = rownames(khipu))) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
