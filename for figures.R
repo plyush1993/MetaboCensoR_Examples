@@ -640,7 +640,7 @@ library(ggh4x)
 # data
 df <- df %>%
   mutate(Label = factor(Label, levels = c("Raw Data", "Tool", "App")),
-    Type = factor(Type, levels = c("Accuracy", "Precision", "Reduction")),
+    Type = factor(Type, levels = c("Recovery", "Precision", "Reduction")),
     Software = factor(Software, levels = c( "khipu", "mpactR", "MS-CleanR", "Binner")),
     Integration = factor(Integration, levels = c("mzMine", "MS-Dial")),
     Tool = factor(Tool, levels = c("Raw Data", "khipu", "mpactR", "MS-CleanR", "Binner", "MetaboCensoR")))
