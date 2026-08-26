@@ -573,29 +573,237 @@ for (g in groups) {
 message("Saved files to: ", normalizePath(out_dir))
 
 #................................................................
-#### Functional Analysis Output from MetaboAnalyst----
+#### Functional Analysis in MetaboAnalystR----
 #................................................................
 
-raw <- read_csv("mummichog_pathway_raw.csv")
+# function for loop
+run_mummichog_long <- function(file) ({
+
+  mSet <- InitDataObjects("mass_all", "mummichog", FALSE, 150)
+  mSet <- SetPeakFormat(mSet, "rmp")
+  mSet <- UpdateInstrumentParameters(
+    mSet,
+    5.0,
+    "negative",
+    "yes",
+    0.02
+  )
+
+  mSet <- Read.PeakListData(mSet, file)
+  mSet <- SanityCheckMummichogData(mSet)
+  mSet <- SetPeakEnrichMethod(mSet, "integ", "v2")
+  mSet <- SetMummichogPval(mSet, 1.0E-5)
+
+  mSet <- PerformPSEA(
+    mSet,
+    "hsa_mfn",
+    "current",
+    3,
+    100
+  )
+
+  res <- mSet[["integ.resmat"]]
+
+out <- data.frame(Pathway = rownames(res), res,
+  stringsAsFactors = FALSE
+)
+
+return(out)
+})
+run_mummichog <- function(file) ({
+
+  mSet <- InitDataObjects("mass_all", "mummichog", FALSE, 150)
+  mSet <- SetPeakFormat(mSet, "rmp")
+  mSet <- UpdateInstrumentParameters(
+    mSet,
+    5.0,
+    "negative",
+    "yes",
+    0.02
+  )
+
+  mSet <- Read.PeakListData(mSet, file)
+  mSet <- SanityCheckMummichogData(mSet)
+  mSet <- SetPeakEnrichMethod(mSet, "integ", "v2")
+  mSet <- SetMummichogPval(mSet, 1.0E-5)
+
+  mSet <- PerformPSEA(
+    mSet,
+    "hsa_mfn",
+    "current",
+    3,
+    100
+  )
+
+  res <- mSet[["integ.resmat"]]
+
+pathways <- c(
+  "Purine metabolism",
+  "Vitamin B9 (folate) metabolism"
+)
+
+out <- data.frame(
+  Pathway = pathways,
+
+  Mummichog_Pvals = as.numeric(
+    res[pathways, "Mummichog_Pvals"]
+  ),
+
+  GSEA_Pvals = as.numeric(
+    res[pathways, "GSEA_Pvals"]
+  ),
+
+  Combined_Pvals = as.numeric(
+    res[pathways, "Combined_Pvals"]
+  ),
+
+  stringsAsFactors = FALSE
+)
+
+return(out)
+})
+
+# simulations
+file <- "mummichog_xcms_table KO-6_vs_WT.txt"
+
+set.seed(1234)
+n_runs <- 1000 # Number of simulations
+n_keep <- 1927 # Number of features in the MetaboCensoR-filtered dataset
+
+raw <- read.delim(
+  file,
+  header = TRUE,
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+idx_list <- lapply(seq_len(n_runs), function(i) ({
+
+  sort(
+    sample.int(
+      n = nrow(raw),
+      size = n_keep,
+      replace = FALSE
+    )
+  )
+}))
+
+signatures <- vapply(
+  idx_list,
+  function(x) paste(x, collapse = "_"),
+  character(1)
+)
+
+cat(
+  "Unique subsets:",
+  length(unique(signatures)),
+  "of",
+  n_runs,
+  "\n"
+)
+
+cat("First indexes to check:")
+lapply(idx_list, head, 10)
+
+all_res <- lapply(seq_len(n_runs), function(i) ({
+
+  cat("Run", i, "of", n_runs, "\n")
+
+  idx <- idx_list[[i]]
+
+  random_data <- raw[
+    idx,
+    ,
+    drop = FALSE
+  ]
+
+  stopifnot(nrow(random_data) == n_keep)
+  stopifnot(!anyDuplicated(idx))
+
+  cat(
+    "Run", i,
+    "- first IDs:",
+    paste(head(idx, 10), collapse = ", "),
+    "\n"
+  )
+
+  # Temporary MetaboAnalyst input file
+  tmp_file <- tempfile(
+    pattern = paste0("random_", i, "_"),
+    fileext = ".txt"
+  )
+
+  write.table(
+    random_data,
+    file = tmp_file,
+    sep = "\t",
+    row.names = FALSE,
+    quote = FALSE
+  )
+
+  # Run exactly the same MetaboAnalyst analysis
+  x <- run_mummichog(tmp_file)
+
+  x$Run <- i
+  x$N_features <- nrow(random_data)
+
+  # Remove temporary file
+  unlink(tmp_file)
+
+  x
+}))
+
+all_res <- dplyr::bind_rows(all_res)
+write_csv(as.data.frame(all_res), "simulations 1000.csv")
+#all_res <- read_csv("simulations 1000.csv")
+
+# raw data
+raw_res <- run_mummichog(
+  "mummichog_xcms_table KO-6_vs_WT.txt"
+)
+write_csv(raw_res, "Raw data only 2 target.csv")
+
+raw_res_long <- run_mummichog_long(
+  "mummichog_xcms_table KO-6_vs_WT.txt"
+)
+write_csv(raw_res_long, "Raw data all pathways.csv")
+
+# App data
+filtered_res <- run_mummichog(
+  "mummichog_filtered KO-6_vs_WT.txt"
+)
+write_csv(filtered_res, "App data only 2 target.csv")
+
+filtered_res_long <- run_mummichog_long(
+  "mummichog_filtered KO-6_vs_WT.txt"
+)
+write_csv(filtered_res_long, "App data all pathways.csv")
+
+#................................................................
+#### Functional Analysis Output from MetaboAnalystR----
+#................................................................
+
+# Bubble plot
+raw <- read_csv("Raw data all pathways.csv")
 colnames(raw)[1] <- "Pathway"
-app <- read_csv("mummichog_pathway_filt.csv")
+app <- read_csv("App data all pathways.csv")
 colnames(app)[1] <- "Pathway"
-app$`P(Fisher)`
+app$Mummichog_Pvals
 
 for_plot <- rbind(cbind(app, Label = "MetaboCensoR"), cbind(raw, Label = "Raw Data")) %>% as.data.frame()
 for_plot <- for_plot %>%
   group_by(Pathway) %>%
   # Keep the pathway ONLY if App < 0.1 AND Raw < 0.1
   filter(
-    any(Label == "MetaboCensoR" & `P(Fisher)` < 0.5) & 
-    any(Label == "Raw Data" & `P(Fisher)` < 0.5)
+    any(Label == "MetaboCensoR" & Mummichog_Pvals < 0.6) & 
+    any(Label == "Raw Data" & Mummichog_Pvals < 0.6)
   ) %>%
   ungroup()
 
 # 1. Prepare the Data for Mirroring
 plot_data_mirror <- for_plot %>%
   # Calculate standard log transformation
-  mutate(neg_log_p = -log10(`P(Fisher)`)) %>%
+  mutate(neg_log_p = -log10(Mummichog_Pvals)) %>%
   
   # THE MIRROR TRICK: Make 'App' values negative so they draw to the left
   mutate(plot_val = ifelse(Label == "MetaboCensoR", -neg_log_p, neg_log_p)) %>%
@@ -654,7 +862,7 @@ ggplot(plot_data_mirror, aes(x = plot_val, y = Pathway, fill = Label)) +
 # 1. Prepare the Data for the Bubble Plot
 plot_data_bubble <- for_plot %>%
   # Calculate standard log transformation 
-  mutate(neg_log_p = -log10(`P(Fisher)`)) %>%
+  mutate(neg_log_p = -log10(Mummichog_Pvals)) %>%
   
   # Ensure Label is ordered so App is consistently drawn/colored
   mutate(Label = factor(Label, levels = c("MetaboCensoR", "Raw Data"))) %>%
@@ -668,18 +876,21 @@ plot_data_bubble <- for_plot %>%
   mutate(Pathway = fct_reorder(Pathway, App_Score))
 
 # 2. Generate the Bubble Plot
-ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
+a <- ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
   geom_vline(xintercept = -log10(0.05), linetype = "dashed", color = "red", alpha = 0.5, linewidth = 1) +
-  geom_line(aes(group = Pathway), color = "gray80", linewidth = 1) +
-  geom_point(aes(fill = Label, size = Hits.sig), alpha = 0.85, shape =21, stroke = 1.2) +
+  geom_line(aes(group = Pathway), color = "gray80", linewidth = 1.5) +
+  geom_point(aes(fill = Label, size = Sig_Hits), alpha = 0.85, shape =21, stroke = 1.2) +
   
   scale_fill_npg() +
-  scale_size_continuous(range = c(3, 9)) +
+  scale_size_continuous(range = c(3, 9), breaks = c(5, 20)) +
   
-  guides(fill = guide_legend(override.aes = list(size = 10))) +
+  guides(
+    fill = guide_legend(override.aes = list(size = 8), nrow = 1),
+    size = guide_legend(nrow = 1)
+  ) +
   
   labs(
-    x = "Fisher's Exact P-Value",
+    x = "Mummichog p-value",
     y = "",
     fill = "",
     size = "Significant\nHits"
@@ -691,21 +902,203 @@ ggplot(plot_data_bubble, aes(x = neg_log_p, y = Pathway)) +
     labels = c("1.0", "0.1", "0.05", "0.01", "0.001", "1e-4")
   ) +
   
-  theme_minimal(base_size = 14) +
+  theme_minimal(base_size = 16) +
   theme(
     axis.text.x = element_text(margin = margin(t = 0), face = "bold"),
     axis.text.y = element_text(face = "bold", size = 11, color = "black"),
     panel.grid.major.y = element_line(color = "gray90", linetype = "dashed"),
     panel.grid.minor.x = element_blank(),
     
-    legend.position = "right",
-    legend.box = "vertical",
-    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
-    legend.title = element_text(size = 14, face = "bold"),
+    legend.position = "bottom",
+    legend.box = "horizontal",
+    legend.box.spacing = unit(0.2, "cm"),
+    legend.spacing.x = unit(0.2, "cm"),   
+    #plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    legend.title = element_text(size = 14),
     legend.text = element_text(size = 12),
-    legend.key.size = unit(0.8, "cm")
-  ) + ggtitle("Functional Analysis for KO-6 / WT")
+    legend.key.size = unit(0.5, "cm")
+  ) #+ ggtitle("Functional Analysis for KO-6 / WT")
 
+a
+
+# Simulations plot
+all_res <- read_csv("simulations 1000.csv")
+raw_res <- read_csv("Raw data only 2 target.csv")
+filtered_res <- read_csv("App data only 2 target.csv")
+
+plot_sim <- all_res %>%
+  mutate(
+    neglog10_p = -log10(Mummichog_Pvals)
+  )
+
+random_median <- plot_sim %>%
+  group_by(Pathway) %>%
+  summarise(
+    neglog10_p = median(neglog10_p, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+random_sig <- random_median
+random_sig$neglog10_p <- -log10(0.05)
+
+observed <- bind_rows(
+  raw_res %>%
+    mutate(
+      Dataset = "Raw Data",
+      neglog10_p = -log10(Mummichog_Pvals)
+    ),
+
+  filtered_res %>%
+    mutate(
+      Dataset = "MetaboCensoR",
+      neglog10_p = -log10(Mummichog_Pvals)
+    )
+)
+
+colors <- rev(ggsci::pal_npg()(3))
+colors[1] <- "grey90"
+
+sim_col  <- colors[1]
+raw_col  <- colors[2]
+meta_col <- colors[3]
+
+b <- ggplot(plot_sim, aes(x = neglog10_p)) +
+
+  geom_histogram(
+    bins = 50,
+    fill = sim_col,
+    linewidth = 1,
+    color = "black"
+  ) +
+
+  # Raw + MetaboCensoR
+  geom_vline(
+    data = observed,
+    aes(
+      xintercept = neglog10_p,
+      color = Dataset,
+      linetype = Dataset
+    ),
+    linewidth = 2.5,
+    alpha = 0.75
+  ) +
+
+  # Median of random subsets
+  geom_vline(
+    data = random_median,
+    aes(
+      xintercept = neglog10_p,
+      color = "Median",
+      linetype = "Median"
+    ),
+    linewidth = 2.5,
+    alpha = 0.75
+  ) +
+
+  # Significance threshold
+  geom_vline(
+    data = random_sig,
+    aes(
+      xintercept = neglog10_p,
+      color = "0.05",
+      linetype = "0.05"
+    ),
+    linewidth = 2.5,
+    alpha = 0.75
+  ) +
+
+  facet_wrap(
+    ~ factor(Pathway, levels = rev(sort(unique(Pathway)))),
+    ncol = 1
+  ) +
+
+  scale_x_continuous(
+    breaks = scales::pretty_breaks(n = 8)
+  ) +
+
+  scale_color_manual(
+    values = c(
+      "Raw Data"               = raw_col,
+      "MetaboCensoR"           = meta_col,
+      "Median"          = "grey30",
+      "0.05" = "grey30"
+    ),
+    breaks = c(
+      "Raw Data",
+      "MetaboCensoR",
+      "Median",
+      "0.05"
+    ),
+    name = NULL
+  ) +
+
+  scale_linetype_manual(
+    values = c(
+      "Raw Data"               = "solid",
+      "MetaboCensoR"           = "solid",
+      "Median"          = "dashed",
+      "0.05" = "dotted"
+    ),
+    breaks = c(
+      "Raw Data",
+      "MetaboCensoR",
+      "Median",
+      "0.05"
+    ),
+    name = NULL
+  ) +
+
+  labs(
+    x = expression(-log[10]("Mummichog p-value")),
+    y = "Frequency"
+  ) +
+
+  guides(
+  color = guide_legend(
+    nrow = 1,
+    byrow = TRUE,
+    override.aes = list(
+      linewidth = 1.5,
+      alpha = 0.75
+    )
+  ),
+  linetype = guide_legend(
+    nrow = 1,
+    byrow = TRUE,
+    override.aes = list(
+      linewidth = 1.5,
+      alpha = 0.75
+    )
+  )
+) +
+
+  theme_classic(base_size = 16) +
+
+  theme(legend.key.height = grid::unit(1, "cm"),
+    strip.text = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+
+b
+
+# plot all
+p1 <- a 
+p2 <- b 
+
+plot_row <- plot_grid(
+  p1, 
+  p2, 
+  labels = c('A', 'B'), 
+  label_size = 25, 
+  nrow = 1
+)
+
+plot_grid(
+  plot_row, 
+  rel_widths = c(3, .01), 
+  nrow = 1
+)
+                    
 #................................................................
 #### Compare Total Annotations ----
 #................................................................
