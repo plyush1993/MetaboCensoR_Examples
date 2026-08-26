@@ -12,6 +12,7 @@ library(ggplot2)
 library(data.table)
 library(ggsci)
 library(cowplot)
+library(MetaboAnalystR)
 
 setwd("C:/.../")
 
