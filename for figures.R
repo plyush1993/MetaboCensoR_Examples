@@ -580,6 +580,8 @@ df <- data.frame(
 library(ggplot2)
 library(dplyr)
 library(ggsci)
+library(ggh4x)
+library(grid)
 
 # 2. Ensure factors are ordered nicely for the plot
 df$Label <- factor(df$Label, levels = c("Tool", "App"))
@@ -591,37 +593,24 @@ df$Type <- paste0("(", df$Type, ")")
 df$Comparison <- factor(df$Type, levels = c("(Adducts)", "(NL)", "(Isotopes)"))
 
 # 3. Create the corrected plot
-ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
-  
-  geom_bar(stat = "identity", position = position_dodge(width = 1.2), size = 1, width = 0.75, color = "black") +
-  
-  geom_text(aes(label = total), 
-            position = position_dodge(width = 0.95), 
-            vjust = -0.5, size = 5, alpha = 1, show.legend = FALSE) +
-  
-  # FIX: Facet by Dataset AND the new Comparison column
-  facet_grid(~ Dataset + Comparison, scales = "free_x", space = "free_x") +
-  
-  scale_fill_manual(values = rev(ggsci::pal_npg()(2))) +
-  
-  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+colors <- rev(ggsci::pal_npg()(2))
 
+ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
+  geom_col(width = 0.75, linewidth = 1, color = "black") +
+  geom_text(aes(label = total), vjust = -0.45, size = 4.2, fontface = "bold", show.legend = FALSE) +
+  facet_grid(~ Dataset + Comparison, scales = "free_x", space = "free_x") +
+  scale_fill_manual(values = colors) +
+  scale_y_continuous(breaks = seq(0, 1, 0.2), expand = expansion(mult = c(0, 0.13))) +
+  labs(x = "", y = "Relative Scope", fill = "Feature Type") +
   theme_classic(base_size = 16) +
-  labs(
-    title = "",
-    x = "",
-    y = "Relative Scope",
-    fill = "Feature Type",
-    alpha = "Pipeline"
-  ) +
-  theme(legend.position = "none",
-    strip.background = element_rect(fill = "grey90", color = "black"),
-    strip.text = element_text(face = "bold"),
-    
+  theme(
+    legend.position = "none",
+    strip.background = element_rect(fill = "grey90", color = "black", linewidth = 0.8),
+    strip.text = element_text(face = "bold", size = 12),
+    panel.border = element_rect(fill = NA, color = "grey75", linewidth = 0.6),
     panel.grid.major.x = element_blank(),
     axis.text.x = element_text(angle = 45, hjust = 1),
-    
-    panel.spacing.x = unit(0.2, "lines") 
+    panel.spacing.x = unit(0.55, "lines")
   )
 
 ####################################################################1
@@ -650,49 +639,46 @@ colors[1] <- "grey90"
 
 # plot
 ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
-  
-  geom_col(position = position_dodge(width = 0.9), width = 0.75, linewidth = 1, color = "black") +
+  geom_col(width = 0.75, linewidth = 1, color = "black") +
 
-  geom_text(aes(label = total), position = position_dodge(width = 0.9), vjust = -0.5, size = 4, show.legend = FALSE) +
+  # table cells below plotting area
+  geom_tile(data = df, aes(x = Tool, y = -0.065),
+            width = 0.95, height = 0.10,
+            fill = "white", color = "black", linewidth = 0.6,
+            inherit.aes = FALSE) +
 
-  ggh4x::facet_nested( ~ Software + Type,
-    scales = "free_x",
-    space = "free_x",
-    nest_line = element_line(linewidth = 1.2,colour = "black")) +
+  # values inside cells
+  geom_text(data = df, aes(x = Tool, y = -0.065, label = total),
+            size = 4, inherit.aes = FALSE, fontface = "bold") +
+
+  ggh4x::facet_nested(
+    ~ Type + Software,
+    scales = "free_x", space = "free_x",
+    nest_line = element_line(linewidth = 1.2, colour = "black")
+  ) +
 
   scale_fill_manual(values = colors) +
 
-  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  scale_y_continuous(
+    limits = c(-0.12, 1.05),
+    breaks = seq(0, 1, 0.2),
+    expand = expansion(mult = c(0, 0.03))
+  ) +
+
+  labs(x = "", y = "Relative Scope") +
 
   theme_classic(base_size = 16) +
 
-  labs(x = "",
-    y = "Relative Scope",
-    fill = "Feature Type"
-  ) +
-
   theme(
     legend.position = "none",
-
-    strip.background = element_rect(
-      fill = "grey90",
-      color = "black",
-      linewidth = 0.8
-    ),
-
-    strip.text = element_text(
-      face = "bold",
-      size = 12
-    ),
-
+    strip.background = element_rect(fill = "grey90", color = "black", linewidth = 0.8),
+    strip.text = element_text(face = "bold", size = 12),
+    panel.border = element_rect(fill = NA, color = "grey75", linewidth = 0.6),
+    panel.spacing.x = unit(0.55, "lines"),
     panel.grid.major.x = element_blank(),
-
-    axis.text.x = element_text(
-      angle = 45,
-      hjust = 1
-    ),
-
-    panel.spacing.x = unit(0.35, "lines")
+    axis.text.x = element_text(angle = 45, hjust = 1, margin = margin(t = 5)),
+    axis.text.y = element_text(color = "black"),
+    axis.title.y = element_text(margin = margin(r = 10))
   )
 
 #...................................................
