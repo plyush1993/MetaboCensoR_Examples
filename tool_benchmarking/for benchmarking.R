@@ -30,6 +30,7 @@ target_df <- target_df %>%
   ))
 
 list_to_remove <- c("p-coumaraldehyde (Q27103652)|Phenylacrylic acid", "Wulignan A1", "6-Aminocaproic acid")
+cat("p-coumaraldehyde (Q27103652)|Phenylacrylic acid, Wulignan A1, 6-Aminocaproic acid are detected in blank")
 target_df <- subset(target_df, !target_df$Compound %in% list_to_remove)
 
 parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+",
