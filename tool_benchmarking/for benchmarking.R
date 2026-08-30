@@ -8,6 +8,7 @@ library(MetaboCoreUtils)
 library(ggplot2)
 library(data.table)
 library(mpactr)
+library(mscleanr)
 
 #................................................................
 #### MetaboCensoR vs MS-CleanR (orbi dataset) ----
