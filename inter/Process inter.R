@@ -10,6 +10,10 @@ library(data.table)
 library(ggsci)
 library(batchCorr)
 library(cowplot)
+library(dplyr)
+library(tidyr)
+library(effectsize)
+library(pwrFDR)
 
 setwd("C:/.../")
 
@@ -386,6 +390,201 @@ p_raw <- p_raw + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
 p_app <- p_app + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
 plot_grid(p_raw, p_app, labels = c('A', 'B'), label_size = 25, nrow = 2)
 
+#................................................................
+# Power analysis ----
+#................................................................
+
+# raw data
+data <- read.csv("Area_5_2026_03_10_18_08_43.csv") %>% 
+        slice(-c(1:3))
+colnames(data) <- make.unique(as.character(data[1,])) 
+data <- data %>% slice(-1)
+mzrt_v <- paste0(data$`Average Mz`, "@", data$`Average Rt(min)`)
+rownames(data) <- mzrt_v
+df <- data[,which(str_detect(colnames(data), "_"))] %>% t() %>% as.data.frame()
+
+metadata <- do.call(rbind, str_split(rownames(df), "_")) %>% as.data.frame()
+metadata$Label <- paste0(metadata[,1], "+", metadata[,2])
+metadata$Label <- str_replace(metadata$Label, "Bacto\\+Peptone", "Media")
+ds <- cbind(Label=metadata$Label, df) %>% as.data.frame()
+ds[,-1] <- sapply(ds[,-1], as.numeric)
+ds$Label <- str_replace_all(ds$Label, "PPS", "pps")
+ds$Label <- str_replace_all(ds$Label, "SRF", "srf")
+raw <- ds
+
+# annot data
+target_df <- read.csv("annot table.csv")
+
+mass <- calculateMass(target_df$Formula)
+target_df$exactmass <- mass
+
+df <- raw # dataset
+cn <- colnames(df[,-1])
+cn0 <- colnames(df[,-1])
+cn2 <- t(data.frame(cn))
+colnames(cn2) <- cn
+peakIn <- peakInfo(PT = cn2, sep = "@", start = 1)
+peakIn <- as.data.frame(cbind(peakIn, id = cn0)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+
+# set polarity, adduct, accuracy
+parm <- Mass2MzParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+"), tolerance = 0, ppm = 5) 
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+"), tolerance = 0, ppm = 5, toleranceRt = 0.15) 
+#MetaboCoreUtils::adducts() 
+
+matched_features <- matchValues(peakIn, target_df, parm)
+md <- matchedData(matched_features)
+md <- as.data.frame(md)
+md <- na.omit(md)
+unique(md$target_Compound)
+
+# set up
+comparisons <- c(
+  "Pd+Pd / Pd+Bs"
+)
+
+df_eff <- raw %>% # raw or app
+  filter(Label != "Media")
+
+x <- df_eff[, -1, drop = FALSE]
+
+ds_mvi <- x
+ds_mvi[ds_mvi == 0] <- NA
+
+#noise <- as.numeric(quantile(1:min(ds_mvi, na.rm = T))[2]) # reduce noise by quantile: quantile(1:noise)[1] = 0% ... quantile(1:noise)[4] = 100%
+noise <- 31.5 # from RAW data
+sd <- as.numeric(30) # set sd value for random value generation as.numeric(quantile(1:noise)[2]) or noise*0.3
+set.seed(1234)
+ds_mvi[is.na(ds_mvi)] <- 0 # convert NA into 0
+NAidx <- ds_mvi == 0 # NA index
+imp.rand <- abs(rnorm(sum(NAidx), mean = noise, sd = sd)) # generate random values. other option: runif(sum(NAidx), noise-sd, noise+sd)
+ds_mvi[NAidx] <- imp.rand
+df_eff <- as.data.frame(cbind(Label = df_eff[,1], ds_mvi))
+df_g <- df_eff
+
+targets <- md %>% # should match
+  select(
+    id,
+    target_Compound,
+    adduct
+  ) %>%
+  distinct() %>%
+  filter(id %in% colnames(df_eff)) %>% 
+  filter(adduct == "[M+H]+")
+
+targets
+
+effect_g <- lapply(comparisons, function(comp) ({
+  gr <- strsplit(comp, " / ", fixed = TRUE)[[1]]
+  lapply(seq_len(nrow(targets)), function(i) ({
+    feature <- targets$id[i]
+    x1 <- as.numeric(df_g[df_g$Label == gr[1], feature])
+    x2 <- as.numeric(df_g[df_g$Label == gr[2], feature])
+    es <- effectsize::hedges_g(x1, x2, pooled_sd = TRUE, ci = 0.95)
+    data.frame(Groups = comp,
+      Compound = feature,
+      Name = targets$target_Compound[i],
+      Adduct = targets$adduct[i],
+      n1 = length(x1),
+      n2 = length(x2),
+      Hedges_g = as.numeric(es$Hedges_g),
+      CI_low = as.numeric(es$CI_low),
+      CI_high = as.numeric(es$CI_high))
+
+  })) %>%
+    bind_rows()
+})) %>%
+  bind_rows() %>%
+  mutate(Abs_Hedges_g = abs(Hedges_g))
+
+effect_g
+
+effect_summary_rep <- effect_g %>%
+  summarise(
+    N = sum(!is.na(Abs_Hedges_g)),
+    Min = min(Abs_Hedges_g, na.rm = TRUE),
+    Q25 = quantile(Abs_Hedges_g, 0.25, na.rm = TRUE),
+    Median = median(Abs_Hedges_g, na.rm = TRUE),
+    Q75 = quantile(Abs_Hedges_g, 0.75, na.rm = TRUE),
+    Max = max(Abs_Hedges_g, na.rm = TRUE)
+  )
+
+effect_summary_rep
+
+# calculate
+library(pwrFDR)
+
+n <- 4
+
+n_true_raw <- 11
+n_true_app <- 6
+
+n_tests_raw <- 6027
+n_tests_app <- 504
+
+r1_raw <- n_true_raw / n_tests_raw
+r1_app <- n_true_app / n_tests_app
+
+
+g_values <- c(
+  effect_g$Abs_Hedges_g
+)
+
+g_values
+
+raw_grid <- pwrFDR.grid(
+  effect.size = unname(g_values),
+  n.sample = n,
+  r.1 = r1_raw,
+  alpha = 0.05,
+  groups = 2,
+  N.tests = n_tests_raw,
+  type = "balanced",
+  FDP.control.method = "BHFDR",
+  distopt = 1
+)
+
+app_grid <- pwrFDR.grid(
+  effect.size = unname(g_values),
+  n.sample = n,
+  r.1 = r1_app,
+  alpha = 0.05,
+  groups = 2,
+  N.tests = n_tests_app,
+  type = "balanced",
+  FDP.control.method = "BHFDR",
+  distopt = 1
+)
+
+get_power <- function(x) ({
+  vapply(x$results,function(z) ({
+      if (inherits(z, "try-error")) {
+        return(NA_real_)
+      }
+      as.numeric(z[["average.power"]])
+    }),
+    numeric(1)
+  )
+})
+
+raw_p <- get_power(raw_grid)
+app_p <- get_power(app_grid)
+
+power_result <- data.frame(
+  Scenario = effect_g$Name,
+  Hedges_g = as.numeric(g_values),
+  Raw_power = raw_p,
+  MetaboCensoR_power = app_p
+) %>%
+  mutate(
+    Power_difference = MetaboCensoR_power - Raw_power,
+    Fold_change = MetaboCensoR_power / Raw_power)
+
+power_result <- subset(power_result, !(Scenario %in% c("Lipopetidic C13", "Lipopetidic C12")))
+power_result
+power_result$Power_difference %>% as.numeric()
+                            
 #................................................................
 # lollipop plot ----
 #................................................................
