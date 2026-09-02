@@ -625,6 +625,7 @@ library(ggplot2)
 library(dplyr)
 library(ggsci)
 library(ggh4x)
+library(ggnewscale)
 
 # data
 df <- df %>%
@@ -634,41 +635,45 @@ df <- df %>%
     Integration = factor(Integration, levels = c("mzMine", "MS-Dial")),
     Tool = factor(Tool, levels = c("Raw Data", "khipu", "mpactR", "MS-CleanR", "Binner", "MetaboCensoR")))
 
+tol_good <- 0.05
+tol_mid  <- 0.15
+
 colors <- rev(ggsci::pal_npg()(3))
 colors[1] <- "grey90"
 
-# plot
+df <- df %>%
+  group_by(Type, Software) %>%
+  mutate(
+    best_rel = max(relative, na.rm = TRUE),
+    rel_gap = (best_rel - relative) / best_rel,
+    box_col = case_when(
+      rel_gap <= tol_good ~ "Best / Comparable",
+      rel_gap <= tol_mid  ~ "Intermediate",
+      TRUE ~ "Worse"
+    )
+  ) %>%
+  ungroup()
+
 ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
   geom_col(width = 0.75, linewidth = 1, color = "black") +
-
-  # table cells below plotting area
-  geom_tile(data = df, aes(x = Tool, y = -0.065),
-            width = 0.95, height = 0.10,
-            fill = "white", color = "black", linewidth = 0.6,
-            inherit.aes = FALSE) +
-
-  # values inside cells
-  geom_text(data = df, aes(x = Tool, y = -0.065, label = total),
-            size = 4, inherit.aes = FALSE, fontface = "bold") +
-
-  ggh4x::facet_nested(
-    ~ Type + Software,
-    scales = "free_x", space = "free_x",
-    nest_line = element_line(linewidth = 1.2, colour = "black")
-  ) +
-
   scale_fill_manual(values = colors) +
-
-  scale_y_continuous(
-    limits = c(-0.12, 1.05),
-    breaks = seq(0, 1, 0.2),
-    expand = expansion(mult = c(0, 0.03))
-  ) +
-
+  ggnewscale::new_scale_fill() +
+  geom_tile(data = df, aes(x = Tool, y = -0.065, fill = box_col),
+            width = 0.95, height = 0.10, color = "black", linewidth = 0.6,
+            inherit.aes = FALSE) +
+  geom_text(data = df, aes(x = Tool, y = -0.065, label = total),
+            size = 4, fontface = "bold", inherit.aes = FALSE) +
+  scale_fill_manual(values = c("Best / Comparable" = "#65BF648F",
+                               "Intermediate" = "#FFE28C96",
+                               "Worse" = "#D935038A"), guide = "none") +
+  ggh4x::facet_nested(~ Type + Software,
+                      scales = "free_x", space = "free_x",
+                      nest_line = element_line(linewidth = 1.2, colour = "black")) +
+  scale_y_continuous(limits = c(-0.12, 1.05),
+                     breaks = seq(0, 1, 0.2),
+                     expand = expansion(mult = c(0, 0.03))) +
   labs(x = "", y = "Relative Scope") +
-
   theme_classic(base_size = 16) +
-
   theme(
     legend.position = "none",
     strip.background = element_rect(fill = "grey90", color = "black", linewidth = 0.8),
