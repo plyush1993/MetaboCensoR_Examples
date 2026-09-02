@@ -1,0 +1,37 @@
+Software,Tool,Label,Type,Dataset,Integration,total ,relative
+khipu,Raw Data,Raw Data,Recovery,orbi,mzMine,115,1
+khipu,khipu,Tool,Recovery,orbi,mzMine,91,0.791304348
+khipu,MetaboCensoR,App,Recovery,orbi,mzMine,115,1
+khipu,Raw Data,Raw Data,Precision,orbi,mzMine,315,0.365079365
+khipu,khipu,Tool,Precision,orbi,mzMine,181,0.502762431
+khipu,MetaboCensoR,App,Precision,orbi,mzMine,148,0.777027027
+khipu,Raw Data,Raw Data,Reduction,orbi,mzMine,2597,0.48787062
+khipu,khipu,Tool,Reduction,orbi,mzMine,1372,0.923469388
+khipu,MetaboCensoR,App,Reduction,orbi,mzMine,1267,1
+mpactR,Raw Data,Raw Data,Recovery,orbi,mzMine,115,1
+mpactR,mpactR,Tool,Recovery,orbi,mzMine,84,0.730434783
+mpactR,MetaboCensoR,App,Recovery,orbi,mzMine,113,0.982608696
+mpactR,Raw Data,Raw Data,Precision,orbi,mzMine,315,0.365079365
+mpactR,mpactR,Tool,Precision,orbi,mzMine,160,0.525
+mpactR,MetaboCensoR,App,Precision,orbi,mzMine,144,0.784722222
+mpactR,Raw Data,Raw Data,Reduction,orbi,mzMine,6167,0.174314902
+mpactR,mpactR,Tool,Reduction,orbi,mzMine,1268,0.847791798
+mpactR,MetaboCensoR,App,Reduction,orbi,mzMine,1075,1
+MS-CleanR,Raw Data,Raw Data,Recovery,orbi,MS-Dial,145,1
+MS-CleanR,MS-CleanR,Tool,Recovery,orbi,MS-Dial,138,0.951724138
+MS-CleanR,MetaboCensoR,App,Recovery,orbi,MS-Dial,139,0.95862069
+MS-CleanR,Raw Data,Raw Data,Precision,orbi,MS-Dial,318,0.455974843
+MS-CleanR,MS-CleanR,Tool,Precision,orbi,MS-Dial,276,0.5
+MS-CleanR,MetaboCensoR,App,Precision,orbi,MS-Dial,167,0.832335329
+MS-CleanR,Raw Data,Raw Data,Reduction,orbi,MS-Dial,2205,0.149206349
+MS-CleanR,MS-CleanR,Tool,Reduction,orbi,MS-Dial,531,0.619585687
+MS-CleanR,MetaboCensoR,App,Reduction,orbi,MS-Dial,329,1
+Binner,Raw Data,Raw Data,Recovery,orbi,mzMine,115,1
+Binner,Binner,Tool,Recovery,orbi,mzMine,21,0.182608696
+Binner,MetaboCensoR,App,Recovery,orbi,mzMine,115,1
+Binner,Raw Data,Raw Data,Precision,orbi,mzMine,315,0.365079365
+Binner,Binner,Tool,Precision,orbi,mzMine,23,0.913043478
+Binner,MetaboCensoR,App,Precision,orbi,mzMine,148,0.777027027
+Binner,Raw Data,Raw Data,Reduction,orbi,mzMine,2597,0.144397382
+Binner,Binner,Tool,Reduction,orbi,mzMine,375,1
+Binner,MetaboCensoR,App,Reduction,orbi,mzMine,1263,0.296912114
