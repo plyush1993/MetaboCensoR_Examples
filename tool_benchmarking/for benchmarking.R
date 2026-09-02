@@ -59,13 +59,13 @@ unique(md$target_Compound)
 unique(md$target_Compound) %>% length()
 
 # MetaboCensoR
-data_ms2_only <- read.csv("data metabocensor area_filtered (iso add +2H2O nl rsd rmd).csv") %>% 
+data_ms2_only <- read.csv("data metabocensor area_filtered (iso add +2H2O isf_ms2 rsd rmd).csv") %>% 
   slice(-c(1:4))
 colnames(data_ms2_only) <- make.unique(as.character(data_ms2_only[1,])) 
 data_ms2_only <- data_ms2_only %>% slice(-1)
 data_ms2_only <- subset(data_ms2_only, data_ms2_only$`MS/MS assigned` == "True") # keep only ms2
 
-data <- read.csv("data metabocensor area_filtered (iso add +2H2O nl rsd rmd)_standard_peak_tab (1).csv") # blank filt iso add nl rsd rmd only ms2
+data <- read.csv("data metabocensor area_filtered (iso add +2H2O isf_ms2 rsd rmd)_standard_peak_table.csv") # blank filt iso add nl rsd rmd only ms2
 data <- subset(data, data$Feature %in% data_ms2_only$`Alignment ID`)
 peakIn <- as.data.frame(cbind(mz = data$mz, rt = data$rt, id = data$Feature))
 peakIn$mz <- as.numeric(peakIn$mz)
