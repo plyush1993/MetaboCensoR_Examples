@@ -198,7 +198,7 @@ md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q2
 cat("Wulignan A1 & p-coumaraldehyde (Q27103652)|Phenylacrylic acid are detected in blank")
 unique(md$target_Compound) %>% length()
 
-df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts isf rsd)_filtered.csv") %>% as.data.frame() # blank iso add isf rsd
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts isf_ms2 rsd)_filtered.csv") %>% as.data.frame() # blank iso add isf rsd
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
