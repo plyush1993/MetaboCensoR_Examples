@@ -7,10 +7,10 @@ Dataset was used to estimate the applicability of the MetaboCensoR App on Molecu
 Code scripts and all relevant data are available in the folder. 
 - Main script for analyzing data: [`Process orbi.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/Process%20orbi.R)
 - List of known target compounds: [`annotation.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/annotation.csv)
-- FBMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=ab8bb889760f458683629173f5b386c7); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/RAW%20FBMN.cys)
-- FBMN on Data After MetaboCensoR: [`GNPS Project`](https://gnps2.org/status?task=a4bbdae47caf4949b20194e73e7c9b50); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/APP%20FBMN.cys)
-- IIMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=33a3f215d27a43fe95a261e7bf1a8238); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/RAW%20IIMN.cys)
-- IIMN on Data After MetaboCensoR: [`GNPS Project`](https://gnps2.org/status?task=f6e60ded749a488db0a9390ea5e2707a); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/APP%20IIMN.cys)
+- FBMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=43da3f82c33f43198f40cdc82837b87d); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/RAW%20FBMN.cys)
+- FBMN on Data After MetaboCensoR: [`GNPS Project`](https://gnps2.org/status?task=f686537881184bf08d45e499acf18c3d); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/APP%20FBMN.cys)
+- IIMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=fde43183ef3940aa94985576117b7854); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/RAW%20IIMN.cys)
+- IIMN on Data After MetaboCensoR: [`GNPS Project`](https://gnps2.org/status?task=0c58cb476c80455f8b4c2f82472eb683); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/APP%20IIMN.cys)
 <table>
   <tr>
     <td>
