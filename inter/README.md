@@ -6,4 +6,4 @@ Code script and all relevant data are available in the folder.
 - Main script for analyzing data: [`Process inter.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/Process%20inter.R)
 - List of known target compounds: [`annot table.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/annot%20table.csv)
 - Raw Data: [`MSV000100949`](https://doi.org/doi:10.25345/C5930P825)
- <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/volcano.png" height="400">
+ <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/Volcano+lollipop.png" height="400">
