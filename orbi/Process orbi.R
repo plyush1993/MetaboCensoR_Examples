@@ -328,12 +328,12 @@ library(RCy3)
 cytoscapePing()
 cytoscapeVersionInfo()
 
-# Steroids
-openSession("APP IIMN.cys")
-openSession("RAW IIMN.cys")
+deleteAllNetworks()
+deleteVisualStyle("ClassDefault_0")
 
-#openSession("raw.cys")
-#openSession("App Output (1).cys")
+# Steroids
+importNetworkFromFile(file = "orbi_APP_IIMN_isf_ms2-0c58cb476c80455f8b4c2f82472eb683-network.graphml")
+importNetworkFromFile(file = "orbi_RAW_IIMN-fde43183ef3940aa94985576117b7854-network.graphml")
 
 imported_styles <- importVisualStyles(filename = "styles.xml")
 setVisualStyle(imported_styles[1])
@@ -366,16 +366,16 @@ setNodeBorderColorMapping(
   table.column.values = c(TRUE, FALSE), 
   colors = c('#0000FF', '#000000'), 
   mapping.type = 'd',
-  style.name = "ClassDefault_1"
+  style.name = "ClassDefault_0"
 )
 
-###########################################
+#.......................................................
 # Flavonoids
-openSession("APP IIMN.cys")
-openSession("RAW IIMN.cys")
+deleteAllNetworks()
+deleteVisualStyle("ClassDefault_0")
 
-#openSession("raw.cys")
-#openSession("App Output (1).cys")
+importNetworkFromFile(file = "orbi_APP_IIMN_isf_ms2-0c58cb476c80455f8b4c2f82472eb683-network.graphml")
+importNetworkFromFile(file = "orbi_RAW_IIMN-fde43183ef3940aa94985576117b7854-network.graphml")
 
 imported_styles <- importVisualStyles(filename = "styles.xml")
 setVisualStyle(imported_styles[1])
@@ -408,7 +408,7 @@ setNodeBorderColorMapping(
   table.column.values = c(TRUE, FALSE), 
   colors = c('#0000FF', '#000000'), 
   mapping.type = 'd',
-  style.name = "ClassDefault_1"
+  style.name = "ClassDefault_0"
 )
 
 #................................................................
