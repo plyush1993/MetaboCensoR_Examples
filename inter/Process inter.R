@@ -388,7 +388,8 @@ p_app <- p
 library(cowplot)
 p_raw <- p_raw + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
 p_app <- p_app + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
-plot_grid(p_raw, p_app, labels = c('A', 'B'), label_size = 25, nrow = 2)
+vps <- plot_grid(p_raw, p_app, labels = c('A', 'B'), label_size = 25, nrow = 2)
+vps
 
 #................................................................
 # Power analysis ----
@@ -521,7 +522,7 @@ n_true_raw <- 11
 n_true_app <- 6
 
 n_tests_raw <- 6027
-n_tests_app <- 504
+n_tests_app <- 509
 
 r1_raw <- n_true_raw / n_tests_raw
 r1_app <- n_true_app / n_tests_app
@@ -600,7 +601,7 @@ plot_data <- plot_data %>%
   mutate(Label = factor(Label, levels = c("MetaboCensoR", "Raw Data")))
 
 # 3. Generate the plot using your exact column names
-ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
+lp <- ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
   
   # Add a vertical threshold line (FDR = 0.05 is ~ 1.3 on a log scale)
   geom_vline(xintercept = 1.301, linetype = "dashed", color = "gray50", size = 1) +
@@ -651,6 +652,9 @@ ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) +
     legend.key.size = unit(0.8, "cm")
   )
 
+lp
+plot_grid(vps, lp, ncol = 2, rel_widths = c(2,1))
+        
 #................................................................
 #### Compare Total Annotations ----
 #................................................................
