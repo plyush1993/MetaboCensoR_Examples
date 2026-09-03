@@ -59,13 +59,13 @@ unique(md$target_Compound)
 unique(md$target_Compound) %>% length()
 
 # MetaboCensoR
-data_ms2_only <- read.csv("data metabocensor area_filtered (iso add +2H2O isf_ms2 rsd rmd).csv") %>% 
+data_ms2_only <- read.csv("data metabocensor area_filtered (iso add +2H2O isf_ms2 0.01rt rsd rmd).csv") %>% 
   slice(-c(1:4))
 colnames(data_ms2_only) <- make.unique(as.character(data_ms2_only[1,])) 
 data_ms2_only <- data_ms2_only %>% slice(-1)
 data_ms2_only <- subset(data_ms2_only, data_ms2_only$`MS/MS assigned` == "True") # keep only ms2
 
-data <- read.csv("data metabocensor area_filtered (iso add +2H2O isf_ms2 rsd rmd)_standard_peak_table.csv") # blank filt iso add nl rsd rmd only ms2
+data <- read.csv("data metabocensor area_filtered (iso add +2H2O isf_ms2 0.01rt rsd rmd)_standard_peak_table.csv") # blank filt iso add nl rsd rmd only ms2
 data <- subset(data, data$Feature %in% data_ms2_only$`Alignment ID`)
 peakIn <- as.data.frame(cbind(mz = data$mz, rt = data$rt, id = data$Feature))
 peakIn$mz <- as.numeric(peakIn$mz)
@@ -198,7 +198,7 @@ md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q2
 cat("Wulignan A1 & p-coumaraldehyde (Q27103652)|Phenylacrylic acid are detected in blank")
 unique(md$target_Compound) %>% length()
 
-df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts isf_ms2 rsd)_filtered.csv") %>% as.data.frame() # blank iso add isf rsd
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts isf_ms2 rt001 rsd)_filtered.csv") %>% as.data.frame() # blank iso add isf rsd
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
@@ -392,7 +392,7 @@ md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q2
 cat("Wulignan A1 & p-coumaraldehyde (Q27103652)|Phenylacrylic acid are detected in blank")
 unique(md$target_Compound) %>% length()
 
-df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts isf_ms2) rsd_filtered.csv") %>% as.data.frame() # 30 % zeros, 400 RSD
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts isf_ms2) rsd_filtered isfms2 0.01rt.csv") %>% as.data.frame() # 30 % zeros, 400 RSD
 peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
 peakIn$mz <- as.numeric(peakIn$mz)
 peakIn$rt <- as.numeric(peakIn$rt)
