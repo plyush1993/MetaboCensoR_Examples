@@ -645,7 +645,7 @@ df <- df %>%
   group_by(Type, Software) %>%
   mutate(
     best_rel = max(relative, na.rm = TRUE),
-    rel_gap = (best_rel - relative) / best_rel,
+    rel_gap = best_rel - relative,
     box_col = case_when(
       rel_gap <= tol_good ~ "Best / Comparable",
       rel_gap <= tol_mid  ~ "Intermediate",
