@@ -16,24 +16,24 @@ ref_rt <- 5.0
 
 # Define features belonging to the COMPOUND GRAPH
 compound_features <- tibble::tibble(
-  label = c("M+H", "M+Na", "M+NH4", "13C"),
+  label = c("M+H", "M+Na", "M+NH4", "13C", "M+Na"),
   # Calculate theoretical masses
-  mz_theo = c(301.0073, 322.9892, 318.0338, 302.0106),
+  mz_theo = c(301.0073, 322.9892, 318.0338, 302.0106, 322.9892),
   # Add slight random error to mz and rt to make it realistic
   mz = mz_theo + runif(4, -0.002, 0.002),
-  rt = ref_rt  + c(0.0, 0.008, 0.018, -0.008),
+  rt = ref_rt  + c(0.0, 0.008, 0.018, -0.008, 0.015),
   # Relative intensities (for point size)
-  intensity = c(100, 40, 15, 10),
-  group = c("Cluster", "Target Adduct (M+Na)", "Cluster", "Cluster")
+  intensity = c(100, 40, 15, 10, 68),
+  group = c("Cluster", "Target Adduct (M+Na)", "Cluster", "Cluster", "Target False Adduct")
 )
 
 # Define scattered BACKGROUND NOISE features (Singletons)
 noise_features <- tibble::tibble(
-  label = paste0("S", 1:5),
-  mz = c(305.1, 322.9892, 330.0, 310.2, 298.8),
-  rt = c(4.965, 5.015, 4.99, 4.975, 5.015),
-  intensity = c(25, 68, 5, 12, 8),
-  group = c("Noise", "Target False Adduct", "Noise", "Noise", "Noise")
+  label = paste0("S", 1:4),
+  mz = c(305.1, 330.0, 310.2, 298.8),
+  rt = c(4.965,  4.99, 4.975, 5.015),
+  intensity = c(25, 5, 12, 8),
+  group = c("Noise", "Noise", "Noise", "Noise")
 )
 
 # Combine datasets
@@ -223,7 +223,7 @@ p_scatter <- ggplot(df_scatter, aes(x = MH_Intensity, y = Target_Intensity,
            label = "r > 0.80\n(Valid M+Na)") +
            
   annotate("text", x = 14000, y = 43000, hjust = 0, size = 3.5, fontface = "bold", color = "#c0392b",
-           label = "r < 0.8\n(Rejected)") +
+           label = "r < 0.8\n(Invalid M+Na)") +
 
   # 4. Apply your specific color theme
   scale_fill_manual(values = c("Target Adduct (M+Na)" = "#1abc9c", "Target False Adduct" = "#e74c3c")) +
