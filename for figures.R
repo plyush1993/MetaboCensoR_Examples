@@ -220,7 +220,7 @@ p_scatter <- ggplot(df_scatter, aes(x = MH_Intensity, y = Target_Intensity,
   
   # 3. Add statistical annotations directly onto the plot
   annotate("text", x = 70000, y = 16000, hjust = 0, size = 3.5, fontface = "bold", color = "#16a085",
-           label = "r > 0.80\n(Valid M+Na)") +
+           label = "r > 0.8\n(Valid M+Na)") +
            
   annotate("text", x = 14000, y = 43000, hjust = 0, size = 3.5, fontface = "bold", color = "#c0392b",
            label = "r < 0.8\n(Invalid M+Na)") +
