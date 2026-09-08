@@ -122,8 +122,8 @@ final_plot <- ggplot() +
   labs(
     title = "mz-rt match",
     #subtitle = "Grouping related features by characteristic shifts within m/z-RT tolerance windows",
-    x = "Retention Time (min)",
-    y = "m/z"
+    x = "Retention Time, min",
+    y = "m/z, Da"
   ) +
   theme(
     legend.position = "none",
@@ -234,7 +234,7 @@ p_scatter <- ggplot(df_scatter, aes(x = MH_Intensity, y = Target_Intensity,
   labs(
     title = "Correlation match",
     subtitle = "",
-    x = "Precursor (M+H) Intensity",
+    x = "Representative Ion (M+H) Intensity",
     y = "Feature Intensity"
   ) +
   theme(
