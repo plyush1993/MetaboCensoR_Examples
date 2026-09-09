@@ -686,4 +686,74 @@ ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
     axis.title.y = element_text(margin = margin(r = 10))
   )
 
+####################################################################1
+# For Graphival Abstarct ----
+####################################################################1
+
+library(ggplot2)
+
+set.seed(1234)
+
+# Retention time axis
+rt <- seq(0, 20, length.out = 4000)
+
+# Gaussian peak function
+peak_fun <- function(x, center, height, width) {
+  height * exp(-(x - center)^2 / (2 * width^2))
+}
+
+# Main peaks spread across the full 0-20 range
+main_centers <- c(0.8, 1.5, 2.3, 3.1, 3.9, 4.8, 5.5, 6.3, 7.1,
+                  8.0, 8.8, 9.6, 10.4, 11.2, 12.0, 12.8, 13.7,
+                  14.5, 15.3, 16.2, 17.0, 17.8, 18.7, 19.4)
+
+main_heights <- c(0.18, 0.35, 0.22, 0.55, 0.20, 0.42, 0.24, 0.32, 0.60,
+                  0.25, 0.48, 0.68, 0.22, 0.40, 0.58, 0.20, 0.34,
+                  0.50, 0.21, 0.30, 0.52, 0.18, 0.28, 0.14)
+
+main_widths <- c(0.05, 0.07, 0.05, 0.08, 0.05, 0.07, 0.05, 0.06, 0.08,
+                 0.05, 0.07, 0.08, 0.05, 0.07, 0.08, 0.05, 0.06,
+                 0.07, 0.05, 0.06, 0.07, 0.05, 0.06, 0.05)
+
+# Many small peaks across the full range
+n_small <- 200
+small_centers <- sort(runif(n_small, min = 0.2, max = 19.8))
+small_heights <- runif(n_small, min = 0.02, max = 0.14)
+small_widths  <- runif(n_small, min = 0.015, max = 0.05)
+
+# Build signal
+intensity <- rep(0, length(rt))
+
+for (i in seq_along(main_centers)) {
+  intensity <- intensity + peak_fun(rt, main_centers[i], main_heights[i], main_widths[i])
+}
+
+for (i in seq_along(small_centers)) {
+  intensity <- intensity + peak_fun(rt, small_centers[i], small_heights[i], small_widths[i])
+}
+
+# Slight baseline + tiny noise
+baseline <- 0.015 + 0.008 * sin(rt * 0.8)
+noise <- runif(length(rt), 0, 0.006)
+
+intensity <- intensity + baseline + noise
+
+df <- data.frame(
+  rt = rt,
+  intensity = intensity
+)
+
+p <- ggplot(df, aes(x = rt, y = intensity)) +
+  geom_area(fill = "#5DADE2", alpha = 0.20) +
+  geom_line(linewidth = 0.9, colour = "#002776") +
+  labs(x = "Retention time", y = "Intensity") +
+  theme_classic(base_size = 16) +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.line = element_line(linewidth = 0.8, colour = "#002776")
+  )
+
+p
+
 #...................................................
