@@ -601,7 +601,7 @@ ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
   facet_grid(~ Dataset + Comparison, scales = "free_x", space = "free_x") +
   scale_fill_manual(values = colors) +
   scale_y_continuous(breaks = seq(0, 1, 0.2), expand = expansion(mult = c(0, 0.13))) +
-  labs(x = "", y = "Relative Scope", fill = "Feature Type") +
+  labs(x = "", y = "Relative Score", fill = "Feature Type") +
   theme_classic(base_size = 16) +
   theme(
     legend.position = "none",
@@ -672,7 +672,7 @@ ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
   scale_y_continuous(limits = c(-0.12, 1.05),
                      breaks = seq(0, 1, 0.2),
                      expand = expansion(mult = c(0, 0.03))) +
-  labs(x = "", y = "Relative Scope") +
+  labs(x = "", y = "Relative Score") +
   theme_classic(base_size = 16) +
   theme(
     legend.position = "none",
@@ -687,7 +687,7 @@ ggplot(df, aes(x = Tool, y = relative, fill = Label)) +
   )
 
 ####################################################################1
-# For Graphival Abstarct ----
+# For Graphical Abstract ----
 ####################################################################1
 
 library(ggplot2)
