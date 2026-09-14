@@ -11,7 +11,7 @@ Three different datasets are provided:
 - [**`inter`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/inter) - <ins>Case Study 3:</ins> Enhancing statistical analysis in a bacterial interaction LC-MS profiling dataset. <br><br>
 
 - [**`for figures.R`**](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/for%20figures.R) - R script and data to reproduce additional figures. <br>
-- [**`table_annotation`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/table_annotation) - R script and data to reproduce annotation rate results. <br>
+- [**`table_annotation`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/table_annotation) - R script and data to reproduce annotation coverage results. <br>
 - [**`tool_benchmarking`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/tool_benchmarking) - R script and data to reproduce benchmarking results. <br>
 - [**`scalability testing`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/scalability%20testing) - R script for data simulation and runtime. <br><br>
 
