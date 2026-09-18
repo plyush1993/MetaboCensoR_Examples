@@ -107,8 +107,8 @@ df <- as.data.frame(cbind(Label = df[,1], ds_mvi))
 # Stat tests
 gr <- as.factor(as.character(df$Label))
 g <- t(combn(as.character(levels(gr)), 2))
-g <- cbind(g[,2], g[,1])
-g_sel <- g[which(g[,1] == "Pd+Pd"),]
+g <- cbind(g[,1], g[,2])
+g_sel <- g[which(g[,2] == "Pd+Pd"),]
 #g_sel <- rbind(g_sel, c("Pd+Pd", "Pd+srf"))
 # add manually 
 #g_sel <- rbind(g_sel, c("Pd+Pd", "Pd+srf"))
@@ -213,7 +213,7 @@ p <- ggplot(data_stat, aes(x = FC, y = `Adj.p-value.log`)) +
   theme(legend.position = "none") +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) 
 
-p <- p+facet_wrap(vars(Groups), scales = "fixed", nrow = 1, strip.position = "top", labeller = label_wrap_gen(width = 15))
+p <- p+facet_wrap(vars(Groups), scales = "fixed", nrow = 1, strip.position = "top", labeller = label_wrap_gen(width = 12))
 p
 p_raw <- p
 
@@ -271,8 +271,8 @@ df <- as.data.frame(cbind(Label = df[,1], ds_mvi))
 # Stat tests
 gr <- as.factor(as.character(df$Label))
 g <- t(combn(as.character(levels(gr)), 2))
-g <- cbind(g[,2], g[,1])
-g_sel <- g[which(g[,1] == "Pd+Pd"),]
+g <- cbind(g[,1], g[,2])
+g_sel <- g[which(g[,2] == "Pd+Pd"),]
 #g_sel <- rbind(g_sel, c("Pd+Pd", "Pd+srf"))
 # add manually 
 #g_sel <- rbind(g_sel, c("Pd+Pd", "Pd+srf"))
@@ -377,7 +377,7 @@ p <- ggplot(data_stat, aes(x = FC, y = `Adj.p-value.log`)) +
   theme(legend.position = "none") +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE)) 
 
-p <- p+facet_wrap(vars(Groups), scales = "fixed", nrow = 1, strip.position = "top", labeller = label_wrap_gen(width = 15))
+p <- p+facet_wrap(vars(Groups), scales = "fixed", nrow = 1, strip.position = "top", labeller = label_wrap_gen(width = 12))
 p
 p_app <- p
 #ggplotly(p)
@@ -442,7 +442,7 @@ unique(md$target_Compound)
 
 # set up
 comparisons <- c(
-  "Pd+Pd / Pd+Bs"
+  "Pd+Bs / Pd+Pd"
 )
 
 df_eff <- raw %>% # raw or app
@@ -585,7 +585,7 @@ power_result <- data.frame(
 power_result <- subset(power_result, !(Scenario %in% c("Lipopetidic C13", "Lipopetidic C12")))
 power_result
 power_result$Power_difference %>% as.numeric()
-                            
+
 #................................................................
 # lollipop plot ----
 #................................................................
@@ -593,7 +593,7 @@ power_result$Power_difference %>% as.numeric()
 data_stat_lpp <- rbind(cbind(data_stat_app, Label = "MetaboCensoR"), cbind(data_stat_raw, Label = "Raw Data")) %>% as.data.frame()
 plot_data <- subset(data_stat_lpp, data_stat_lpp$Name != "No")
 plot_data$Groups %>% unique()
-plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+Pd / Pd+001srf", "Pd+Pd / Pd+Bs", "Pd+Pd / Pd+dpps"))
+plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+001srf / Pd+Pd", "Pd+Bs / Pd+Pd", "Pd+dpps / Pd+Pd"))
 
 plot_data <- plot_data %>%
   mutate(Y_Label = paste0(Name, " ", Adduct, "")) %>%
@@ -653,8 +653,9 @@ lp <- ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) 
   )
 
 lp
+
 plot_grid(vps, lp, ncol = 2, rel_widths = c(2,1))
-        
+
 #................................................................
 #### Compare Total Annotations ----
 #................................................................
