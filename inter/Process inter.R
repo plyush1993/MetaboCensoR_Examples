@@ -388,7 +388,7 @@ p_app <- p
 library(cowplot)
 p_raw <- p_raw + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
 p_app <- p_app + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
-vps <- plot_grid(p_raw, p_app, labels = c('A', 'B'), label_size = 25, nrow = 2)
+vps <- plot_grid(p_raw, p_app, label_size = 25, nrow = 2)
 vps
 
 #................................................................
@@ -654,7 +654,7 @@ lp <- ggplot(plot_data, aes(x = `Adj.p-value.log`, y = Y_Label, color = Label)) 
 
 lp
 
-plot_grid(vps, lp, ncol = 2, rel_widths = c(2,1))
+plot_grid(vps, lp, ncol = 2, rel_widths = c(2,1), label_size = 25, labels = c('A', 'B'))
 
 #................................................................
 #### Compare Total Annotations ----
