@@ -10,6 +10,7 @@ library(data.table)
 library(ggsci)
 library(RCy3)
 library(cowplot)
+library(ggExtra)
 
 setwd("C:/.../")
 
@@ -485,4 +486,213 @@ to_del <- which(na_count_per_row >= 10)
 tot_an <- intersect(sirius$mappingFeatureId[-to_del], df$`row ID`) %>% length()
 round(tot_an/nrow(df)*100, 1)
 
-###################################.
+#................................................................
+#### Plot Genuine Metabolites----
+#................................................................
+
+df <- read_csv("orbi_iimn_gnps_quant_filtered (2x H2O adducts).csv") %>% as.data.frame()
+peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+
+target_df <- read.csv("annotation.csv")
+target_df <- target_df[,c(1,2,4)]
+
+mass <- calculateMass(target_df$Formula)
+target_df$exactmass <- mass
+target_df <- target_df %>%
+  distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
+
+# set polarity, adduct, accuracy
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
+#MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
+#MetaboCoreUtils::adducts(polarity = c("negative")) 
+
+matched_features <- matchValues(peakIn, target_df, parm)
+md <- matchedData(matched_features)
+md <- as.data.frame(md)
+md <- na.omit(md)
+unique(md$target_Compound)
+unique(md$target_Compound) %>% length()
+
+md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
+unique(md$target_Compound) %>% length()
+
+md_app <- md
+unique(md_app$id) %>% length()
+
+df <- read_csv("orbi_iimn_gnps_quant_FILT_BLANK.csv") %>% as.data.frame()
+peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+
+target_df <- read.csv("annotation.csv")
+target_df <- target_df[,c(1,2,4)]
+
+mass <- calculateMass(target_df$Formula)
+target_df$exactmass <- mass
+target_df <- target_df %>%
+  distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
+
+# set polarity, adduct, accuracy
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.01)
+#MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
+#MetaboCoreUtils::adducts(polarity = c("negative")) 
+
+matched_features <- matchValues(peakIn, target_df, parm)
+md <- matchedData(matched_features)
+md <- as.data.frame(md)
+md <- na.omit(md)
+unique(md$target_Compound)
+unique(md$target_Compound) %>% length()
+
+md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
+unique(md$target_Compound) %>% length()
+
+md_raw <- md
+unique(md_raw$id) %>% length()
+
+df <- read_csv("orbi_iimn_gnps_quant_FILT_BLANK.csv") %>% as.data.frame()
+peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+peakIn$intensity <- as.numeric(rowSums(df[,c(14:22)]))
+md_total <- peakIn
+md_total$Label <- ifelse(md_total$id %in% md_raw$id, "Genuine | Redundant", "Unknown Feature") 
+md_total$Label <- ifelse(md_total$id %in% md_app$id, "Genuine | Representative", md_total$Label) 
+md_total$Label <- factor(md_total$Label, levels = c("Unknown Feature", "Genuine | Redundant", "Genuine | Representative"))
+table(md_total$Label)
+
+colors <- rev(ggsci::pal_npg()(3))
+colors[1] <- "grey90"
+names(colors) <- levels(md_total$Label)
+
+md_total_ordered <- md_total %>%
+  arrange(Label)
+
+counts <- table(md_total_ordered$Label)
+legend_labels <- paste0(names(counts), "\n(n = ", counts, ")")
+
+colors_named <- colors
+names(colors_named) <- levels(md_total_ordered$Label)
+
+labels_named <- legend_labels
+names(labels_named) <- levels(md_total_ordered$Label)
+
+a <- ggplot(md_total_ordered, aes(x = rt, y = mz, fill = Label, color = Label)) +
+  geom_point(shape = 16, size = 4.5, alpha = 0.75) +
+  #geom_rug(alpha = 0.7, linewidth = 0.5) + # Reads x and y from main ggplot() call
+  scale_fill_manual(values = colors_named, labels = labels_named) +
+  scale_color_manual(values = colors_named, labels = labels_named) +
+  labs(x = "RT, min", y = "m/z, Da", fill = "", color = "") +
+  theme_classic(base_size = 16)+ theme(
+    legend.position = "bottom") 
+a
+
+a <- ggMarginal(
+  a, size = 10,
+  type = "boxplot", 
+  groupFill = T, 
+  groupColour = T
+)
+a
+
+b <- ggplot(md_total, aes(x = intensity, fill = Label)) +
+  geom_histogram(bins = 75, color = "black", position = "identity", alpha = 0.75)+
+  scale_x_log10()+
+  scale_fill_manual(values = colors) +
+  labs(x = "log10(Intensity)", y = "Count", fill = "", color = "") +
+  theme_classic(base_size = 16)+ theme(
+    legend.position = "bottom")
+b
+b <- ggplot(md_total, aes(x = intensity, fill = Label, color = Label)) +
+  # 1. Histogram normalized to density scale
+  geom_histogram(
+    aes(y = after_stat(density)), 
+    bins = 100, 
+    position = "identity", 
+    alpha = 0.4, 
+    color = "black"
+  ) +
+  # 2. Overlaid smoothed density curves
+  geom_density(linewidth = 1, alpha = 0.2) +
+  scale_x_log10() +
+  scale_fill_manual(values = colors) +
+  scale_color_manual(values = colors) +
+  labs(x = "log10(Intensity)", y = "Density", fill = "", color = "") +
+  theme_classic(base_size = 16) +
+  theme(legend.position = "bottom")
+
+b
+
+# plot
+
+# 1. Build base ggplot 'a' (WITHOUT ggMarginal yet)
+a_base <- ggplot(md_total_ordered, aes(x = rt, y = mz, fill = Label, color = Label)) +
+  geom_point(shape = 16, size = 4.5, alpha = 0.75) +
+  scale_fill_manual(values = colors_named, labels = labels_named) +
+  scale_color_manual(values = colors_named, labels = labels_named) +
+  labs(x = "RT, min", y = "m/z, Da", fill = "", color = "") +
+  theme_classic(base_size = 16)
+
+# 2. Build base ggplot 'b' (WITHOUT ggMarginal yet)
+b_base <- ggplot(md_total, aes(x = intensity, fill = Label, color = Label)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 75, position = "identity", alpha = 0.4) +
+  geom_density(linewidth = 1, alpha = 0.2) +
+  scale_x_log10() +
+  scale_fill_manual(values = colors_named, labels = labels_named) +
+  scale_color_manual(values = colors_named, labels = labels_named) +
+  labs(x = "log10(Intensity)", y = "Density", fill = "", color = "") +
+  theme_classic(base_size = 16)
+
+# 3. Extract shared legend from base plot
+shared_legend <- get_legend(
+  a_base + theme(
+    legend.position = "bottom",
+    legend.key.height = unit(1.2, "cm")
+  )
+)
+
+# 4. Create marginal plots from base plots WITH legend.position = "none"
+a_clean <- ggMarginal(
+  a_base + theme(legend.position = "none"), 
+  type = "boxplot", size = 7.5,
+  groupFill = TRUE, 
+  groupColour = TRUE
+)
+
+b_clean <- b_base + theme(legend.position = "none")
+
+# 5. Combine side-by-side (1 row) with bottom shared legend
+row_plots <- plot_grid(
+  a_clean, b_clean, 
+  ncol = 2, 
+  labels = c("A", "B"), 
+  label_size = 25
+)
+
+final_combined_plot <- plot_grid(
+  row_plots, 
+  shared_legend, 
+  ncol = 1, 
+  rel_heights = c(1, 0.2)
+)
+
+# Render final combined plot
+final_combined_plot
+
+###################################-
