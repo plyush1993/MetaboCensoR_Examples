@@ -1,0 +1,1152 @@
+{
+  "format": "MetaboCensoR-analysis-settings",
+  "schema_version": 1,
+  "exported_at_utc": "2026-10-30T20:57:27Z",
+  "app_version": "1.5.3",
+  "r_version": "R version 4.1.2 (2021-11-01)",
+  "note": "Applied-step snapshots are authoritative. Current controls may differ. Import restores settings only; it does not run filters or restore results. Unapplied steps in the transfer recipe use current controls.",
+  "pipeline_order": ["blank", "ms", "qc", "peak"],
+  "steps": {
+    "blank": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T20:54:50Z",
+        "parameters": {
+          "data_type0": "mzmine",
+          "row_id_col0": "row ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "kws",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": [],
+          "label_source": "from_custom",
+          "label_index": 3,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": true,
+          "groups_to_remove": "blank",
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "positive",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": false,
+          "nl_pol2": "positive",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": false,
+          "isf_cor2": 0.95,
+          "isf_rt2": 0.01,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": true,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "inherit",
+          "qc_label_index": 2,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": [],
+          "value_mode": "group_any",
+          "value_groups": [],
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 30,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": [],
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "orbi_iimn_gnps_quant.csv",
+            "size_bytes": 861846,
+            "md5": "ac5f9244ad9e6373f2fed44da7dfe858"
+          },
+          "meta_csv": {
+            "name": "Label.csv",
+            "size_bytes": 66,
+            "md5": "2b8dcbc7999c8e65fb6573898e2ccf5d"
+          },
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": null,
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": null,
+          "mgf_input": null
+        },
+        "stats": {
+          "before": 6167,
+          "after": 2597,
+          "removed_blank": 3570
+        },
+        "context": {
+          "dataset_name": "orbi_iimn_gnps_quant.csv",
+          "sample_columns": ["Orbi_P_E2_EXBLANKA.mzML Peak area", "Orbi_P_E2_EXBLANKB.mzML Peak area", "Orbi_P_E2_EXBLANKC.mzML Peak area", "Orbi_P_E2_WS03A.mzML Peak area", "Orbi_P_E2_WS03B.mzML Peak area", "Orbi_P_E2_WS03C.mzML Peak area", "Orbi_P_E2_Wasteblank4.mzML Peak area", "Orbi_P_E2_Wasteblank5.mzML Peak area", "Orbi_P_E2_Wasteblank6.mzML Peak area"],
+          "blank_labels": [
+            {
+              "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+              "Label": "blank"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+              "Label": "blank"
+            }
+          ]
+        }
+      }
+    },
+    "ms": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T20:57:04Z",
+        "parameters": {
+          "data_type0": "mzmine",
+          "row_id_col0": "row ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "kws",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": [],
+          "label_source": "from_custom",
+          "label_index": 3,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": true,
+          "groups_to_remove": "blank",
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "positive",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": false,
+          "nl_pol2": "positive",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": true,
+          "isf_cor2": 0.95,
+          "isf_rt2": 0.01,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": true,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "isf_mgf_id_field": "acquisitionNum",
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "inherit",
+          "qc_label_index": 2,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": [],
+          "value_mode": "group_any",
+          "value_groups": [],
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 30,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": [],
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "orbi_iimn_gnps_quant.csv",
+            "size_bytes": 861846,
+            "md5": "ac5f9244ad9e6373f2fed44da7dfe858"
+          },
+          "meta_csv": {
+            "name": "Label.csv",
+            "size_bytes": 66,
+            "md5": "2b8dcbc7999c8e65fb6573898e2ccf5d"
+          },
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": {
+            "name": "adducts (nontarget + 2xH2O).csv",
+            "size_bytes": 2949,
+            "md5": "386fb42e2c7d2b610bda0128a0c04925"
+          },
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": {
+            "name": "orbi_iimn_gnps.mgf",
+            "size_bytes": 4221756,
+            "md5": "06f72118c45bffcee587270f4acf039e"
+          },
+          "mgf_input": null,
+          "active_mgf": {
+            "name": "orbi_iimn_gnps.mgf",
+            "size_bytes": 4221756,
+            "md5": "06f72118c45bffcee587270f4acf039e"
+          }
+        },
+        "stats": {
+          "before": 2597,
+          "after": 1239,
+          "removed_iso": 24,
+          "removed_add": 1306,
+          "removed_nl": 0,
+          "removed_isf": 28,
+          "removed_mis": 0,
+          "removed_ring": 0
+        },
+        "context": {
+          "dataset_name": "orbi_iimn_gnps_quant.csv",
+          "sample_columns": ["Orbi_P_E2_EXBLANKA.mzML Peak area", "Orbi_P_E2_EXBLANKB.mzML Peak area", "Orbi_P_E2_EXBLANKC.mzML Peak area", "Orbi_P_E2_WS03A.mzML Peak area", "Orbi_P_E2_WS03B.mzML Peak area", "Orbi_P_E2_WS03C.mzML Peak area", "Orbi_P_E2_Wasteblank4.mzML Peak area", "Orbi_P_E2_Wasteblank5.mzML Peak area", "Orbi_P_E2_Wasteblank6.mzML Peak area"],
+          "blank_labels": [
+            {
+              "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+              "Label": "blank"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+              "Label": "sample"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+              "Label": "blank"
+            },
+            {
+              "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+              "Label": "blank"
+            }
+          ]
+        }
+      }
+    },
+    "qc": {
+      "applied": false,
+      "snapshot": null
+    },
+    "peak": {
+      "applied": false,
+      "snapshot": null
+    }
+  },
+  "compiled_output": {
+    "at_utc": "2026-10-30T20:57:23Z",
+    "parameters": {
+      "data_type0": "mzmine",
+      "row_id_col0": "row ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "kws",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": [],
+      "label_source": "from_custom",
+      "label_index": 3,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": true,
+      "groups_to_remove": "blank",
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "positive",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": false,
+      "nl_pol2": "positive",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": true,
+      "isf_cor2": 0.95,
+      "isf_rt2": 0.01,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": true,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "isf_mgf_id_field": "acquisitionNum",
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "inherit",
+      "qc_label_index": 2,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": [],
+      "value_mode": "group_any",
+      "value_groups": [],
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 30,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": [],
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": ""
+    },
+    "files": {
+      "file0": {
+        "name": "orbi_iimn_gnps_quant.csv",
+        "size_bytes": 861846,
+        "md5": "ac5f9244ad9e6373f2fed44da7dfe858"
+      },
+      "meta_csv": {
+        "name": "Label.csv",
+        "size_bytes": 66,
+        "md5": "2b8dcbc7999c8e65fb6573898e2ccf5d"
+      },
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": {
+        "name": "adducts (nontarget + 2xH2O).csv",
+        "size_bytes": 2949,
+        "md5": "386fb42e2c7d2b610bda0128a0c04925"
+      },
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": {
+        "name": "orbi_iimn_gnps.mgf",
+        "size_bytes": 4221756,
+        "md5": "06f72118c45bffcee587270f4acf039e"
+      },
+      "mgf_input": null,
+      "active_mgf": {
+        "name": "orbi_iimn_gnps.mgf",
+        "size_bytes": 4221756,
+        "md5": "06f72118c45bffcee587270f4acf039e"
+      }
+    },
+    "stats": {
+      "features": 1239
+    },
+    "context": {
+      "dataset_name": "orbi_iimn_gnps_quant.csv",
+      "sample_columns": ["Orbi_P_E2_EXBLANKA.mzML Peak area", "Orbi_P_E2_EXBLANKB.mzML Peak area", "Orbi_P_E2_EXBLANKC.mzML Peak area", "Orbi_P_E2_WS03A.mzML Peak area", "Orbi_P_E2_WS03B.mzML Peak area", "Orbi_P_E2_WS03C.mzML Peak area", "Orbi_P_E2_Wasteblank4.mzML Peak area", "Orbi_P_E2_Wasteblank5.mzML Peak area", "Orbi_P_E2_Wasteblank6.mzML Peak area"],
+      "blank_labels": [
+        {
+          "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+          "Label": "blank"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+          "Label": "blank"
+        }
+      ]
+    }
+  },
+  "filtered_mgf": null,
+  "current_controls": {
+    "at_utc": "2026-10-30T20:57:27Z",
+    "parameters": {
+      "data_type0": "mzmine",
+      "row_id_col0": "row ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "kws",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": [],
+      "label_source": "from_custom",
+      "label_index": 3,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": true,
+      "groups_to_remove": "blank",
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "positive",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": false,
+      "nl_pol2": "positive",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": true,
+      "isf_cor2": 0.95,
+      "isf_rt2": 0.01,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": true,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "isf_mgf_id_field": "acquisitionNum",
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "inherit",
+      "qc_label_index": 2,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": [],
+      "value_mode": "group_any",
+      "value_groups": [],
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 30,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": [],
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": "",
+      "enable_mgf_filter": false,
+      "mgf_match_col": "row ID",
+      "mgf_id_field": "acquisitionNum"
+    },
+    "files": {
+      "file0": {
+        "name": "orbi_iimn_gnps_quant.csv",
+        "size_bytes": 861846,
+        "md5": "ac5f9244ad9e6373f2fed44da7dfe858"
+      },
+      "meta_csv": {
+        "name": "Label.csv",
+        "size_bytes": 66,
+        "md5": "2b8dcbc7999c8e65fb6573898e2ccf5d"
+      },
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": {
+        "name": "adducts (nontarget + 2xH2O).csv",
+        "size_bytes": 2949,
+        "md5": "386fb42e2c7d2b610bda0128a0c04925"
+      },
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": {
+        "name": "orbi_iimn_gnps.mgf",
+        "size_bytes": 4221756,
+        "md5": "06f72118c45bffcee587270f4acf039e"
+      },
+      "mgf_input": null,
+      "active_mgf": {
+        "name": "orbi_iimn_gnps.mgf",
+        "size_bytes": 4221756,
+        "md5": "06f72118c45bffcee587270f4acf039e"
+      }
+    },
+    "stats": null,
+    "context": {
+      "dataset_name": "orbi_iimn_gnps_quant.csv",
+      "sample_columns": ["Orbi_P_E2_EXBLANKA.mzML Peak area", "Orbi_P_E2_EXBLANKB.mzML Peak area", "Orbi_P_E2_EXBLANKC.mzML Peak area", "Orbi_P_E2_WS03A.mzML Peak area", "Orbi_P_E2_WS03B.mzML Peak area", "Orbi_P_E2_WS03C.mzML Peak area", "Orbi_P_E2_Wasteblank4.mzML Peak area", "Orbi_P_E2_Wasteblank5.mzML Peak area", "Orbi_P_E2_Wasteblank6.mzML Peak area"],
+      "blank_labels": [
+        {
+          "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+          "Label": "blank"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+          "Label": "blank"
+        }
+      ]
+    }
+  },
+  "transfer": {
+    "parameters": {
+      "data_type0": "mzmine",
+      "row_id_col0": "row ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "kws",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": [],
+      "label_source": "from_custom",
+      "label_index": 3,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": true,
+      "groups_to_remove": "blank",
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "positive",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": false,
+      "nl_pol2": "positive",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": true,
+      "isf_cor2": 0.95,
+      "isf_rt2": 0.01,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": true,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "isf_mgf_id_field": "acquisitionNum",
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "inherit",
+      "qc_label_index": 2,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": [],
+      "value_mode": "group_any",
+      "value_groups": [],
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 30,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": [],
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": "",
+      "enable_mgf_filter": false,
+      "mgf_match_col": "row ID",
+      "mgf_id_field": "acquisitionNum"
+    },
+    "files": {
+      "file0": {
+        "name": "orbi_iimn_gnps_quant.csv",
+        "size_bytes": 861846,
+        "md5": "ac5f9244ad9e6373f2fed44da7dfe858"
+      },
+      "meta_csv": {
+        "name": "Label.csv",
+        "size_bytes": 66,
+        "md5": "2b8dcbc7999c8e65fb6573898e2ccf5d",
+        "content_base64": "YmxhbmsNCmJsYW5rDQpibGFuaw0Kc2FtcGxlDQpzYW1wbGUNCnNhbXBsZQ0KYmxhbmsNCmJs\nYW5rDQpibGFuaw0K"
+      },
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": {
+        "name": "adducts (nontarget + 2xH2O).csv",
+        "size_bytes": 2949,
+        "md5": "386fb42e2c7d2b610bda0128a0c04925",
+        "content_base64": "TmFtZSxjYWxjLENoYXJnZSxNdWx0LE1hc3MsSW9uX21vZGUsRm9ybXVsYV9hZGQsRm9ybXVs\nYV9kZWQsTXVsdGkNCk0rSCxNKzEuMDA3Mjc2LDEsMSwxLjAwNzI3Nixwb3NpdGl2ZSxIMSxG\nQUxTRSwxDQpNK05INCxNKzE4LjAzMzgyMywxLDEsMTguMDMzODIzLHBvc2l0aXZlLE4xSDQs\nRkFMU0UsMQ0KTStOYSxNKzIyLjk4OTIxOCwxLDEsMjIuOTg5MjE4LHBvc2l0aXZlLE5hMSxG\nQUxTRSwxDQpNK0ssTSszOC45NjMxNTgsMSwxLDM4Ljk2MzE1OCxwb3NpdGl2ZSxLMSxGQUxT\nRSwxDQpNKyxNLTAuMDAwNTQ4NTgsMSwxLC01LjQ5RS0wNCxwb3NpdGl2ZSxGQUxTRSxGQUxT\nRSwxDQpNLUgsTS0xLjAwNzI3NiwtMSwxLC0xLjAwNzI3NixuZWdhdGl2ZSxGQUxTRSxIMSwx\nDQpNLTJILE0vMi0xLjAwNzI3NiwtMiwxLC0xLjAwNzI3NixuZWdhdGl2ZSxGQUxTRSxIMiwx\nDQpNLTNILE0vMy0xLjAwNzI3NiwtMywxLC0xLjAwNzI3NixuZWdhdGl2ZSxGQUxTRSxIMywx\nDQpNK0ZBLUgsTSs0NC45OTgyMDEsLTEsMSw0NC45OTgyMDEsbmVnYXRpdmUsQzFPMkgyLEgx\nLDENCk0rSGFjLUgsTSs1OS4wMTM4NTEsLTEsMSw1OS4wMTM4NTEsbmVnYXRpdmUsQzJPMkg0\nLEgxLDENCk0tLE0rMC4wMDA1NDg1OCwtMSwxLDUuNDg1OGUtNCxuZWdhdGl2ZSxGQUxTRSxG\nQUxTRSwxDQpNKzNILE0vMysxLjAwNzI3NiwzLDEsMS4wMDcyNzYscG9zaXRpdmUsSDMsRkFM\nU0UsMQ0KTSsySCtOYSxNLzMrOC4zMzQ1OTAsMywxLDguMzM0NTkscG9zaXRpdmUsSDJOYTEs\nRkFMU0UsMQ0KTStIKzJOYSxNLzMrMTUuNzY2MTkwNCwzLDEsMTUuNzY2MTkscG9zaXRpdmUs\nSDFOYTIsRkFMU0UsMQ0KTSszTmEsTS8zKzIyLjk4OTIxOCwzLDEsMjIuOTg5MjE4LHBvc2l0\naXZlLE5hMyxGQUxTRSwxDQpNKzJILE0vMisxLjAwNzI3NiwyLDEsMS4wMDcyNzYscG9zaXRp\ndmUsSDIsRkFMU0UsMQ0KTStIK05INCxNLzIrOS41MjA1NTAsMiwxLDkuNTIwNTUscG9zaXRp\ndmUsSDFOMUg0LEZBTFNFLDENCk0rSCtOYSxNLzIrMTEuOTk4MjQ3LDIsMSwxMS45OTgyNDcs\ncG9zaXRpdmUsSDFOYTEsRkFMU0UsMQ0KTStIK0ssTS8yKzE5Ljk4NTIxNywyLDEsMTkuOTg1\nMjE3LHBvc2l0aXZlLEgxSzEsRkFMU0UsMQ0KTStBQ04rMkgsTS8yKzIxLjUyMDU1MCwyLDEs\nMjEuNTIwNTUscG9zaXRpdmUsQzJINU4xLEZBTFNFLDENCk0rMk5hLE0vMisyMi45ODkyMTgs\nMiwxLDIyLjk4OTIxOCxwb3NpdGl2ZSxOYTIsRkFMU0UsMQ0KTSsyQUNOKzJILE0vMis0Mi4w\nMzM4MjMsMiwxLDQyLjAzMzgyMyxwb3NpdGl2ZSxDNEg4TjIsRkFMU0UsMQ0KTSszQUNOKzJI\nLE0vMis2Mi41NDcwOTcsMiwxLDYyLjU0NzA5Nyxwb3NpdGl2ZSxDNkgxMU4zLEZBTFNFLDEN\nCk0rQ0gzT0grSCxNKzMzLjAzMzQ4OSwxLDEsMzMuMDMzNDg5LHBvc2l0aXZlLEMxSDVPMSxG\nQUxTRSwxDQpNK0FDTitILE0rNDIuMDMzODIzLDEsMSw0Mi4wMzM4MjMscG9zaXRpdmUsQzJI\nNE4xLEZBTFNFLDENCk0rMk5hLUgsTSs0NC45NzExNjAsMSwxLDQ0Ljk3MTE2LHBvc2l0aXZl\nLE5hMixIMSwxDQpNK0lzb1Byb3ArSCxNKzYxLjA2NTM0LDEsMSw2MS4wNjUzNCxwb3NpdGl2\nZSxDM0g5TzEsRkFMU0UsMQ0KTStBQ04rTmEsTSs2NC4wMTU3NjUsMSwxLDY0LjAxNTc2NSxw\nb3NpdGl2ZSxDMkgzTjFOYTEsRkFMU0UsMQ0KTSsySy1ILE0rNzYuOTE5MDQwLDEsMSw3Ni45\nMTkwNCxwb3NpdGl2ZSxLMixIMSwxDQpNK0RNU08rSCxNKzc5LjAyMTIyLDEsMSw3OS4wMjEy\nMixwb3NpdGl2ZSxDMkg3UzFPMSxGQUxTRSwxDQpNKzJBQ04rSCxNKzgzLjA2MDM3MCwxLDEs\nODMuMDYwMzcscG9zaXRpdmUsQzRIN04yLEZBTFNFLDENCk0rSXNvUHJvcCtOYStILE0rODQu\nMDU1MTEsMSwxLDg0LjA1NTExLHBvc2l0aXZlLEMzSDlPMU5hMSxGQUxTRSwxDQoyTStILDJN\nKzEuMDA3Mjc2LDEsMiwxLjAwNzI3Nixwb3NpdGl2ZSxIMSxGQUxTRSwyDQoyTStOSDQsMk0r\nMTguMDMzODIzLDEsMiwxOC4wMzM4MjMscG9zaXRpdmUsTjFINCxGQUxTRSwyDQoyTStOYSwy\nTSsyMi45ODkyMTgsMSwyLDIyLjk4OTIxOCxwb3NpdGl2ZSxOYTEsRkFMU0UsMg0KMk0rM0gy\nTysySCxNKzI4LjAyMzEyLDEsMiwyOC4wMjMxMixwb3NpdGl2ZSxIOE82LEZBTFNFLDINCjJN\nK0ssMk0rMzguOTYzMTU4LDEsMiwzOC45NjMxNTgscG9zaXRpdmUsSzEsRkFMU0UsMg0KMk0r\nQUNOK0gsMk0rNDIuMDMzODIzLDEsMiw0Mi4wMzM4MjMscG9zaXRpdmUsQzJINE4xLEZBTFNF\nLDINCjJNK0FDTitOYSwyTSs2NC4wMTU3NjUsMSwyLDY0LjAxNTc2NSxwb3NpdGl2ZSxDMkgz\nTjFOYTEsRkFMU0UsMg0KTS1IMk8tSCxNLTE5LjAxODM5LC0xLDEsLTE5LjAxODM5LG5lZ2F0\naXZlLEZBTFNFLEgzTzEsMQ0KTStOYS0ySCxNKzIwLjk3NDY2NiwtMSwxLDIwLjk3NDY2Nixu\nZWdhdGl2ZSxOYTEsSDIsMQ0KTStDbCxNKzM0Ljk2OTQwMiwtMSwxLDM0Ljk2OTQwMixuZWdh\ndGl2ZSxDbDEsRkFMU0UsMQ0KTStLLTJILE0rMzYuOTQ4NjA2LC0xLDEsMzYuOTQ4NjA2LG5l\nZ2F0aXZlLEsxLEgyLDENCk0rQnIsTSs3OC45MTg4ODUsLTEsMSw3OC45MTg4ODUsbmVnYXRp\ndmUsQnIxLEZBTFNFLDENCk0rVEZBLUgsTSsxMTIuOTg1NTg2LC0xLDEsMTEyLjk4NTU4Nixu\nZWdhdGl2ZSxDMkYzTzJIMSxIMSwxDQoyTS1ILDJNLTEuMDA3Mjc2LC0xLDIsLTEuMDA3Mjc2\nLG5lZ2F0aXZlLEZBTFNFLEgxLDINCjJNK0ZBLUgsMk0rNDQuOTk4MjAxLC0xLDIsNDQuOTk4\nMjAxLG5lZ2F0aXZlLEMxTzJIMixIMSwyDQoyTStIYWMtSCwyTSs1OS4wMTM4NTEsLTEsMiw1\nOS4wMTM4NTEsbmVnYXRpdmUsQzJPMkg0LEgxLDINCjNNLUgsM00tMS4wMDcyNzYsLTEsMywx\nLjAwNzI3NixuZWdhdGl2ZSxGQUxTRSxIMSwzDQpNK0gyTytILE0rMTkuMDE3ODQxLDEsMSwx\nOS4wMTc4NDEscG9zaXRpdmUsSDNPMSxGQUxTRSwxDQpNK0gtSDJPLE0tMTcuMDAzMjg5LDEs\nMSwtMTcuMDAzMjg5LHBvc2l0aXZlLEgxLEgyTzEsMQ0K"
+      },
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": {
+        "name": "orbi_iimn_gnps.mgf",
+        "size_bytes": 4221756,
+        "md5": "06f72118c45bffcee587270f4acf039e"
+      },
+      "mgf_input": null,
+      "active_mgf": {
+        "name": "orbi_iimn_gnps.mgf",
+        "size_bytes": 4221756,
+        "md5": "06f72118c45bffcee587270f4acf039e"
+      }
+    },
+    "labels": {
+      "blank_labels": [
+        {
+          "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+          "Label": "blank"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "Orbi_P_E2_EXBLANKA.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKB.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_EXBLANKC.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03A.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03B.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_WS03C.mzML Peak area",
+          "Label": "sample"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank4.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank5.mzML Peak area",
+          "Label": "blank"
+        },
+        {
+          "Sample": "Orbi_P_E2_Wasteblank6.mzML Peak area",
+          "Label": "blank"
+        }
+      ]
+    },
+    "originally_applied": {
+      "blank": true,
+      "ms": true,
+      "qc": false,
+      "peak": false
+    }
+  }
+}
