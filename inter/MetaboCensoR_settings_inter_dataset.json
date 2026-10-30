@@ -1,0 +1,2563 @@
+{
+  "format": "MetaboCensoR-analysis-settings",
+  "schema_version": 1,
+  "exported_at_utc": "2026-10-30T19:26:41Z",
+  "app_version": "1.5.3",
+  "r_version": "R version 4.1.2 (2021-11-01)",
+  "note": "Applied-step snapshots are authoritative. Current controls may differ. Import restores settings only; it does not run filters or restore results. Unapplied steps in the transfer recipe use current controls.",
+  "pipeline_order": ["blank", "ms", "qc", "peak"],
+  "steps": {
+    "blank": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T19:22:19Z",
+        "parameters": {
+          "data_type0": "msdial",
+          "row_id_col0": "Alignment ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "manual",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "label_source": "from_rows",
+          "label_index": 2,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": true,
+          "groups_to_remove": "Peptone",
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "positive",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": false,
+          "nl_pol2": "positive",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": false,
+          "isf_cor2": 0.95,
+          "isf_rt2": 0.01,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": true,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "inherit",
+          "qc_label_index": 2,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": [],
+          "value_mode": "group_any",
+          "value_groups": [],
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 30,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": [],
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "Area_5_2026_03_10_18_08_43.csv",
+            "size_bytes": 4281060,
+            "md5": "2511632944ecb11e8ed5681ace4c8e1c"
+          },
+          "meta_csv": null,
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": null,
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": null,
+          "mgf_input": null
+        },
+        "stats": {
+          "before": 6027,
+          "after": 1471,
+          "removed_blank": 4556
+        },
+        "context": {
+          "dataset_name": "Area_5_2026_03_10_18_08_43.csv",
+          "sample_columns": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "blank_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ]
+        }
+      }
+    },
+    "ms": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T19:25:41Z",
+        "parameters": {
+          "data_type0": "msdial",
+          "row_id_col0": "Alignment ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "manual",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "label_source": "from_rows",
+          "label_index": 2,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": true,
+          "groups_to_remove": "Peptone",
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "positive",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": true,
+          "nl_pol2": "positive",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": true,
+          "isf_cor2": 0.8,
+          "isf_rt2": 0.002,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": false,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "inherit",
+          "qc_label_index": 2,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": [],
+          "value_mode": "group_any",
+          "value_groups": [],
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 30,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": [],
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "Area_5_2026_03_10_18_08_43.csv",
+            "size_bytes": 4281060,
+            "md5": "2511632944ecb11e8ed5681ace4c8e1c"
+          },
+          "meta_csv": null,
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": null,
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": null,
+          "mgf_input": null
+        },
+        "stats": {
+          "before": 1471,
+          "after": 1042,
+          "removed_iso": 17,
+          "removed_add": 184,
+          "removed_nl": 20,
+          "removed_isf": 208,
+          "removed_mis": 0,
+          "removed_ring": 0
+        },
+        "context": {
+          "dataset_name": "Area_5_2026_03_10_18_08_43.csv",
+          "sample_columns": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "blank_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ]
+        }
+      }
+    },
+    "qc": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T19:26:09Z",
+        "parameters": {
+          "data_type0": "msdial",
+          "row_id_col0": "Alignment ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "manual",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "label_source": "from_rows",
+          "label_index": 2,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": true,
+          "groups_to_remove": "Peptone",
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "positive",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": true,
+          "nl_pol2": "positive",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": true,
+          "isf_cor2": 0.8,
+          "isf_rt2": 0.002,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": false,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "inherit",
+          "qc_label_index": 2,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": "rsd",
+          "value_mode": "group_any",
+          "value_groups": [],
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 15,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": [],
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "Area_5_2026_03_10_18_08_43.csv",
+            "size_bytes": 4281060,
+            "md5": "2511632944ecb11e8ed5681ace4c8e1c"
+          },
+          "meta_csv": null,
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": null,
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": null,
+          "mgf_input": null
+        },
+        "stats": {
+          "before": 1042,
+          "after_final": 680,
+          "removed_zeros": 0,
+          "removed_mean": 0,
+          "removed_rsd": 362,
+          "removed_dratio": 0,
+          "removed_min": 0,
+          "removed_total": 362
+        },
+        "context": {
+          "dataset_name": "Area_5_2026_03_10_18_08_43.csv",
+          "sample_columns": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "blank_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ]
+        }
+      }
+    },
+    "peak": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T19:26:32Z",
+        "parameters": {
+          "data_type0": "msdial",
+          "row_id_col0": "Alignment ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "manual",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "label_source": "from_rows",
+          "label_index": 2,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": true,
+          "groups_to_remove": "Peptone",
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "positive",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": true,
+          "nl_pol2": "positive",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": true,
+          "isf_cor2": 0.8,
+          "isf_rt2": 0.002,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": false,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "inherit",
+          "qc_label_index": 2,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": "rsd",
+          "value_mode": "group_any",
+          "value_groups": [],
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 15,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": "rt",
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "Area_5_2026_03_10_18_08_43.csv",
+            "size_bytes": 4281060,
+            "md5": "2511632944ecb11e8ed5681ace4c8e1c"
+          },
+          "meta_csv": null,
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": null,
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": null,
+          "mgf_input": null
+        },
+        "stats": {
+          "before": 680,
+          "after": 509,
+          "removed_mz": 0,
+          "removed_rt": 171,
+          "removed_rmd": 0,
+          "removed_amd": 0,
+          "removed_target": 0,
+          "matched_target": 0,
+          "target_action": "remove",
+          "removed_total": 171
+        },
+        "context": {
+          "dataset_name": "Area_5_2026_03_10_18_08_43.csv",
+          "sample_columns": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+          "blank_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+              "Label": "Peptone"
+            },
+            {
+              "Sample": "Pd_001srf_1_Y-D5_1_3852",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_2_Y-D6_1_3859",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_3_Y-D7_1_3866",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_001srf_4_Y-D8_1_3873",
+              "Label": "001srf"
+            },
+            {
+              "Sample": "Pd_Bs_1_Y-B5_1_3848",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_2_Y-B6_1_3855",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_3_Y-B7_1_3862",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_Bs_4_Y-B8_1_3869",
+              "Label": "Bs"
+            },
+            {
+              "Sample": "Pd_dd_1_Y-D1_1_3851",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_2_Y-D2_1_3858",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_3_Y-D3_1_3865",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dd_4_Y-D4_1_3872",
+              "Label": "dd"
+            },
+            {
+              "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+              "Label": "dPPS"
+            },
+            {
+              "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+              "Label": "dSRF"
+            },
+            {
+              "Sample": "Pd_Pd_1_Y-B1_1_3847",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_2_Y-B2_1_3854",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_3_Y-B3_1_3861",
+              "Label": "Pd"
+            },
+            {
+              "Sample": "Pd_Pd_4_Y-B4_1_3868",
+              "Label": "Pd"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "compiled_output": {
+    "at_utc": "2026-10-30T19:26:38Z",
+    "parameters": {
+      "data_type0": "msdial",
+      "row_id_col0": "Alignment ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "manual",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+      "label_source": "from_rows",
+      "label_index": 2,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": true,
+      "groups_to_remove": "Peptone",
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "positive",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": true,
+      "nl_pol2": "positive",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": true,
+      "isf_cor2": 0.8,
+      "isf_rt2": 0.002,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": false,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "inherit",
+      "qc_label_index": 2,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": "rsd",
+      "value_mode": "group_any",
+      "value_groups": [],
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 15,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": "rt",
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": ""
+    },
+    "files": {
+      "file0": {
+        "name": "Area_5_2026_03_10_18_08_43.csv",
+        "size_bytes": 4281060,
+        "md5": "2511632944ecb11e8ed5681ace4c8e1c"
+      },
+      "meta_csv": null,
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": null,
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": null,
+      "mgf_input": null
+    },
+    "stats": {
+      "features": 509
+    },
+    "context": {
+      "dataset_name": "Area_5_2026_03_10_18_08_43.csv",
+      "sample_columns": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+      "blank_labels": [
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Pd_001srf_1_Y-D5_1_3852",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_2_Y-D6_1_3859",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_3_Y-D7_1_3866",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_4_Y-D8_1_3873",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_Bs_1_Y-B5_1_3848",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_2_Y-B6_1_3855",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_3_Y-B7_1_3862",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_4_Y-B8_1_3869",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_dd_1_Y-D1_1_3851",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_2_Y-D2_1_3858",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_3_Y-D3_1_3865",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_4_Y-D4_1_3872",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_Pd_1_Y-B1_1_3847",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_2_Y-B2_1_3854",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_3_Y-B3_1_3861",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_4_Y-B4_1_3868",
+          "Label": "Pd"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Pd_001srf_1_Y-D5_1_3852",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_2_Y-D6_1_3859",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_3_Y-D7_1_3866",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_4_Y-D8_1_3873",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_Bs_1_Y-B5_1_3848",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_2_Y-B6_1_3855",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_3_Y-B7_1_3862",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_4_Y-B8_1_3869",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_dd_1_Y-D1_1_3851",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_2_Y-D2_1_3858",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_3_Y-D3_1_3865",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_4_Y-D4_1_3872",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_Pd_1_Y-B1_1_3847",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_2_Y-B2_1_3854",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_3_Y-B3_1_3861",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_4_Y-B4_1_3868",
+          "Label": "Pd"
+        }
+      ]
+    }
+  },
+  "filtered_mgf": null,
+  "current_controls": {
+    "at_utc": "2026-10-30T19:26:41Z",
+    "parameters": {
+      "data_type0": "msdial",
+      "row_id_col0": "Alignment ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "manual",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+      "label_source": "from_rows",
+      "label_index": 2,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": true,
+      "groups_to_remove": "Peptone",
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "positive",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": true,
+      "nl_pol2": "positive",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": true,
+      "isf_cor2": 0.8,
+      "isf_rt2": 0.002,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": false,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "inherit",
+      "qc_label_index": 2,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": "rsd",
+      "value_mode": "group_any",
+      "value_groups": [],
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 15,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": "rt",
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": "",
+      "enable_mgf_filter": false
+    },
+    "files": {
+      "file0": {
+        "name": "Area_5_2026_03_10_18_08_43.csv",
+        "size_bytes": 4281060,
+        "md5": "2511632944ecb11e8ed5681ace4c8e1c"
+      },
+      "meta_csv": null,
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": null,
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": null,
+      "mgf_input": null
+    },
+    "stats": null,
+    "context": {
+      "dataset_name": "Area_5_2026_03_10_18_08_43.csv",
+      "sample_columns": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+      "blank_labels": [
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Pd_001srf_1_Y-D5_1_3852",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_2_Y-D6_1_3859",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_3_Y-D7_1_3866",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_4_Y-D8_1_3873",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_Bs_1_Y-B5_1_3848",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_2_Y-B6_1_3855",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_3_Y-B7_1_3862",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_4_Y-B8_1_3869",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_dd_1_Y-D1_1_3851",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_2_Y-D2_1_3858",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_3_Y-D3_1_3865",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_4_Y-D4_1_3872",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_Pd_1_Y-B1_1_3847",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_2_Y-B2_1_3854",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_3_Y-B3_1_3861",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_4_Y-B4_1_3868",
+          "Label": "Pd"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Pd_001srf_1_Y-D5_1_3852",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_2_Y-D6_1_3859",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_3_Y-D7_1_3866",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_4_Y-D8_1_3873",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_Bs_1_Y-B5_1_3848",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_2_Y-B6_1_3855",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_3_Y-B7_1_3862",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_4_Y-B8_1_3869",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_dd_1_Y-D1_1_3851",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_2_Y-D2_1_3858",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_3_Y-D3_1_3865",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_4_Y-D4_1_3872",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_Pd_1_Y-B1_1_3847",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_2_Y-B2_1_3854",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_3_Y-B3_1_3861",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_4_Y-B4_1_3868",
+          "Label": "Pd"
+        }
+      ]
+    }
+  },
+  "transfer": {
+    "parameters": {
+      "data_type0": "msdial",
+      "row_id_col0": "Alignment ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "manual",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": ["Bacto_Peptone_Media_Blank_1_Y-B1_1_3944", "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945", "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946", "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947", "Pd_001srf_1_Y-D5_1_3852", "Pd_001srf_2_Y-D6_1_3859", "Pd_001srf_3_Y-D7_1_3866", "Pd_001srf_4_Y-D8_1_3873", "Pd_Bs_1_Y-B5_1_3848", "Pd_Bs_2_Y-B6_1_3855", "Pd_Bs_3_Y-B7_1_3862", "Pd_Bs_4_Y-B8_1_3869", "Pd_dd_1_Y-D1_1_3851", "Pd_dd_2_Y-D2_1_3858", "Pd_dd_3_Y-D3_1_3865", "Pd_dd_4_Y-D4_1_3872", "Pd_dPPS_1_Y-C5_1_3850", "Pd_dPPS_2_Y-C6_1_3857", "Pd_dPPS_3_Y-C7_1_3864", "Pd_dPPS_4_Y-C8_1_3871", "Pd_dSRF_1_Y-C1_1_3849", "Pd_dSRF_2_Y-C2_1_3856", "Pd_dSRF_3_Y-C3_1_3863", "Pd_dSRF_4_Y-C4_1_3870", "Pd_Pd_1_Y-B1_1_3847", "Pd_Pd_2_Y-B2_1_3854", "Pd_Pd_3_Y-B3_1_3861", "Pd_Pd_4_Y-B4_1_3868"],
+      "label_source": "from_rows",
+      "label_index": 2,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": true,
+      "groups_to_remove": "Peptone",
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "positive",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": true,
+      "nl_pol2": "positive",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": true,
+      "isf_cor2": 0.8,
+      "isf_rt2": 0.002,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": false,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "inherit",
+      "qc_label_index": 2,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": "rsd",
+      "value_mode": "group_any",
+      "value_groups": [],
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 15,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": "rt",
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": "",
+      "enable_mgf_filter": false
+    },
+    "files": {
+      "file0": {
+        "name": "Area_5_2026_03_10_18_08_43.csv",
+        "size_bytes": 4281060,
+        "md5": "2511632944ecb11e8ed5681ace4c8e1c"
+      },
+      "meta_csv": null,
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": null,
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": null,
+      "mgf_input": null,
+      "active_mgf": null
+    },
+    "labels": {
+      "blank_labels": [
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Pd_001srf_1_Y-D5_1_3852",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_2_Y-D6_1_3859",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_3_Y-D7_1_3866",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_4_Y-D8_1_3873",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_Bs_1_Y-B5_1_3848",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_2_Y-B6_1_3855",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_3_Y-B7_1_3862",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_4_Y-B8_1_3869",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_dd_1_Y-D1_1_3851",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_2_Y-D2_1_3858",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_3_Y-D3_1_3865",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_4_Y-D4_1_3872",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_Pd_1_Y-B1_1_3847",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_2_Y-B2_1_3854",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_3_Y-B3_1_3861",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_4_Y-B4_1_3868",
+          "Label": "Pd"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_1_Y-B1_1_3944",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_2_Y-B2_1_3945",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_3_Y-B3_1_3946",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Bacto_Peptone_Media_Blank_4_Y-B4_1_3947",
+          "Label": "Peptone"
+        },
+        {
+          "Sample": "Pd_001srf_1_Y-D5_1_3852",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_2_Y-D6_1_3859",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_3_Y-D7_1_3866",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_001srf_4_Y-D8_1_3873",
+          "Label": "001srf"
+        },
+        {
+          "Sample": "Pd_Bs_1_Y-B5_1_3848",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_2_Y-B6_1_3855",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_3_Y-B7_1_3862",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_Bs_4_Y-B8_1_3869",
+          "Label": "Bs"
+        },
+        {
+          "Sample": "Pd_dd_1_Y-D1_1_3851",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_2_Y-D2_1_3858",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_3_Y-D3_1_3865",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dd_4_Y-D4_1_3872",
+          "Label": "dd"
+        },
+        {
+          "Sample": "Pd_dPPS_1_Y-C5_1_3850",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_2_Y-C6_1_3857",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_3_Y-C7_1_3864",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dPPS_4_Y-C8_1_3871",
+          "Label": "dPPS"
+        },
+        {
+          "Sample": "Pd_dSRF_1_Y-C1_1_3849",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_2_Y-C2_1_3856",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_3_Y-C3_1_3863",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_dSRF_4_Y-C4_1_3870",
+          "Label": "dSRF"
+        },
+        {
+          "Sample": "Pd_Pd_1_Y-B1_1_3847",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_2_Y-B2_1_3854",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_3_Y-B3_1_3861",
+          "Label": "Pd"
+        },
+        {
+          "Sample": "Pd_Pd_4_Y-B4_1_3868",
+          "Label": "Pd"
+        }
+      ]
+    },
+    "originally_applied": {
+      "blank": true,
+      "ms": true,
+      "qc": true,
+      "peak": true
+    }
+  }
+}
