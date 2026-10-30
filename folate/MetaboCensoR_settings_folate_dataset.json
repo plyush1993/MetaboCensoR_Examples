@@ -1,0 +1,2196 @@
+{
+  "format": "MetaboCensoR-analysis-settings",
+  "schema_version": 1,
+  "exported_at_utc": "2026-10-30T20:51:39Z",
+  "app_version": "1.5.3",
+  "r_version": "R version 4.1.2 (2021-11-01)",
+  "note": "Applied-step snapshots are authoritative. Current controls may differ. Import restores settings only; it does not run filters or restore results. Unapplied steps in the transfer recipe use current controls.",
+  "pipeline_order": ["blank", "ms", "qc", "peak"],
+  "steps": {
+    "blank": {
+      "applied": false,
+      "snapshot": null
+    },
+    "ms": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T20:50:57Z",
+        "parameters": {
+          "data_type0": "xcms",
+          "row_id_col0": "Feature ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "kws",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": [],
+          "label_source": "from_rows",
+          "label_index": 2,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": false,
+          "groups_to_remove": [],
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "negative",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": true,
+          "nl_pol2": "negative",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": false,
+          "isf_cor2": 0.95,
+          "isf_rt2": 0.01,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": true,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "inherit",
+          "qc_label_index": 2,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": [],
+          "value_mode": "group_any",
+          "value_groups": [],
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 30,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": [],
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "xcms_table.csv",
+            "size_bytes": 1261322,
+            "md5": "fc13ce432d667213931253f189c09f78"
+          },
+          "meta_csv": null,
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": null,
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": null,
+          "mgf_input": null
+        },
+        "stats": {
+          "before": 3201,
+          "after": 2198,
+          "removed_iso": 529,
+          "removed_add": 438,
+          "removed_nl": 36,
+          "removed_isf": 0,
+          "removed_mis": 0,
+          "removed_ring": 0
+        },
+        "context": {
+          "dataset_name": "xcms_table.csv",
+          "sample_columns": ["NEG_1_QC_pool_n1.mzXML", "NEG_2_WT_b1_t1.mzXML", "NEG_3_PM-31_b1_t1.mzXML", "NEG_4_PM-37_b1_t1.mzXML", "NEG_5_KO-6_b1_t1.mzXML", "NEG_6_KO-22_b1_t1.mzXML", "NEG_7_QC_pool_n2.mzXML", "NEG_8_WT_b2_t1.mzXML", "NEG_9_PM-31_b2_t1.mzXML", "NEG_10_PM-37_b2_t1.mzXML", "NEG_11_KO-6_b2_t1.mzXML", "NEG_12_KO-22_b2_t1.mzXML", "NEG_13_QC_pool_n3.mzXML", "NEG_14_WT_b3_t1.mzXML", "NEG_15_PM-31_b3_t1.mzXML", "NEG_16_PM-37_b3_t1.mzXML", "NEG_17_KO-6_b3_t1.mzXML", "NEG_18_KO-22_b3_t1.mzXML", "NEG_19_QC_pool_n4.mzXML", "NEG_20_WT_b1_t2.mzXML", "NEG_21_PM-31_b1_t2.mzXML", "NEG_22_PM-37_b1_t2.mzXML", "NEG_23_KO-6_b1_t2.mzXML", "NEG_24_KO-22_b1_t2.mzXML", "NEG_25_QC_pool_n5.mzXML", "NEG_26_WT_b2_t2.mzXML", "NEG_27_PM-31_b2_t2.mzXML", "NEG_28_PM-37_b2_t2.mzXML", "NEG_29_KO-6_b2_t2.mzXML", "NEG_30_KO-22_b2_t2.mzXML", "NEG_31_QC_pool_n6.mzXML", "NEG_32_WT_b3_t2.mzXML", "NEG_33_PM-31_b3_t2.mzXML", "NEG_34_PM-37_b3_t2.mzXML", "NEG_35_KO-6_b3_t2.mzXML", "NEG_36_KO-22_b3_t2.mzXML", "NEG_37_QC_pool_n7.mzXML"],
+          "blank_labels": [
+            {
+              "Sample": "NEG_1_QC_pool_n1.mzXML",
+              "Label": "1"
+            },
+            {
+              "Sample": "NEG_2_WT_b1_t1.mzXML",
+              "Label": "2"
+            },
+            {
+              "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+              "Label": "3"
+            },
+            {
+              "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+              "Label": "4"
+            },
+            {
+              "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+              "Label": "5"
+            },
+            {
+              "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+              "Label": "6"
+            },
+            {
+              "Sample": "NEG_7_QC_pool_n2.mzXML",
+              "Label": "7"
+            },
+            {
+              "Sample": "NEG_8_WT_b2_t1.mzXML",
+              "Label": "8"
+            },
+            {
+              "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+              "Label": "9"
+            },
+            {
+              "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+              "Label": "10"
+            },
+            {
+              "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+              "Label": "11"
+            },
+            {
+              "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+              "Label": "12"
+            },
+            {
+              "Sample": "NEG_13_QC_pool_n3.mzXML",
+              "Label": "13"
+            },
+            {
+              "Sample": "NEG_14_WT_b3_t1.mzXML",
+              "Label": "14"
+            },
+            {
+              "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+              "Label": "15"
+            },
+            {
+              "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+              "Label": "16"
+            },
+            {
+              "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+              "Label": "17"
+            },
+            {
+              "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+              "Label": "18"
+            },
+            {
+              "Sample": "NEG_19_QC_pool_n4.mzXML",
+              "Label": "19"
+            },
+            {
+              "Sample": "NEG_20_WT_b1_t2.mzXML",
+              "Label": "20"
+            },
+            {
+              "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+              "Label": "21"
+            },
+            {
+              "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+              "Label": "22"
+            },
+            {
+              "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+              "Label": "23"
+            },
+            {
+              "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+              "Label": "24"
+            },
+            {
+              "Sample": "NEG_25_QC_pool_n5.mzXML",
+              "Label": "25"
+            },
+            {
+              "Sample": "NEG_26_WT_b2_t2.mzXML",
+              "Label": "26"
+            },
+            {
+              "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+              "Label": "27"
+            },
+            {
+              "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+              "Label": "28"
+            },
+            {
+              "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+              "Label": "29"
+            },
+            {
+              "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+              "Label": "30"
+            },
+            {
+              "Sample": "NEG_31_QC_pool_n6.mzXML",
+              "Label": "31"
+            },
+            {
+              "Sample": "NEG_32_WT_b3_t2.mzXML",
+              "Label": "32"
+            },
+            {
+              "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+              "Label": "33"
+            },
+            {
+              "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+              "Label": "34"
+            },
+            {
+              "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+              "Label": "35"
+            },
+            {
+              "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+              "Label": "36"
+            },
+            {
+              "Sample": "NEG_37_QC_pool_n7.mzXML",
+              "Label": "37"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "NEG_1_QC_pool_n1.mzXML",
+              "Label": "1"
+            },
+            {
+              "Sample": "NEG_2_WT_b1_t1.mzXML",
+              "Label": "2"
+            },
+            {
+              "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+              "Label": "3"
+            },
+            {
+              "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+              "Label": "4"
+            },
+            {
+              "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+              "Label": "5"
+            },
+            {
+              "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+              "Label": "6"
+            },
+            {
+              "Sample": "NEG_7_QC_pool_n2.mzXML",
+              "Label": "7"
+            },
+            {
+              "Sample": "NEG_8_WT_b2_t1.mzXML",
+              "Label": "8"
+            },
+            {
+              "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+              "Label": "9"
+            },
+            {
+              "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+              "Label": "10"
+            },
+            {
+              "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+              "Label": "11"
+            },
+            {
+              "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+              "Label": "12"
+            },
+            {
+              "Sample": "NEG_13_QC_pool_n3.mzXML",
+              "Label": "13"
+            },
+            {
+              "Sample": "NEG_14_WT_b3_t1.mzXML",
+              "Label": "14"
+            },
+            {
+              "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+              "Label": "15"
+            },
+            {
+              "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+              "Label": "16"
+            },
+            {
+              "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+              "Label": "17"
+            },
+            {
+              "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+              "Label": "18"
+            },
+            {
+              "Sample": "NEG_19_QC_pool_n4.mzXML",
+              "Label": "19"
+            },
+            {
+              "Sample": "NEG_20_WT_b1_t2.mzXML",
+              "Label": "20"
+            },
+            {
+              "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+              "Label": "21"
+            },
+            {
+              "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+              "Label": "22"
+            },
+            {
+              "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+              "Label": "23"
+            },
+            {
+              "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+              "Label": "24"
+            },
+            {
+              "Sample": "NEG_25_QC_pool_n5.mzXML",
+              "Label": "25"
+            },
+            {
+              "Sample": "NEG_26_WT_b2_t2.mzXML",
+              "Label": "26"
+            },
+            {
+              "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+              "Label": "27"
+            },
+            {
+              "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+              "Label": "28"
+            },
+            {
+              "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+              "Label": "29"
+            },
+            {
+              "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+              "Label": "30"
+            },
+            {
+              "Sample": "NEG_31_QC_pool_n6.mzXML",
+              "Label": "31"
+            },
+            {
+              "Sample": "NEG_32_WT_b3_t2.mzXML",
+              "Label": "32"
+            },
+            {
+              "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+              "Label": "33"
+            },
+            {
+              "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+              "Label": "34"
+            },
+            {
+              "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+              "Label": "35"
+            },
+            {
+              "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+              "Label": "36"
+            },
+            {
+              "Sample": "NEG_37_QC_pool_n7.mzXML",
+              "Label": "37"
+            }
+          ]
+        }
+      }
+    },
+    "qc": {
+      "applied": true,
+      "snapshot": {
+        "at_utc": "2026-10-30T20:51:22Z",
+        "parameters": {
+          "data_type0": "xcms",
+          "row_id_col0": "Feature ID",
+          "mz_col0": "mz",
+          "rt_col0": "rt",
+          "sample_mode0": "kws",
+          "sample_keyword0": [".mzML", ".mzXML"],
+          "sample_cols0": [],
+          "label_source": "from_rows",
+          "label_index": 2,
+          "token_sep": "_",
+          "blank_clean_metadata_names": true,
+          "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "enable_blank": false,
+          "groups_to_remove": [],
+          "blank_mode": "mean_cutoff",
+          "blank_cutoff": 0.1,
+          "enable_iso2": true,
+          "iso_cor2": 0.8,
+          "iso_rt2": 0.01,
+          "iso_tol_type2": "da",
+          "iso_mz_tol2": 0.005,
+          "iso_ppm2": 10,
+          "iso_zmax2": 3,
+          "iso_n2": 1,
+          "iso_nd2": 3,
+          "enable_add2": true,
+          "add_pol2": "negative",
+          "add_cor2": 0.8,
+          "add_rt2": 0.005,
+          "add_tol_type2": "da",
+          "add_mz_tol2": 0.005,
+          "add_ppm2": 10,
+          "add_min_nm2": 50,
+          "add_strict_rt2": true,
+          "enable_nl2": true,
+          "nl_pol2": "negative",
+          "nl_cor2": 0.95,
+          "nl_rt2": 0.002,
+          "nl_tol_type2": "da",
+          "nl_mz_tol2": 0.005,
+          "nl_ppm2": 10,
+          "enable_isf2": false,
+          "isf_cor2": 0.95,
+          "isf_rt2": 0.01,
+          "isf_control_int2": true,
+          "isf_ratio_min2": 0.001,
+          "isf_ratio_max2": 2.5,
+          "isf_ms2_check2": true,
+          "isf_ms2_rel2": 1,
+          "isf_ms2_mz_tol2": 0.01,
+          "enable_mis2": false,
+          "mis_cor2": 0.8,
+          "mis_rt2": 0.002,
+          "mis_tol_type2": "ppm",
+          "mis_mz_tol2": 0.005,
+          "mis_ppm2": 10,
+          "enable_ring2": false,
+          "ring_cor2": 0.8,
+          "ring_rt2": 0.05,
+          "ring_tol_type2": "da",
+          "ring_mz_tol2": 0.95,
+          "ring_ppm2": 500,
+          "ring_min_anch2": 100000,
+          "ring_ratio2": 10,
+          "ring_bidirectional2": false,
+          "qc_label_source": "from_rows",
+          "qc_label_index": 3,
+          "qc_token_sep": "_",
+          "qc_clean_metadata_names": true,
+          "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+          "value_filters": "rsd",
+          "value_mode": "group_any",
+          "value_groups": "QC",
+          "zero_metric": "count",
+          "zero_cutoff": 1,
+          "mean_cutoff": 5000,
+          "rsd_cutoff": 30,
+          "dratio_cutoff": 50,
+          "dratio_qc_group": "",
+          "min_cutoff": 1000,
+          "peak_filters": [],
+          "mz_min_enable": true,
+          "mz_max_enable": false,
+          "peak_mz_min": 200,
+          "peak_mz_max": 1500,
+          "rt_min_enable": true,
+          "rt_max_enable": false,
+          "peak_rt_min": 1,
+          "peak_rt_max": 30,
+          "rmd_min_enable": true,
+          "rmd_max_enable": true,
+          "peak_rmd_min": -2000,
+          "peak_rmd_max": 2000,
+          "amd_min_enable": true,
+          "amd_max_enable": true,
+          "peak_amd_min": 0,
+          "peak_amd_max": 0.5,
+          "target_peak_action": "remove",
+          "target_mz_tol_type": "da",
+          "target_mz_tol_da": 0.005,
+          "target_mz_tol_ppm": 10,
+          "target_rt_tol": 0.05,
+          "target_peak_text": ""
+        },
+        "files": {
+          "file0": {
+            "name": "xcms_table.csv",
+            "size_bytes": 1261322,
+            "md5": "fc13ce432d667213931253f189c09f78"
+          },
+          "meta_csv": null,
+          "blank_metadata_csv": null,
+          "qc_meta_csv": null,
+          "qc_metadata_csv": null,
+          "adduct_file2": null,
+          "nl_file2": null,
+          "target_peak_csv": null,
+          "isf_mgf_input": null,
+          "mgf_input": null
+        },
+        "stats": {
+          "before": 2198,
+          "after_final": 1927,
+          "removed_zeros": 0,
+          "removed_mean": 0,
+          "removed_rsd": 271,
+          "removed_dratio": 0,
+          "removed_min": 0,
+          "removed_total": 271
+        },
+        "context": {
+          "dataset_name": "xcms_table.csv",
+          "sample_columns": ["NEG_1_QC_pool_n1.mzXML", "NEG_2_WT_b1_t1.mzXML", "NEG_3_PM-31_b1_t1.mzXML", "NEG_4_PM-37_b1_t1.mzXML", "NEG_5_KO-6_b1_t1.mzXML", "NEG_6_KO-22_b1_t1.mzXML", "NEG_7_QC_pool_n2.mzXML", "NEG_8_WT_b2_t1.mzXML", "NEG_9_PM-31_b2_t1.mzXML", "NEG_10_PM-37_b2_t1.mzXML", "NEG_11_KO-6_b2_t1.mzXML", "NEG_12_KO-22_b2_t1.mzXML", "NEG_13_QC_pool_n3.mzXML", "NEG_14_WT_b3_t1.mzXML", "NEG_15_PM-31_b3_t1.mzXML", "NEG_16_PM-37_b3_t1.mzXML", "NEG_17_KO-6_b3_t1.mzXML", "NEG_18_KO-22_b3_t1.mzXML", "NEG_19_QC_pool_n4.mzXML", "NEG_20_WT_b1_t2.mzXML", "NEG_21_PM-31_b1_t2.mzXML", "NEG_22_PM-37_b1_t2.mzXML", "NEG_23_KO-6_b1_t2.mzXML", "NEG_24_KO-22_b1_t2.mzXML", "NEG_25_QC_pool_n5.mzXML", "NEG_26_WT_b2_t2.mzXML", "NEG_27_PM-31_b2_t2.mzXML", "NEG_28_PM-37_b2_t2.mzXML", "NEG_29_KO-6_b2_t2.mzXML", "NEG_30_KO-22_b2_t2.mzXML", "NEG_31_QC_pool_n6.mzXML", "NEG_32_WT_b3_t2.mzXML", "NEG_33_PM-31_b3_t2.mzXML", "NEG_34_PM-37_b3_t2.mzXML", "NEG_35_KO-6_b3_t2.mzXML", "NEG_36_KO-22_b3_t2.mzXML", "NEG_37_QC_pool_n7.mzXML"],
+          "blank_labels": [
+            {
+              "Sample": "NEG_1_QC_pool_n1.mzXML",
+              "Label": "1"
+            },
+            {
+              "Sample": "NEG_2_WT_b1_t1.mzXML",
+              "Label": "2"
+            },
+            {
+              "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+              "Label": "3"
+            },
+            {
+              "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+              "Label": "4"
+            },
+            {
+              "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+              "Label": "5"
+            },
+            {
+              "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+              "Label": "6"
+            },
+            {
+              "Sample": "NEG_7_QC_pool_n2.mzXML",
+              "Label": "7"
+            },
+            {
+              "Sample": "NEG_8_WT_b2_t1.mzXML",
+              "Label": "8"
+            },
+            {
+              "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+              "Label": "9"
+            },
+            {
+              "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+              "Label": "10"
+            },
+            {
+              "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+              "Label": "11"
+            },
+            {
+              "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+              "Label": "12"
+            },
+            {
+              "Sample": "NEG_13_QC_pool_n3.mzXML",
+              "Label": "13"
+            },
+            {
+              "Sample": "NEG_14_WT_b3_t1.mzXML",
+              "Label": "14"
+            },
+            {
+              "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+              "Label": "15"
+            },
+            {
+              "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+              "Label": "16"
+            },
+            {
+              "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+              "Label": "17"
+            },
+            {
+              "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+              "Label": "18"
+            },
+            {
+              "Sample": "NEG_19_QC_pool_n4.mzXML",
+              "Label": "19"
+            },
+            {
+              "Sample": "NEG_20_WT_b1_t2.mzXML",
+              "Label": "20"
+            },
+            {
+              "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+              "Label": "21"
+            },
+            {
+              "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+              "Label": "22"
+            },
+            {
+              "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+              "Label": "23"
+            },
+            {
+              "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+              "Label": "24"
+            },
+            {
+              "Sample": "NEG_25_QC_pool_n5.mzXML",
+              "Label": "25"
+            },
+            {
+              "Sample": "NEG_26_WT_b2_t2.mzXML",
+              "Label": "26"
+            },
+            {
+              "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+              "Label": "27"
+            },
+            {
+              "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+              "Label": "28"
+            },
+            {
+              "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+              "Label": "29"
+            },
+            {
+              "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+              "Label": "30"
+            },
+            {
+              "Sample": "NEG_31_QC_pool_n6.mzXML",
+              "Label": "31"
+            },
+            {
+              "Sample": "NEG_32_WT_b3_t2.mzXML",
+              "Label": "32"
+            },
+            {
+              "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+              "Label": "33"
+            },
+            {
+              "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+              "Label": "34"
+            },
+            {
+              "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+              "Label": "35"
+            },
+            {
+              "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+              "Label": "36"
+            },
+            {
+              "Sample": "NEG_37_QC_pool_n7.mzXML",
+              "Label": "37"
+            }
+          ],
+          "qc_labels": [
+            {
+              "Sample": "NEG_1_QC_pool_n1.mzXML",
+              "Label": "QC"
+            },
+            {
+              "Sample": "NEG_2_WT_b1_t1.mzXML",
+              "Label": "WT"
+            },
+            {
+              "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+              "Label": "PM-31"
+            },
+            {
+              "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+              "Label": "PM-37"
+            },
+            {
+              "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+              "Label": "KO-6"
+            },
+            {
+              "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+              "Label": "KO-22"
+            },
+            {
+              "Sample": "NEG_7_QC_pool_n2.mzXML",
+              "Label": "QC"
+            },
+            {
+              "Sample": "NEG_8_WT_b2_t1.mzXML",
+              "Label": "WT"
+            },
+            {
+              "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+              "Label": "PM-31"
+            },
+            {
+              "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+              "Label": "PM-37"
+            },
+            {
+              "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+              "Label": "KO-6"
+            },
+            {
+              "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+              "Label": "KO-22"
+            },
+            {
+              "Sample": "NEG_13_QC_pool_n3.mzXML",
+              "Label": "QC"
+            },
+            {
+              "Sample": "NEG_14_WT_b3_t1.mzXML",
+              "Label": "WT"
+            },
+            {
+              "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+              "Label": "PM-31"
+            },
+            {
+              "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+              "Label": "PM-37"
+            },
+            {
+              "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+              "Label": "KO-6"
+            },
+            {
+              "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+              "Label": "KO-22"
+            },
+            {
+              "Sample": "NEG_19_QC_pool_n4.mzXML",
+              "Label": "QC"
+            },
+            {
+              "Sample": "NEG_20_WT_b1_t2.mzXML",
+              "Label": "WT"
+            },
+            {
+              "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+              "Label": "PM-31"
+            },
+            {
+              "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+              "Label": "PM-37"
+            },
+            {
+              "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+              "Label": "KO-6"
+            },
+            {
+              "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+              "Label": "KO-22"
+            },
+            {
+              "Sample": "NEG_25_QC_pool_n5.mzXML",
+              "Label": "QC"
+            },
+            {
+              "Sample": "NEG_26_WT_b2_t2.mzXML",
+              "Label": "WT"
+            },
+            {
+              "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+              "Label": "PM-31"
+            },
+            {
+              "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+              "Label": "PM-37"
+            },
+            {
+              "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+              "Label": "KO-6"
+            },
+            {
+              "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+              "Label": "KO-22"
+            },
+            {
+              "Sample": "NEG_31_QC_pool_n6.mzXML",
+              "Label": "QC"
+            },
+            {
+              "Sample": "NEG_32_WT_b3_t2.mzXML",
+              "Label": "WT"
+            },
+            {
+              "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+              "Label": "PM-31"
+            },
+            {
+              "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+              "Label": "PM-37"
+            },
+            {
+              "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+              "Label": "KO-6"
+            },
+            {
+              "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+              "Label": "KO-22"
+            },
+            {
+              "Sample": "NEG_37_QC_pool_n7.mzXML",
+              "Label": "QC"
+            }
+          ]
+        }
+      }
+    },
+    "peak": {
+      "applied": false,
+      "snapshot": null
+    }
+  },
+  "compiled_output": {
+    "at_utc": "2026-10-30T20:51:33Z",
+    "parameters": {
+      "data_type0": "xcms",
+      "row_id_col0": "Feature ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "kws",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": [],
+      "label_source": "from_rows",
+      "label_index": 2,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": false,
+      "groups_to_remove": [],
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "negative",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": true,
+      "nl_pol2": "negative",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": false,
+      "isf_cor2": 0.95,
+      "isf_rt2": 0.01,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": true,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "from_rows",
+      "qc_label_index": 3,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": "rsd",
+      "value_mode": "group_any",
+      "value_groups": "QC",
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 30,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": [],
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": ""
+    },
+    "files": {
+      "file0": {
+        "name": "xcms_table.csv",
+        "size_bytes": 1261322,
+        "md5": "fc13ce432d667213931253f189c09f78"
+      },
+      "meta_csv": null,
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": null,
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": null,
+      "mgf_input": null
+    },
+    "stats": {
+      "features": 1927
+    },
+    "context": {
+      "dataset_name": "xcms_table.csv",
+      "sample_columns": ["NEG_1_QC_pool_n1.mzXML", "NEG_2_WT_b1_t1.mzXML", "NEG_3_PM-31_b1_t1.mzXML", "NEG_4_PM-37_b1_t1.mzXML", "NEG_5_KO-6_b1_t1.mzXML", "NEG_6_KO-22_b1_t1.mzXML", "NEG_7_QC_pool_n2.mzXML", "NEG_8_WT_b2_t1.mzXML", "NEG_9_PM-31_b2_t1.mzXML", "NEG_10_PM-37_b2_t1.mzXML", "NEG_11_KO-6_b2_t1.mzXML", "NEG_12_KO-22_b2_t1.mzXML", "NEG_13_QC_pool_n3.mzXML", "NEG_14_WT_b3_t1.mzXML", "NEG_15_PM-31_b3_t1.mzXML", "NEG_16_PM-37_b3_t1.mzXML", "NEG_17_KO-6_b3_t1.mzXML", "NEG_18_KO-22_b3_t1.mzXML", "NEG_19_QC_pool_n4.mzXML", "NEG_20_WT_b1_t2.mzXML", "NEG_21_PM-31_b1_t2.mzXML", "NEG_22_PM-37_b1_t2.mzXML", "NEG_23_KO-6_b1_t2.mzXML", "NEG_24_KO-22_b1_t2.mzXML", "NEG_25_QC_pool_n5.mzXML", "NEG_26_WT_b2_t2.mzXML", "NEG_27_PM-31_b2_t2.mzXML", "NEG_28_PM-37_b2_t2.mzXML", "NEG_29_KO-6_b2_t2.mzXML", "NEG_30_KO-22_b2_t2.mzXML", "NEG_31_QC_pool_n6.mzXML", "NEG_32_WT_b3_t2.mzXML", "NEG_33_PM-31_b3_t2.mzXML", "NEG_34_PM-37_b3_t2.mzXML", "NEG_35_KO-6_b3_t2.mzXML", "NEG_36_KO-22_b3_t2.mzXML", "NEG_37_QC_pool_n7.mzXML"],
+      "blank_labels": [
+        {
+          "Sample": "NEG_1_QC_pool_n1.mzXML",
+          "Label": "1"
+        },
+        {
+          "Sample": "NEG_2_WT_b1_t1.mzXML",
+          "Label": "2"
+        },
+        {
+          "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+          "Label": "3"
+        },
+        {
+          "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+          "Label": "4"
+        },
+        {
+          "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+          "Label": "5"
+        },
+        {
+          "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+          "Label": "6"
+        },
+        {
+          "Sample": "NEG_7_QC_pool_n2.mzXML",
+          "Label": "7"
+        },
+        {
+          "Sample": "NEG_8_WT_b2_t1.mzXML",
+          "Label": "8"
+        },
+        {
+          "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+          "Label": "9"
+        },
+        {
+          "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+          "Label": "10"
+        },
+        {
+          "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+          "Label": "11"
+        },
+        {
+          "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+          "Label": "12"
+        },
+        {
+          "Sample": "NEG_13_QC_pool_n3.mzXML",
+          "Label": "13"
+        },
+        {
+          "Sample": "NEG_14_WT_b3_t1.mzXML",
+          "Label": "14"
+        },
+        {
+          "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+          "Label": "15"
+        },
+        {
+          "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+          "Label": "16"
+        },
+        {
+          "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+          "Label": "17"
+        },
+        {
+          "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+          "Label": "18"
+        },
+        {
+          "Sample": "NEG_19_QC_pool_n4.mzXML",
+          "Label": "19"
+        },
+        {
+          "Sample": "NEG_20_WT_b1_t2.mzXML",
+          "Label": "20"
+        },
+        {
+          "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+          "Label": "21"
+        },
+        {
+          "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+          "Label": "22"
+        },
+        {
+          "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+          "Label": "23"
+        },
+        {
+          "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+          "Label": "24"
+        },
+        {
+          "Sample": "NEG_25_QC_pool_n5.mzXML",
+          "Label": "25"
+        },
+        {
+          "Sample": "NEG_26_WT_b2_t2.mzXML",
+          "Label": "26"
+        },
+        {
+          "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+          "Label": "27"
+        },
+        {
+          "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+          "Label": "28"
+        },
+        {
+          "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+          "Label": "29"
+        },
+        {
+          "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+          "Label": "30"
+        },
+        {
+          "Sample": "NEG_31_QC_pool_n6.mzXML",
+          "Label": "31"
+        },
+        {
+          "Sample": "NEG_32_WT_b3_t2.mzXML",
+          "Label": "32"
+        },
+        {
+          "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+          "Label": "33"
+        },
+        {
+          "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+          "Label": "34"
+        },
+        {
+          "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+          "Label": "35"
+        },
+        {
+          "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+          "Label": "36"
+        },
+        {
+          "Sample": "NEG_37_QC_pool_n7.mzXML",
+          "Label": "37"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "NEG_1_QC_pool_n1.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_2_WT_b1_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_7_QC_pool_n2.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_8_WT_b2_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_13_QC_pool_n3.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_14_WT_b3_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_19_QC_pool_n4.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_20_WT_b1_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_25_QC_pool_n5.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_26_WT_b2_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_31_QC_pool_n6.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_32_WT_b3_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_37_QC_pool_n7.mzXML",
+          "Label": "QC"
+        }
+      ]
+    }
+  },
+  "filtered_mgf": null,
+  "current_controls": {
+    "at_utc": "2026-10-30T20:51:39Z",
+    "parameters": {
+      "data_type0": "xcms",
+      "row_id_col0": "Feature ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "kws",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": [],
+      "label_source": "from_rows",
+      "label_index": 2,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": false,
+      "groups_to_remove": [],
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "negative",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": true,
+      "nl_pol2": "negative",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": false,
+      "isf_cor2": 0.95,
+      "isf_rt2": 0.01,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": true,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "from_rows",
+      "qc_label_index": 3,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": "rsd",
+      "value_mode": "group_any",
+      "value_groups": "QC",
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 30,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": [],
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": "",
+      "enable_mgf_filter": false
+    },
+    "files": {
+      "file0": {
+        "name": "xcms_table.csv",
+        "size_bytes": 1261322,
+        "md5": "fc13ce432d667213931253f189c09f78"
+      },
+      "meta_csv": null,
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": null,
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": null,
+      "mgf_input": null
+    },
+    "stats": null,
+    "context": {
+      "dataset_name": "xcms_table.csv",
+      "sample_columns": ["NEG_1_QC_pool_n1.mzXML", "NEG_2_WT_b1_t1.mzXML", "NEG_3_PM-31_b1_t1.mzXML", "NEG_4_PM-37_b1_t1.mzXML", "NEG_5_KO-6_b1_t1.mzXML", "NEG_6_KO-22_b1_t1.mzXML", "NEG_7_QC_pool_n2.mzXML", "NEG_8_WT_b2_t1.mzXML", "NEG_9_PM-31_b2_t1.mzXML", "NEG_10_PM-37_b2_t1.mzXML", "NEG_11_KO-6_b2_t1.mzXML", "NEG_12_KO-22_b2_t1.mzXML", "NEG_13_QC_pool_n3.mzXML", "NEG_14_WT_b3_t1.mzXML", "NEG_15_PM-31_b3_t1.mzXML", "NEG_16_PM-37_b3_t1.mzXML", "NEG_17_KO-6_b3_t1.mzXML", "NEG_18_KO-22_b3_t1.mzXML", "NEG_19_QC_pool_n4.mzXML", "NEG_20_WT_b1_t2.mzXML", "NEG_21_PM-31_b1_t2.mzXML", "NEG_22_PM-37_b1_t2.mzXML", "NEG_23_KO-6_b1_t2.mzXML", "NEG_24_KO-22_b1_t2.mzXML", "NEG_25_QC_pool_n5.mzXML", "NEG_26_WT_b2_t2.mzXML", "NEG_27_PM-31_b2_t2.mzXML", "NEG_28_PM-37_b2_t2.mzXML", "NEG_29_KO-6_b2_t2.mzXML", "NEG_30_KO-22_b2_t2.mzXML", "NEG_31_QC_pool_n6.mzXML", "NEG_32_WT_b3_t2.mzXML", "NEG_33_PM-31_b3_t2.mzXML", "NEG_34_PM-37_b3_t2.mzXML", "NEG_35_KO-6_b3_t2.mzXML", "NEG_36_KO-22_b3_t2.mzXML", "NEG_37_QC_pool_n7.mzXML"],
+      "blank_labels": [
+        {
+          "Sample": "NEG_1_QC_pool_n1.mzXML",
+          "Label": "1"
+        },
+        {
+          "Sample": "NEG_2_WT_b1_t1.mzXML",
+          "Label": "2"
+        },
+        {
+          "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+          "Label": "3"
+        },
+        {
+          "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+          "Label": "4"
+        },
+        {
+          "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+          "Label": "5"
+        },
+        {
+          "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+          "Label": "6"
+        },
+        {
+          "Sample": "NEG_7_QC_pool_n2.mzXML",
+          "Label": "7"
+        },
+        {
+          "Sample": "NEG_8_WT_b2_t1.mzXML",
+          "Label": "8"
+        },
+        {
+          "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+          "Label": "9"
+        },
+        {
+          "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+          "Label": "10"
+        },
+        {
+          "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+          "Label": "11"
+        },
+        {
+          "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+          "Label": "12"
+        },
+        {
+          "Sample": "NEG_13_QC_pool_n3.mzXML",
+          "Label": "13"
+        },
+        {
+          "Sample": "NEG_14_WT_b3_t1.mzXML",
+          "Label": "14"
+        },
+        {
+          "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+          "Label": "15"
+        },
+        {
+          "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+          "Label": "16"
+        },
+        {
+          "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+          "Label": "17"
+        },
+        {
+          "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+          "Label": "18"
+        },
+        {
+          "Sample": "NEG_19_QC_pool_n4.mzXML",
+          "Label": "19"
+        },
+        {
+          "Sample": "NEG_20_WT_b1_t2.mzXML",
+          "Label": "20"
+        },
+        {
+          "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+          "Label": "21"
+        },
+        {
+          "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+          "Label": "22"
+        },
+        {
+          "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+          "Label": "23"
+        },
+        {
+          "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+          "Label": "24"
+        },
+        {
+          "Sample": "NEG_25_QC_pool_n5.mzXML",
+          "Label": "25"
+        },
+        {
+          "Sample": "NEG_26_WT_b2_t2.mzXML",
+          "Label": "26"
+        },
+        {
+          "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+          "Label": "27"
+        },
+        {
+          "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+          "Label": "28"
+        },
+        {
+          "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+          "Label": "29"
+        },
+        {
+          "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+          "Label": "30"
+        },
+        {
+          "Sample": "NEG_31_QC_pool_n6.mzXML",
+          "Label": "31"
+        },
+        {
+          "Sample": "NEG_32_WT_b3_t2.mzXML",
+          "Label": "32"
+        },
+        {
+          "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+          "Label": "33"
+        },
+        {
+          "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+          "Label": "34"
+        },
+        {
+          "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+          "Label": "35"
+        },
+        {
+          "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+          "Label": "36"
+        },
+        {
+          "Sample": "NEG_37_QC_pool_n7.mzXML",
+          "Label": "37"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "NEG_1_QC_pool_n1.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_2_WT_b1_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_7_QC_pool_n2.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_8_WT_b2_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_13_QC_pool_n3.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_14_WT_b3_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_19_QC_pool_n4.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_20_WT_b1_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_25_QC_pool_n5.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_26_WT_b2_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_31_QC_pool_n6.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_32_WT_b3_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_37_QC_pool_n7.mzXML",
+          "Label": "QC"
+        }
+      ]
+    }
+  },
+  "transfer": {
+    "parameters": {
+      "data_type0": "xcms",
+      "row_id_col0": "Feature ID",
+      "mz_col0": "mz",
+      "rt_col0": "rt",
+      "sample_mode0": "kws",
+      "sample_keyword0": [".mzML", ".mzXML"],
+      "sample_cols0": [],
+      "label_source": "from_rows",
+      "label_index": 2,
+      "token_sep": "_",
+      "blank_clean_metadata_names": true,
+      "blank_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "enable_blank": false,
+      "groups_to_remove": [],
+      "blank_mode": "mean_cutoff",
+      "blank_cutoff": 0.1,
+      "enable_iso2": true,
+      "iso_cor2": 0.8,
+      "iso_rt2": 0.01,
+      "iso_tol_type2": "da",
+      "iso_mz_tol2": 0.005,
+      "iso_ppm2": 10,
+      "iso_zmax2": 3,
+      "iso_n2": 1,
+      "iso_nd2": 3,
+      "enable_add2": true,
+      "add_pol2": "negative",
+      "add_cor2": 0.8,
+      "add_rt2": 0.005,
+      "add_tol_type2": "da",
+      "add_mz_tol2": 0.005,
+      "add_ppm2": 10,
+      "add_min_nm2": 50,
+      "add_strict_rt2": true,
+      "enable_nl2": true,
+      "nl_pol2": "negative",
+      "nl_cor2": 0.95,
+      "nl_rt2": 0.002,
+      "nl_tol_type2": "da",
+      "nl_mz_tol2": 0.005,
+      "nl_ppm2": 10,
+      "enable_isf2": false,
+      "isf_cor2": 0.95,
+      "isf_rt2": 0.01,
+      "isf_control_int2": true,
+      "isf_ratio_min2": 0.001,
+      "isf_ratio_max2": 2.5,
+      "isf_ms2_check2": true,
+      "isf_ms2_rel2": 1,
+      "isf_ms2_mz_tol2": 0.01,
+      "enable_mis2": false,
+      "mis_cor2": 0.8,
+      "mis_rt2": 0.002,
+      "mis_tol_type2": "ppm",
+      "mis_mz_tol2": 0.005,
+      "mis_ppm2": 10,
+      "enable_ring2": false,
+      "ring_cor2": 0.8,
+      "ring_rt2": 0.05,
+      "ring_tol_type2": "da",
+      "ring_mz_tol2": 0.95,
+      "ring_ppm2": 500,
+      "ring_min_anch2": 100000,
+      "ring_ratio2": 10,
+      "ring_bidirectional2": false,
+      "qc_label_source": "from_rows",
+      "qc_label_index": 3,
+      "qc_token_sep": "_",
+      "qc_clean_metadata_names": true,
+      "qc_metadata_remove_suffixes": [" Peak area", " Peak height", "_Area", "_Height", " Area", " Height"],
+      "value_filters": "rsd",
+      "value_mode": "group_any",
+      "value_groups": "QC",
+      "zero_metric": "count",
+      "zero_cutoff": 1,
+      "mean_cutoff": 5000,
+      "rsd_cutoff": 30,
+      "dratio_cutoff": 50,
+      "dratio_qc_group": "",
+      "min_cutoff": 1000,
+      "peak_filters": [],
+      "mz_min_enable": true,
+      "mz_max_enable": false,
+      "peak_mz_min": 200,
+      "peak_mz_max": 1500,
+      "rt_min_enable": true,
+      "rt_max_enable": false,
+      "peak_rt_min": 1,
+      "peak_rt_max": 30,
+      "rmd_min_enable": true,
+      "rmd_max_enable": true,
+      "peak_rmd_min": -2000,
+      "peak_rmd_max": 2000,
+      "amd_min_enable": true,
+      "amd_max_enable": true,
+      "peak_amd_min": 0,
+      "peak_amd_max": 0.5,
+      "target_peak_action": "remove",
+      "target_mz_tol_type": "da",
+      "target_mz_tol_da": 0.005,
+      "target_mz_tol_ppm": 10,
+      "target_rt_tol": 0.05,
+      "target_peak_text": "",
+      "enable_mgf_filter": false
+    },
+    "files": {
+      "file0": {
+        "name": "xcms_table.csv",
+        "size_bytes": 1261322,
+        "md5": "fc13ce432d667213931253f189c09f78"
+      },
+      "meta_csv": null,
+      "blank_metadata_csv": null,
+      "qc_meta_csv": null,
+      "qc_metadata_csv": null,
+      "adduct_file2": null,
+      "nl_file2": null,
+      "target_peak_csv": null,
+      "isf_mgf_input": null,
+      "mgf_input": null,
+      "active_mgf": null
+    },
+    "labels": {
+      "blank_labels": [
+        {
+          "Sample": "NEG_1_QC_pool_n1.mzXML",
+          "Label": "1"
+        },
+        {
+          "Sample": "NEG_2_WT_b1_t1.mzXML",
+          "Label": "2"
+        },
+        {
+          "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+          "Label": "3"
+        },
+        {
+          "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+          "Label": "4"
+        },
+        {
+          "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+          "Label": "5"
+        },
+        {
+          "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+          "Label": "6"
+        },
+        {
+          "Sample": "NEG_7_QC_pool_n2.mzXML",
+          "Label": "7"
+        },
+        {
+          "Sample": "NEG_8_WT_b2_t1.mzXML",
+          "Label": "8"
+        },
+        {
+          "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+          "Label": "9"
+        },
+        {
+          "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+          "Label": "10"
+        },
+        {
+          "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+          "Label": "11"
+        },
+        {
+          "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+          "Label": "12"
+        },
+        {
+          "Sample": "NEG_13_QC_pool_n3.mzXML",
+          "Label": "13"
+        },
+        {
+          "Sample": "NEG_14_WT_b3_t1.mzXML",
+          "Label": "14"
+        },
+        {
+          "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+          "Label": "15"
+        },
+        {
+          "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+          "Label": "16"
+        },
+        {
+          "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+          "Label": "17"
+        },
+        {
+          "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+          "Label": "18"
+        },
+        {
+          "Sample": "NEG_19_QC_pool_n4.mzXML",
+          "Label": "19"
+        },
+        {
+          "Sample": "NEG_20_WT_b1_t2.mzXML",
+          "Label": "20"
+        },
+        {
+          "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+          "Label": "21"
+        },
+        {
+          "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+          "Label": "22"
+        },
+        {
+          "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+          "Label": "23"
+        },
+        {
+          "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+          "Label": "24"
+        },
+        {
+          "Sample": "NEG_25_QC_pool_n5.mzXML",
+          "Label": "25"
+        },
+        {
+          "Sample": "NEG_26_WT_b2_t2.mzXML",
+          "Label": "26"
+        },
+        {
+          "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+          "Label": "27"
+        },
+        {
+          "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+          "Label": "28"
+        },
+        {
+          "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+          "Label": "29"
+        },
+        {
+          "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+          "Label": "30"
+        },
+        {
+          "Sample": "NEG_31_QC_pool_n6.mzXML",
+          "Label": "31"
+        },
+        {
+          "Sample": "NEG_32_WT_b3_t2.mzXML",
+          "Label": "32"
+        },
+        {
+          "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+          "Label": "33"
+        },
+        {
+          "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+          "Label": "34"
+        },
+        {
+          "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+          "Label": "35"
+        },
+        {
+          "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+          "Label": "36"
+        },
+        {
+          "Sample": "NEG_37_QC_pool_n7.mzXML",
+          "Label": "37"
+        }
+      ],
+      "qc_labels": [
+        {
+          "Sample": "NEG_1_QC_pool_n1.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_2_WT_b1_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_3_PM-31_b1_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_4_PM-37_b1_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_5_KO-6_b1_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_6_KO-22_b1_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_7_QC_pool_n2.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_8_WT_b2_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_9_PM-31_b2_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_10_PM-37_b2_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_11_KO-6_b2_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_12_KO-22_b2_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_13_QC_pool_n3.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_14_WT_b3_t1.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_15_PM-31_b3_t1.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_16_PM-37_b3_t1.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_17_KO-6_b3_t1.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_18_KO-22_b3_t1.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_19_QC_pool_n4.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_20_WT_b1_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_21_PM-31_b1_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_22_PM-37_b1_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_23_KO-6_b1_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_24_KO-22_b1_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_25_QC_pool_n5.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_26_WT_b2_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_27_PM-31_b2_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_28_PM-37_b2_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_29_KO-6_b2_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_30_KO-22_b2_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_31_QC_pool_n6.mzXML",
+          "Label": "QC"
+        },
+        {
+          "Sample": "NEG_32_WT_b3_t2.mzXML",
+          "Label": "WT"
+        },
+        {
+          "Sample": "NEG_33_PM-31_b3_t2.mzXML",
+          "Label": "PM-31"
+        },
+        {
+          "Sample": "NEG_34_PM-37_b3_t2.mzXML",
+          "Label": "PM-37"
+        },
+        {
+          "Sample": "NEG_35_KO-6_b3_t2.mzXML",
+          "Label": "KO-6"
+        },
+        {
+          "Sample": "NEG_36_KO-22_b3_t2.mzXML",
+          "Label": "KO-22"
+        },
+        {
+          "Sample": "NEG_37_QC_pool_n7.mzXML",
+          "Label": "QC"
+        }
+      ]
+    },
+    "originally_applied": {
+      "blank": false,
+      "ms": true,
+      "qc": true,
+      "peak": false
+    }
+  }
+}
