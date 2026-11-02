@@ -8,7 +8,7 @@ setwd(...)
 library(MetaboCensoR)
 
 # Input
-imported<-mc_prepare("orbi_iimn_gnps_quant.csv",type="mzmine",sample_keywords=c(".mzML","Peak area"))
+imported <- mc_prepare("orbi_iimn_gnps_quant.csv",type="mzmine",sample_keywords=c(".mzML","Peak area"))
 spectra <- mc_read_mgf("orbi_iimn_gnps.mgf")
 
 imported$labels <- mc_labels_from_metadata(
@@ -19,8 +19,8 @@ imported$labels <- mc_labels_from_metadata(
 )
 
 # Blank filter
-after_blank<-mc_filter_blank(imported,groups="Blank",cutoff=.10, mode = "mean_cutoff")
-print(after_blank) 
+after_blank <- mc_filter_blank(imported,groups="Blank",cutoff=.10, mode = "mean_cutoff")
+print(after_blank)
 mc_plot_blank(after_blank,interactive=FALSE) 
 
 # MS filter
@@ -45,7 +45,7 @@ ms_options <- mc_ms_parameters(
   isf_ms2_rel2 = 1
 )
 
-after_ms<-mc_filter_ms(after_blank,filters=c("isotopes","adducts","isf"), parameters = ms_options, spectra = spectra, adducts = "adducts (nontarget + 2xH2O).csv")
+after_ms <- mc_filter_ms(after_blank,filters=c("isotopes","adducts","isf"), parameters = ms_options, spectra = spectra, adducts = "adducts (nontarget + 2xH2O).csv")
 after_ms$ms$counts 
 print(after_ms) 
 
