@@ -4,6 +4,9 @@ The analysis can be reproduced using either interface:
 - **Shiny app:** Upload the dataset and required auxiliary files, import the supplied [`JSON`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/MetaboCensoR_settings_orbi_dataset.json) settings, and apply the required filters.
 - **R:** Run the supplied R script or R Markdown workflow, which specifies the inputs, parameters, and processing order:
 ```r
+setwd(...)
+library(MetaboCensoR)
+
 # Input
 imported<-mc_prepare("orbi_iimn_gnps_quant.csv",type="mzmine",sample_keywords=c(".mzML","Peak area"))
 spectra <- mc_read_mgf("orbi_iimn_gnps.mgf")
