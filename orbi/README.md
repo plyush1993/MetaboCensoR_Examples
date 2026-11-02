@@ -5,6 +5,7 @@ Obtained spectral data were subjected to feature-based molecular networking usin
 
 Dataset was used to estimate the applicability of the MetaboCensoR App on Molecular Networking.<br/>
 Code scripts and all relevant data are available in the folder. 
+- See the [`reproducibility guide`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/reproducibility.md) for input files, analysis settings, and R code to reproduce the MetaboCensoR analysis.
 - Main script for analyzing data: [`Process orbi.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/Process%20orbi.R)
 - List of known target compounds: [`annotation.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/annotation.csv)
 - FBMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=43da3f82c33f43198f40cdc82837b87d); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/RAW%20FBMN.cys)
