@@ -3,6 +3,7 @@ This is a bacterial interaction dataset, as described in [*Luzzatto-Knaan et al.
 
 Dataset was used to estimate the applicability of the MetaboCensoR App on Statistical Hypothesis Testing.<br/>
 Code script and all relevant data are available in the folder. 
+- See the [`reproducibility guide`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/reproducibility.md) for input files, analysis settings, and R code to reproduce the MetaboCensoR analysis.
 - Main script for analyzing data: [`Process inter.R`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/Process%20inter.R)
 - List of known target compounds: [`annot table.csv`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/annot%20table.csv)
 - Raw Data: [`MSV000100949`](https://doi.org/doi:10.25345/C5930P825)
