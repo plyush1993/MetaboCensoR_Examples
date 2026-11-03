@@ -54,12 +54,14 @@ after_qc <- mc_filter_qc(after_ms,filters=c("rsd"),
                       groups=c("001srf","Bs","dd","dPPS","dSRF","Pd", "Peptone"),rsd_cutoff=15, mode = "group_any")
 length(unique(with(after_qc$qc_tbl,Feature[metric == "rsd" & !keep])))
 print(after_qc)
+mc_plot_qc(after_qc,interactive=FALSE) 
 
 # Peak filter
 after_peak <- mc_filter_peak(after_qc,filters=c("rt"),
                        parameters=mc_peak_parameters(peak_rt_min=1))
 length(with(after_peak$peak_tbl, Feature[!pass_rt]))
 print(after_peak)
+mc_plot_peak(after_peak,interactive=FALSE) 
 
 # Output
 output <- mc_export(
