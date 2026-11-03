@@ -186,24 +186,24 @@ p <- ggplot(data_stat, aes(x = FC, y = `Adj.p-value.log`)) +
   geom_point(
     data = dplyr::filter(data_stat, Target == "Target"),
     shape = 21, fill = NA, colour = "yellow",
-    size = 5, stroke = 3
+    size = 2.5, stroke = 2.5
   ) +
 
   geom_point(
     data = dplyr::filter(data_stat, Adduct == "M+H"),
     shape = 21, fill = NA, colour = "green",
-    size = 5, stroke = 3
+    size = 2.5, stroke = 2.5
   ) +
   
     geom_point(
     data = dplyr::filter(data_stat, TargetNew == "Target_New"),
     shape = 21, fill = NA, colour = "blue",
-    size = 5, stroke = 3
+    size = 2.5, stroke = 2.5
   ) +
   
   geom_point(aes(fill = Groups),
              shape = 21, colour = "black",
-             alpha = 0.85, size = 5, stroke = 0.4) +
+             alpha = 0.85, size = 2.5, stroke = 0.4) +
 
   geom_vline(xintercept = c(-1, 1), linetype = 2) +
   geom_hline(yintercept = -log10(0.05), linetype = 2) +
@@ -350,24 +350,24 @@ p <- ggplot(data_stat, aes(x = FC, y = `Adj.p-value.log`)) +
   geom_point(
     data = dplyr::filter(data_stat, Target == "Target"),
     shape = 21, fill = NA, colour = "yellow",
-    size = 5, stroke = 3
+    size = 2.5, stroke = 2.5
   ) +
 
   geom_point(
     data = dplyr::filter(data_stat, Adduct == "M+H"),
     shape = 21, fill = NA, colour = "green",
-    size = 5, stroke = 3
+    size = 2.5, stroke = 2.5
   ) +
   
     geom_point(
     data = dplyr::filter(data_stat, TargetNew == "Target_New"),
     shape = 21, fill = NA, colour = "blue",
-    size = 5, stroke = 3
+    size = 2.5, stroke = 2.5
   ) +
   
   geom_point(aes(fill = Groups),
              shape = 21, colour = "black",
-             alpha = 0.85, size = 5, stroke = 0.4) +
+             alpha = 0.85, size = 2.5, stroke = 0.4) +
 
   geom_vline(xintercept = c(-1, 1), linetype = 2) +
   geom_hline(yintercept = -log10(0.05), linetype = 2) +
@@ -386,8 +386,8 @@ p_app <- p
 #................................................................
 
 library(cowplot)
-p_raw <- p_raw + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
-p_app <- p_app + coord_cartesian(xlim = c(-20,20), ylim = c(0,4.2))
+p_raw <- p_raw + coord_cartesian(xlim = c(-17,17), ylim = c(0,4.0))
+p_app <- p_app + coord_cartesian(xlim = c(-17,17), ylim = c(0,4.0))
 vps <- plot_grid(p_raw, p_app, label_size = 25, nrow = 2)
 vps
 
@@ -594,6 +594,7 @@ data_stat_lpp <- rbind(cbind(data_stat_app, Label = "MetaboCensoR"), cbind(data_
 plot_data <- subset(data_stat_lpp, data_stat_lpp$Name != "No")
 plot_data$Groups %>% unique()
 plot_data <- subset(plot_data, plot_data$Groups %in% c("Pd+001srf / Pd+Pd", "Pd+Bs / Pd+Pd", "Pd+dpps / Pd+Pd"))
+plot_data$Adduct <- str_replace(plot_data$Adduct, fixed("M+H"), "[M+H]+")
 
 plot_data <- plot_data %>%
   mutate(Y_Label = paste0(Name, " ", Adduct, "")) %>%
