@@ -11,6 +11,7 @@ library(ggsci)
 library(RCy3)
 library(cowplot)
 library(ggExtra)
+library(igraph)
 
 setwd("C:/.../")
 
@@ -411,6 +412,134 @@ setNodeBorderColorMapping(
   mapping.type = 'd',
   style.name = "ClassDefault_0"
 )
+
+#................................................................
+#### Calculate Modularity and Assortativity ----
+#................................................................
+library(RCy3)
+cytoscapePing()
+cytoscapeVersionInfo()
+
+library(igraph)
+
+deleteAllNetworks()
+deleteVisualStyle("ClassDefault_0")
+
+importNetworkFromFile(file = "orbi_APP_IIMN_isf_ms2-0c58cb476c80455f8b4c2f82472eb683-network.graphml")
+importNetworkFromFile(file = "orbi_RAW_IIMN-fde43183ef3940aa94985576117b7854-network.graphml")
+
+imported_styles <- importVisualStyles(filename = "styles.xml")
+setVisualStyle(imported_styles[1])
+
+data <- read.csv("canopus_formula_summary + MetaboAnnotation RT.csv", check.names = FALSE)
+
+loadTableData(
+  data = data, 
+  table.key.column = "shared name", 
+  data.key.column = "mappingFeatureId"
+)
+
+g <- RCy3::createIgraphFromNetwork()
+igraph::vertex_attr_names(g)
+
+table(
+  igraph::vertex_attr(g, "NPC.superclass"),
+  useNA = "ifany"
+)
+
+chemical_network_metrics <- function(
+    g,
+    class_col = "NPC.superclass",
+    unknown_labels = c("", "NA", "N/A", "Unknown", "Unclassified")
+) ({
+  if (!class_col %in% igraph::vertex_attr_names(g)) {
+    stop("Node annotation column not found: ", class_col)
+  }
+
+  n_original <- igraph::vcount(g)
+
+  # Clean chemical labels
+  labels <- trimws(as.character(
+    igraph::vertex_attr(g, class_col)
+  ))
+
+  annotated <- !is.na(labels) &
+    !(tolower(labels) %in% tolower(unknown_labels))
+
+  # Store cleaned labels, then retain annotated nodes
+  g <- igraph::set_vertex_attr(
+    g, ".chemical_label", value = labels
+  )
+
+  g <- igraph::induced_subgraph(
+    g,
+    vids = which(annotated)
+  )
+
+  # Analyze simple, undirected connections
+  if (igraph::is_directed(g)) {
+    g <- igraph::as.undirected(
+      g,
+      mode = "collapse",
+      edge.attr.comb = "ignore"
+    )
+  }
+
+  g <- igraph::simplify(
+    g,
+    remove.multiple = TRUE,
+    remove.loops = TRUE,
+    edge.attr.comb = "ignore"
+  )
+
+  membership <- as.integer(factor(
+    igraph::vertex_attr(g, ".chemical_label")
+  ))
+
+  connected <- igraph::degree(g) > 0
+  n_edges <- igraph::ecount(g)
+
+  Q <- NA_real_
+  r <- NA_real_
+
+  if (n_edges > 0L) {
+    Q <- igraph::modularity(
+      g,
+      membership = membership,
+      weights = rep(1, n_edges),
+      resolution = 1,
+      directed = FALSE
+    )
+
+    # Assortativity requires variation in labels among
+    # nodes participating in edges.
+    if (length(unique(membership[connected])) > 1L) {
+      r <- igraph::assortativity_nominal(
+        g,
+        types = membership,
+        directed = FALSE
+      )
+    }
+  }
+
+  data.frame(
+    classification = class_col,
+    total_nodes = n_original,
+    annotated_nodes = igraph::vcount(g),
+    connected_annotated_nodes = sum(connected),
+    edges_between_annotated_nodes = n_edges,
+    chemical_groups = length(unique(membership)),
+    modularity = Q,
+    assortativity = r
+  )
+})
+
+metrics_all <- chemical_network_metrics(
+  g,
+  class_col = "NPC.superclass"
+)
+
+metrics_all
 
 #................................................................
 #### Merge SIRIUS by MetaboAnnotation with Annotation ----
