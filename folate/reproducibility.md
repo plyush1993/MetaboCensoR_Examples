@@ -47,6 +47,7 @@ after_qc <- mc_filter_qc(after_ms,filters=c("rsd"),
                       groups=c("QC"),rsd_cutoff=30, mode = "group_any")
 length(unique(with(after_qc$qc_tbl,Feature[metric == "rsd" & !keep])))
 print(after_qc)
+mc_plot_qc(after_qc,interactive=FALSE) 
 
 # Output
 output <- mc_export(
