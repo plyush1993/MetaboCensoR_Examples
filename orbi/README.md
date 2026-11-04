@@ -13,5 +13,5 @@ Code scripts and all relevant data are available in the folder.
 - IIMN on Raw Data: [`GNPS Project`](https://gnps2.org/status?task=fde43183ef3940aa94985576117b7854); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/RAW%20IIMN.cys)
 - IIMN on Data After MetaboCensoR (Blank Filter): [`GNPS Project`](https://gnps2.org/status?task=75e612c3236c4edfa604ad98dd2651d5); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/APP%20IIMN%20only%20blank%20filt.cys)
 - IIMN on Data After MetaboCensoR (Blank+MS Filters): [`GNPS Project`](https://gnps2.org/status?task=0c58cb476c80455f8b4c2f82472eb683); [`Cytoscape Project`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/APP%20IIMN.cys)
- <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/mn%20x2.png" height="800">
+ <img src="https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/orbi/mn%20x2.png" height="600">
 
