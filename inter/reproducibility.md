@@ -3,6 +3,7 @@
 The analysis can be reproduced using either interface:
 - **Shiny app:** Upload the dataset and required auxiliary files, import the supplied [`JSON`](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/inter/MetaboCensoR_settings_inter_dataset.json) settings, and apply the required filters.
 - **R:** Run the supplied R script or R Markdown workflow, which specifies the inputs, parameters, and processing order:
+  
 ```r
 setwd(...)
 library(MetaboCensoR)
