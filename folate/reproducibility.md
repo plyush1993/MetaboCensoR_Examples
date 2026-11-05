@@ -8,7 +8,10 @@ setwd(...)
 library(MetaboCensoR)
 
 # Input
+# from local path
 imported <- mc_prepare("xcms_table.csv",type="xcms",sample_keywords=c(".mzXML"))
+# from GitHub
+imported <- mc_prepare(read.csv("https://raw.githubusercontent.com/plyush1993/MetaboCensoR_Examples/main/folate/xcms_table.csv"),type="xcms",sample_keywords=c(".mzXML"))
 
 imported$labels <- mc_labels_from_names(
   sample_names = imported$sample_cols,
