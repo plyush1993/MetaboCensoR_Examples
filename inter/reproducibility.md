@@ -8,9 +8,6 @@ setwd(...)
 library(MetaboCensoR)
 
 # Input
-# from local path
-imported <- mc_prepare("Area_5_2026_03_10_18_08_43.csv",type="msdial",sample_keywords=c(".mzXML"),sample_cols = 36:63)
-# from GitHub
 imported <- mc_prepare(read.csv("https://raw.githubusercontent.com/plyush1993/MetaboCensoR_Examples/main/inter/Area_5_2026_03_10_18_08_43.csv"),type="msdial",sample_keywords=c(".mzXML"),sample_cols = 36:63)
 
 imported$labels <- mc_labels_from_names(
