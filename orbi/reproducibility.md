@@ -8,18 +8,6 @@ setwd(...)
 library(MetaboCensoR)
 
 # Input
-# from local path
-imported <- mc_prepare("orbi_iimn_gnps_quant.csv",type="mzmine",sample_keywords=c(".mzML","Peak area"))
-spectra <- mc_read_mgf("orbi_iimn_gnps.mgf")
-
-imported$labels <- mc_labels_from_metadata(
-  path = "metadata.csv",
-  sample_names = imported$sample_cols,
-  sample_col = "Sample name",
-  label_col = "Label"
-)
-
-# from GitHub
 imported <- mc_prepare(read.csv("https://raw.githubusercontent.com/plyush1993/MetaboCensoR_Examples/main/orbi/orbi_iimn_gnps_quant.csv"),type="mzmine",sample_keywords=c(".mzML","Peak area"))
 mgf_file <- tempfile(fileext = ".mgf")
 download.file(
@@ -30,6 +18,11 @@ spectra <- mc_read_mgf(mgf_file)
 imported$labels <- mc_labels_from_csv(
   path = "https://raw.githubusercontent.com/plyush1993/MetaboCensoR_Examples/main/orbi/Label.csv",
   sample_names = imported$sample_cols
+)
+
+adduct_table <- read.csv(
+  paste0(base_url, "adducts%20%28nontarget%20%2B%202xH2O%29.csv"),
+  check.names = FALSE
 )
 
 # Blank filter
@@ -59,7 +52,7 @@ ms_options <- mc_ms_parameters(
   isf_ms2_rel2 = 1
 )
 
-after_ms <- mc_filter_ms(after_blank,filters=c("isotopes","adducts","isf"), parameters = ms_options, spectra = spectra, adducts = "adducts (nontarget + 2xH2O).csv")
+after_ms <- mc_filter_ms(after_blank,filters=c("isotopes","adducts","isf"), parameters = ms_options, spectra = spectra, adducts = adduct_table)
 after_ms$ms$counts 
 print(after_ms) 
 
