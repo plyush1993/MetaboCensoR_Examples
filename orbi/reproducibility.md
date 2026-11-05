@@ -8,8 +8,16 @@ setwd(...)
 library(MetaboCensoR)
 
 # Input
+# from local path
 imported <- mc_prepare("orbi_iimn_gnps_quant.csv",type="mzmine",sample_keywords=c(".mzML","Peak area"))
 spectra <- mc_read_mgf("orbi_iimn_gnps.mgf")
+# from GitHub
+imported <- mc_prepare(read.csv("https://raw.githubusercontent.com/plyush1993/MetaboCensoR_Examples/main/orbi/orbi_iimn_gnps_quant.csv"),type="mzmine",sample_keywords=c(".mzML","Peak area"))
+mgf_file <- tempfile(fileext = ".mgf")
+download.file(
+  "https://raw.githubusercontent.com/plyush1993/MetaboCensoR_Examples/main/orbi/orbi_iimn_gnps.mgf",
+  destfile = mgf_file, mode = "wb")
+spectra <- mc_read_mgf(mgf_file)
 
 imported$labels <- mc_labels_from_metadata(
   path = "metadata.csv",
