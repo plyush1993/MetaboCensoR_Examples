@@ -21,7 +21,7 @@ imported$labels <- mc_labels_from_csv(
 )
 
 adduct_table <- read.csv(
-  paste0(base_url, "adducts%20%28nontarget%20%2B%202xH2O%29.csv"),
+  "https://raw.githubusercontent.com/plyush1993/MetaboCensoR_Examples/main/orbi/adducts%20%28nontarget%20%2B%202xH2O%29.csv",
   check.names = FALSE
 )
 
