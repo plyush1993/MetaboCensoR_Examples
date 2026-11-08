@@ -827,4 +827,194 @@ final_combined_plot <- plot_grid(
 # Render final combined plot
 final_combined_plot
 
+#................................................................
+#### Plot distribution of RT differences for known ion pairs in target adducts ----
+#................................................................
+
+df <- read_csv("orbi_iimn_gnps_quant_FILT_BLANK.csv") %>% as.data.frame()
+peakIn <- as.data.frame(cbind(mz = df$`row m/z`, rt = df$`row retention time`, id = df$`row ID`)) # "mz" column name necessary
+peakIn$mz <- as.numeric(peakIn$mz)
+peakIn$rt <- as.numeric(peakIn$rt)
+
+target_df <- read.csv("annotation.csv")
+target_df <- target_df[,c(1,2,4)]
+
+mass <- calculateMass(target_df$Formula)
+target_df$exactmass <- mass
+target_df <- target_df %>%
+  distinct()
+target_df <- target_df %>%
+  mutate(Compound = ifelse(
+    duplicated(Compound) | duplicated(Compound, fromLast = TRUE), 
+    paste0(Compound, "_RT", rt), 
+    Compound
+  ))
+
+# set polarity, adduct, accuracy
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.1)
+#MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
+#MetaboCoreUtils::adducts(polarity = c("negative")) 
+
+matched_features <- matchValues(peakIn, target_df, parm)
+md <- matchedData(matched_features)
+md <- as.data.frame(md)
+md <- na.omit(md)
+unique(md$target_Compound)
+unique(md$target_Compound) %>% length()
+
+md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
+unique(md$target_Compound) %>% length()
+
+md_raw <- md
+
+# remove isomeres from target list
+rt_window <- 0.1  # Minutes, using target-library RT
+
+# Count distinct adduct forms assigned to each target
+adduct_counts <- md_raw %>%
+  filter(!is.na(adduct), nzchar(trimws(adduct))) %>%
+  group_by(target_Compound) %>%
+  summarise(
+    n_adducts = n_distinct(adduct),
+    .groups = "drop"
+  )
+
+# Group targets with the same formula into local RT clusters.
+# Complete linkage limits each cluster's full RT span to rt_window.
+target_ranked <- target_df %>%
+  mutate(.original_order = row_number()) %>%
+  left_join(
+    adduct_counts,
+    by = c("Compound" = "target_Compound")
+  ) %>%
+  mutate(n_adducts = coalesce(n_adducts, 0L)) %>%
+  group_by(Formula) %>%
+  group_modify(~ {
+    .x$rt_cluster <- if (nrow(.x) == 1L) {
+      1L
+    } else {
+      cutree(
+        hclust(dist(.x$rt), method = "complete"),
+        h = rt_window
+      )
+    }
+    .x
+  }) %>%
+  ungroup()
+
+# Keep the target with the most distinct adduct forms per cluster.
+# Ties retain the first target in the original library.
+target_selected <- target_ranked %>%
+  group_by(Formula, rt_cluster) %>%
+  arrange(desc(n_adducts), .original_order, .by_group = TRUE) %>%
+  slice_head(n = 1) %>%
+  ungroup()
+
+# Subset the original target library
+target_df_subset <- target_df %>%
+  semi_join(target_selected, by = "Compound")
+
+# search in subset
+parm <- Mass2MzRtParam(adducts = c("[M+H]+", "[M+2H]2+", "[M+K]+", "[M+Na]+", "[M+NH4]+", "[M+2Na]2+", "[M+H+K]2+", "[M+H+Na]2+", "[M+2Na-H]+", "[M+H2O+H]+", "[M+2K-H]+", "[M+H-H2O]+", "[M+H-Hexose-H2O]+"), 
+                       tolerance = 0, ppm = 5, toleranceRt = 0.1)
+#MetaboCoreUtils::adducts(polarity = c("positive", "negative")) 
+#MetaboCoreUtils::adducts(polarity = c("negative")) 
+
+matched_features <- matchValues(peakIn, target_df_subset, parm)
+md <- matchedData(matched_features)
+md <- as.data.frame(md)
+md <- na.omit(md)
+unique(md$target_Compound)
+unique(md$target_Compound) %>% length()
+
+md <- subset(md, !md$target_Compound %in% c("Wulignan A1", "p-coumaraldehyde (Q27103652)|Phenylacrylic acid"))
+unique(md$target_Compound) %>% length()
+
+md_raw <- md
+
+dat <- md_raw %>%
+  transmute(
+    compound = trimws(as.character(target_Compound)),
+    feature_id = as.character(id),
+    adduct = trimws(as.character(adduct)),
+    rt = as.numeric(as.character(rt))
+  ) %>%
+  filter(
+    !is.na(compound), compound != "",
+    !is.na(feature_id),
+    !is.na(adduct), adduct != "",
+    is.finite(rt)
+  ) %>%
+  distinct(compound, feature_id, adduct, rt)
+
+# All unique feature pairs within each target compound
+rt_pairs <- lapply(split(dat, dat$compound), function(x) ({
+
+  if (nrow(x) < 2) return(NULL)
+
+  ij <- combn(seq_len(nrow(x)), 2)
+  a <- x[ij[1, ], ]
+  b <- x[ij[2, ], ]
+
+  data.frame(
+    compound = a$compound,
+    feature_1 = a$feature_id,
+    feature_2 = b$feature_id,
+    adduct_1 = a$adduct,
+    adduct_2 = b$adduct,
+    rt_1 = a$rt,
+    rt_2 = b$rt,
+    stringsAsFactors = FALSE
+  )
+})) %>%
+  bind_rows() %>%
+  filter(
+    feature_1 != feature_2,
+    adduct_1 != adduct_2
+  ) %>%
+  mutate(
+    pair_1 = pmin(feature_1, feature_2),
+    pair_2 = pmax(feature_1, feature_2),
+    delta_rt_min = abs(rt_1 - rt_2),
+    delta_rt_sec = delta_rt_min * 60
+  ) %>%
+  distinct(compound, pair_1, pair_2, .keep_all = TRUE)
+
+# Inspect calculated pairs
+head(rt_pairs)
+
+# Distribution across all target compounds
+p <- ggplot(rt_pairs, aes(x = delta_rt_sec)) +
+  geom_histogram(
+    bins = 100,
+    boundary = 0,
+    #binwidth = 0.01,
+    fill = "#398F9D",
+    color = "black"
+  ) +
+  #geom_vline(xintercept = 0.6, linetype = "dashed", size = 1, alpha = 0.5, color = "red")+
+  geom_vline(xintercept = 0.3, linetype = "dashed", size = 1, alpha = 0.5, color = "red")+
+  labs(
+    x = "Absolute RT difference between adducts (seconds)",
+    y = "Number of unique pairs"
+  ) +
+  theme_bw(base_size = 12) +
+  theme(panel.grid.minor = element_blank())+
+  scale_x_continuous(n.breaks = 10, limits = c(0, 10))
+
+p
+
+# Summary for each compound
+rt_summary <- rt_pairs %>%
+  group_by(compound) %>%
+  summarise(
+    pairs = n(),
+    median_sec = median(delta_rt_sec),
+    max_sec = max(delta_rt_sec),
+    .groups = "drop"
+  )
+
+rt_summary
+
 ###################################-
