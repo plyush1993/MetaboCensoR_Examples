@@ -9,6 +9,7 @@ Three different datasets are provided:
 - [**`folate`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/folate) - <ins>Case Study 2:</ins> Enhancing functional analysis in a human cell lines LC-MS profiling dataset.
 - [**`inter`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/inter) - <ins>Case Study 3:</ins> Enhancing statistical analysis in a bacterial interaction LC-MS profiling dataset. <br><br>
 
+Supplemented scripts:
 - [**`for figures.R`**](https://github.com/plyush1993/MetaboCensoR_Examples/blob/main/for%20figures.R) - R script and data to reproduce additional figures. <br>
 - [**`table_annotation`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/table_annotation) - R script and data to reproduce annotation coverage results. <br>
 - [**`tool_benchmarking`**](https://github.com/plyush1993/MetaboCensoR_Examples/tree/main/tool_benchmarking) - R script and data to reproduce benchmarking results. <br>
